@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row } from 'antd';
+import { Layout, Typography, Tabs } from 'antd';
 import './App.css';
 import Settings from './Settings';
-import Stats from './Stats';
 import Pairs from './Pairs';
+import Question from './Question';
+import Round from './Round';
 import { appStyle, titleStyle } from './Constants';
 
 const { Content } = Layout;
 const { Title } = Typography;
+const { TabPane } = Tabs;
 
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
@@ -42,26 +44,39 @@ const App = () => {
 			<Content style={{ padding: '3%' }}>
 				<Title style={titleStyle}>Speedback 3000</Title>
 				<br />
-				<Row>
-					<Settings
-						people={people}
-						setPeople={setPeople}
-						pairTime={pairTime}
-						setPairTime={setPairTime}
-					/>
-					<Pairs
-						pairTime={pairTime}
-						people={people}
-						currentRound={currentRound}
-						isEven={isEven}
-					/>
-					{/* <Stats
-						pairTime={pairTime}
-						people={people}
-						currentRound={currentRound}
-						isEven={isEven(people.length)}
-					/> */}
-				</Row>
+				<Tabs>
+					<TabPane tab="Settings" key="Settings">
+						<Settings
+							people={people}
+							setPeople={setPeople}
+							pairTime={pairTime}
+							setPairTime={setPairTime}
+						/>
+					</TabPane>
+					<TabPane tab="Pairs" key="Pairs">
+						<Pairs
+							pairTime={pairTime}
+							people={people}
+							currentRound={currentRound}
+							isEven={isEven}
+						/>
+					</TabPane>
+					<TabPane tab="Question" key="Question">
+						<Question
+							people={people}
+							currentRound={currentRound}
+							isEven={isEven}
+						/>
+					</TabPane>
+					<TabPane tab="Round" key="Round">
+						<Round
+							pairTime={pairTime}
+							people={people}
+							currentRound={currentRound}
+							isEven={isEven}
+						/>
+					</TabPane>
+				</Tabs>
 			</Content>
 		</Layout>
 	);
