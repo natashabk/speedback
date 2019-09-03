@@ -1,1 +1,5 @@
 @import '~antd/dist/antd.css';
+
+.ant-select-selection--multiple {
+	min-height: 100px !important;
+}

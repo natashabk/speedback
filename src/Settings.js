@@ -1,11 +1,18 @@
 import React from 'react';
 import { Typography, Card, Col, Select, Radio, Button } from 'antd';
 import './App.css';
-import { titleStyle } from './Constants';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const radioStyle = { width: '33%', textAlign: 'center' };
+const colStyle = {
+	flexDirection: 'column',
+	display: 'flex',
+	marginTop: 10,
+	minHeight: 'inherit',
+	justifyContent: 'space-between',
+	paddingTop: '5%',
+};
 
 const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
 	const sessionLength = Math.floor(
@@ -14,35 +21,39 @@ const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
 
 	return (
 		<Col span={12}>
-			<Card style={{ maxWidth: 400, minHeight: 350 }}>
-				<Title level={4} style={titleStyle}>
-					Participants
-				</Title>
+			<Card
+				style={{ maxWidth: 400, minHeight: 350 }}
+				title="Participants"
+				bodyStyle={{ minHeight: 300 }}
+			>
 				<Select
 					mode="tags"
+					size="large"
+					rows={4}
 					placeholder="Start typing names..."
 					onChange={present => setPeople(present)}
 					value={people}
 					style={{ textTransform: 'capitalize', width: '100%' }}
+					dropdownRender={menu => <div style={{ display: 'none' }}>{menu}</div>}
 				/>
-				<Col
-					style={{ flexDirection: 'column', display: 'flex', marginTop: 10 }}
-				>
-					Minutes per pair
-					<Radio.Group
-						defaultValue={4}
-						buttonStyle="solid"
-						onChange={e => setPairTime(e.target.value)}
-					>
-						{[3, 4, 5].map(num => (
-							<Radio.Button value={num} style={radioStyle}>
-								{`${num}`}
-							</Radio.Button>
-						))}
-					</Radio.Group>
-					<Text type="secondary">
-						This session will last approximately {sessionLength} minutes.
-					</Text>
+				<Col style={colStyle}>
+					<label style={{ display: 'grid' }}>
+						<Text strong>Minutes per pair</Text>
+						<Radio.Group
+							defaultValue={4}
+							buttonStyle="solid"
+							onChange={e => setPairTime(e.target.value)}
+						>
+							{[3, 4, 5].map(num => (
+								<Radio.Button value={num} style={radioStyle}>
+									{`${num}`}
+								</Radio.Button>
+							))}
+						</Radio.Group>
+						<Text type="secondary">
+							This session will last approximately {sessionLength} minutes.
+						</Text>
+					</label>
 					<Button type="primary">Begin Session</Button>
 				</Col>
 			</Card>
