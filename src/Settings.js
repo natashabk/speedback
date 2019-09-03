@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Card, Col, Select, Radio, Button } from 'antd';
 import './App.css';
+import { cardStyle } from './Constants';
 
 const { Text } = Typography;
 
@@ -20,11 +21,7 @@ const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
 	);
 
 	return (
-		<Card
-			style={{ maxWidth: 400, minHeight: 350 }}
-			title="Participants"
-			bodyStyle={{ minHeight: 300 }}
-		>
+		<Card style={cardStyle} title="Participants" bodyStyle={{ minHeight: 300 }}>
 			<Select
 				mode="tags"
 				size="large"

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Row } from 'antd';
 import './App.css';
 import PageTitle from './PageTitle';
-import { contentStyle } from './Constants';
+import { contentStyle, cardStyle } from './Constants';
 
 const stationStyle = {
 	width: '45%',
@@ -12,11 +12,11 @@ const stationStyle = {
 	textTransform: 'capitalize',
 };
 
-const Pairs = ({ people, currentRound, isEven }) => {
+const Pairs = ({ people, currentRound, isEven, setOddOneOut }) => {
 	const middleIdx = Math.floor(people.length / 2);
 
 	return (
-		<Card style={{ maxWidth: 400, minHeight: 350 }}>
+		<Card style={cardStyle}>
 			<PageTitle
 				currentRound={currentRound}
 				people={people}
@@ -34,8 +34,10 @@ const Pairs = ({ people, currentRound, isEven }) => {
 						const member = <strong>{teamMember}</strong>;
 						const partner = <strong>{people[people.length - i - 1]}</strong>;
 
-						if (!isEven(people.length) && i === middleIdx)
+						if (!isEven(people.length) && i === middleIdx) {
+							setOddOneOut(teamMember);
 							return <Card style={stationStyle}>{member} sitting out</Card>;
+						}
 						if (i < middleIdx)
 							return (
 								<Card style={stationStyle} key={i}>

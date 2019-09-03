@@ -15,6 +15,7 @@ const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
 	const [people, setPeople] = useState([]);
 	const [pairTime, setPairTime] = useState(4);
+	const [oddOneOut, setOddOneOut] = useState('');
 
 	const isEven = num => num % 2 === 0;
 
@@ -44,8 +45,12 @@ const App = () => {
 			<Content style={{ padding: '3%' }}>
 				<Title style={titleStyle}>Speedback 3000</Title>
 				<br />
-				<Tabs>
-					<TabPane tab="Settings" key="Settings">
+				<Tabs defaultActiveKey="Round">
+					<TabPane
+						tab="Settings"
+						key="Settings"
+						style={{ backgroundColor: '#fff' }}
+					>
 						<Settings
 							people={people}
 							setPeople={setPeople}
@@ -53,22 +58,28 @@ const App = () => {
 							setPairTime={setPairTime}
 						/>
 					</TabPane>
-					<TabPane tab="Pairs" key="Pairs">
+					<TabPane tab="Pairs" key="Pairs" style={{ backgroundColor: '#fff' }}>
 						<Pairs
 							pairTime={pairTime}
 							people={people}
 							currentRound={currentRound}
 							isEven={isEven}
+							setOddOneOut={setOddOneOut}
 						/>
 					</TabPane>
-					<TabPane tab="Question" key="Question">
+					<TabPane
+						tab="Question"
+						key="Question"
+						style={{ backgroundColor: '#fff' }}
+					>
 						<Question
 							people={people}
 							currentRound={currentRound}
 							isEven={isEven}
+							oddOneOut={oddOneOut}
 						/>
 					</TabPane>
-					<TabPane tab="Round" key="Round">
+					<TabPane tab="Round" key="Round" style={{ backgroundColor: '#fff' }}>
 						<Round
 							pairTime={pairTime}
 							people={people}

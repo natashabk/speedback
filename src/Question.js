@@ -1,36 +1,106 @@
 import React, { useState } from 'react';
-import { Card, Statistic, Icon, Row, Button } from 'antd';
+import { Card, Typography, Row, Button, Modal } from 'antd';
 import './App.css';
 import PageTitle from './PageTitle';
-import { contentStyle, goesFirst } from './Constants';
+import {
+	contentStyle,
+	goesFirst,
+	cardStyle,
+	oddQuestionOut,
+} from './Constants';
 
-const Question = ({ people, currentRound, isEven }) => {
-	const shuffleQuestions = () =>
-		goesFirst[Math.floor(Math.random() * goesFirst.length)];
+const { Title, Text } = Typography;
 
-	const [currentQuestion, setCurrentQuestion] = useState(shuffleQuestions());
+const Question = ({ people, currentRound, isEven, oddOneOut }) => {
+	const shuffle = list => list[Math.floor(Math.random() * list.length)];
+
+	const [visible, setVisible] = useState(false);
+	const [currentQuestion, setCurrentQuestion] = useState(shuffle(goesFirst));
+	const [currentOddOne, setCurrentOddOne] = useState(shuffle(oddQuestionOut));
 
 	return (
-		<Card style={{ maxWidth: 400, minHeight: 350 }}>
+		<Card style={cardStyle}>
 			<PageTitle
 				currentRound={currentRound}
 				people={people}
 				isEven={isEven}
 				instruction="🤔 Who is giving feedback first?"
-				alert="draw"
 				continueText="Start Round"
 			>
-				<Card type="inner" style={{ ...contentStyle, padding: 'unset' }}>
-					<Row style={{ position: 'absolute', right: 10 }}>
+				<Card
+					type="inner"
+					style={{ ...contentStyle, padding: 'unset' }}
+					bordered={false}
+				>
+					<Row style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}>
 						<Button
+							size="small"
 							shape="circle"
-							size="large"
 							icon="retweet"
-							onClick={() => setCurrentQuestion(shuffleQuestions())}
+							onClick={() => setCurrentQuestion(shuffle(goesFirst))}
 						></Button>
 					</Row>
-					<Statistic title="The person..." value={currentQuestion} />
+					<Title level={3} style={{ fontWeight: 400 }}>
+						The person {currentQuestion}
+					</Title>
+					<Button
+						type="link"
+						style={{ padding: 0 }}
+						onClick={() => setVisible(true)}
+					>
+						What if it's a tie?
+					</Button>
 				</Card>
+				<Modal visible={visible} footer={null}>
+					<Text>
+						<span style={{ fontWeight: 600, fontSize: 16 }}>
+							How to solve a tie
+						</span>
+						<br />
+						<br />
+						If the question results in a tie, you can break the deadlock using
+						one of these methods:
+						<br />
+						<br />
+						✂️ Rock, paper, scissors <br />
+						💰 Flip a coin <br />
+						💪 Arm wrestle <br />
+						☠️ Fight to the death <br />
+					</Text>
+					<br />
+					<Button
+						onClick={() => setVisible(false)}
+						type="primary"
+						style={{ marginTop: 15, width: '100%' }}
+					>
+						OK
+					</Button>
+				</Modal>
+				{oddOneOut && (
+					<Card
+						type="inner"
+						style={{ marginBottom: 10, borderRadius: 4, minHeight: 100 }}
+						bordered={false}
+					>
+						<Row
+							style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}
+						>
+							<Button
+								size="small"
+								shape="circle"
+								icon="retweet"
+								onClick={() => setCurrentOddOne(shuffle(oddQuestionOut))}
+							></Button>
+						</Row>
+						<Title level={4} type="secondary">
+							<span style={{ textTransform: 'capitalize' }}>{oddOneOut}</span>,
+							you should:
+						</Title>
+						<Title level={3} style={{ fontWeight: 400, marginTop: 0 }}>
+							{currentOddOne}
+						</Title>
+					</Card>
+				)}
 			</PageTitle>
 		</Card>
 	);

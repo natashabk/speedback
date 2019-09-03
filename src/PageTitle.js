@@ -49,9 +49,6 @@ const PageTitle = ({
 				<Button size="large" type="primary" style={{ marginBottom: 10 }}>
 					{continueText}
 				</Button>
-				<Button size="large" type="danger" ghost>
-					Exit Session
-				</Button>
 			</Row>
 		</>
 	);
