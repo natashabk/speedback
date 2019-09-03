@@ -20,10 +20,3 @@ export const titleStyle = {
 export const appStyle = {
 	minHeight: '100vh',
 };
-
-export const stationStyle = {
-	width: 200,
-	textAlign: 'center',
-	margin: 'auto',
-	marginTop: 10,
-};

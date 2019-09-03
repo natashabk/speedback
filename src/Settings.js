@@ -54,7 +54,9 @@ const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
 							This session will last approximately {sessionLength} minutes.
 						</Text>
 					</label>
-					<Button type="primary">Begin Session</Button>
+					<Button size="large" type="primary">
+						Begin Session
+					</Button>
 				</Col>
 			</Card>
 		</Col>

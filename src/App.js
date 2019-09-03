@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row, Card, Button, Col, Statistic } from 'antd';
+import { Layout, Typography, Row } from 'antd';
 import './App.css';
 import Settings from './Settings';
 import Stats from './Stats';
-import { appStyle, stationStyle, titleStyle } from './Constants';
+import Pairs from './Pairs';
+import { appStyle, titleStyle } from './Constants';
 
 const { Content } = Layout;
 const { Title } = Typography;
@@ -14,8 +15,6 @@ const App = () => {
 	const [pairTime, setPairTime] = useState(4);
 
 	const isEven = num => num % 2 === 0;
-
-	const middleIdx = Math.floor(people.length / 2);
 
 	const nextRound = () => {
 		let newOrder = people;
@@ -50,26 +49,18 @@ const App = () => {
 						pairTime={pairTime}
 						setPairTime={setPairTime}
 					/>
-					<Col span={12}>
-						<Stats
-							pairTime={pairTime}
-							people={people}
-							currentRound={currentRound}
-							isEven={isEven(people.length)}
-						/>
-						{people.map((teamMember, i) => {
-							if (!isEven(people.length) && i === middleIdx)
-								return (
-									<Card style={stationStyle}>{teamMember} sitting out</Card>
-								);
-							if (i < middleIdx)
-								return (
-									<Card style={stationStyle} key={i}>
-										{teamMember} and {people[people.length - i - 1]}
-									</Card>
-								);
-						})}
-					</Col>
+					<Pairs
+						pairTime={pairTime}
+						people={people}
+						currentRound={currentRound}
+						isEven={isEven}
+					/>
+					{/* <Stats
+						pairTime={pairTime}
+						people={people}
+						currentRound={currentRound}
+						isEven={isEven(people.length)}
+					/> */}
 				</Row>
 			</Content>
 		</Layout>
