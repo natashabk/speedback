@@ -1,28 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Statistic, Typography, Progress, Card, Row, Button } from 'antd';
+import { Statistic, Progress, Card, Row } from 'antd';
 import { cardStyle } from './Constants';
 import PageTitle from './PageTitle';
-import cron from 'node-cron';
 
-const { Title } = Typography;
 const { Countdown } = Statistic;
 
 const Round = ({ pairTime, people, currentRound, isEven }) => {
-	const [timePassed, setTimePassed] = useState(0);
-	const [deadline, setDeadline] = useState(
-		Date.now() + (1000 * 60 * pairTime) / 2,
-	);
-	const totalTime = Math.floor(-(Date.now() - deadline) / 1000); //num of seconds
-	const secondsRemaining = (deadline - Date.now()) / 1000;
+	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
-	const timeRef = useRef(null);
-	const numRef = useRef(null);
+	const [count, setCount] = useState(0);
+	const [deadline, setDeadline] = useState(roundTime());
+	const [firstActive, setFirstActive] = useState(true);
+	const [timeRunning, setTimeRunning] = useState(true);
+
+	const totalMilSeconds = (pairTime / 2) * 600;
+	const percent = (count / totalMilSeconds) * 100;
+	const secondPercent =
+		((count - totalMilSeconds) / (totalMilSeconds / 10)) * 10;
+
+	function useInterval(callback) {
+		const savedCallback = useRef();
+		useEffect(() => {
+			savedCallback.current = callback;
+		}, [callback]);
+		useEffect(() => {
+			function tick() {
+				savedCallback.current();
+			}
+			let id = setInterval(tick, 100);
+			return () => clearInterval(id);
+		}, [deadline]);
+	}
+
+	useInterval(() => {
+		setCount(count + 1);
+	});
 
 	return (
 		<Card style={cardStyle}>
-			<Button onClick={() => timeRef.current.stopTimer()}>Stop</Button>
-			<Button onClick={() => timeRef.current.startTimer()}>Start</Button>
-			<Button onClick={() => console.log(timeRef.current)}>???</Button>
 			<PageTitle
 				currentRound={currentRound}
 				people={people}
@@ -33,12 +48,28 @@ const Round = ({ pairTime, people, currentRound, isEven }) => {
 				<Row type="flex" justify="space-around" style={{ margin: '30px 0px' }}>
 					<Progress
 						type="circle"
-						percent={secondsRemaining}
+						percent={firstActive ? percent : 100}
 						format={percent => (
-							<Countdown ref={timeRef} value={deadline} format="mm:ss" />
+							<Countdown
+								value={firstActive ? deadline : Date.now()}
+								format="mm:ss"
+								onFinish={() => {
+									setFirstActive(false);
+									setDeadline(roundTime());
+								}}
+							/>
 						)}
 					/>
-					<Progress type="circle" percent={100} />
+					<Progress
+						type="circle"
+						percent={firstActive ? 0 : secondPercent}
+						format={percent => (
+							<Countdown
+								value={firstActive ? Date.now() : deadline}
+								format="mm:ss"
+							/>
+						)}
+					/>
 				</Row>
 			</PageTitle>
 		</Card>
