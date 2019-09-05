@@ -13,11 +13,17 @@ const { Content } = Layout;
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
 	const [people, setPeople] = useState([]);
-	const [pairTime, setPairTime] = useState(null);
+	const [pairTime, setPairTime] = useState(0);
 	const [oddOneOut, setOddOneOut] = useState('');
 	const [active, setActive] = useState('Settings');
 
 	const isEven = num => num % 2 === 0;
+
+	const numOfRounds = () => {
+		if (people.length && isEven) return people.length - 1;
+		else if (people.length) return people.length;
+		else return 0;
+	};
 
 	const nextRound = () => {
 		let newOrder = people;
@@ -47,8 +53,7 @@ const App = () => {
 					currentRound={currentRound}
 					active={active}
 					setActive={setActive}
-					people={people}
-					isEven={isEven}
+					numOfRounds={numOfRounds}
 				>
 					{active === 'Settings' && (
 						<Settings
@@ -56,6 +61,7 @@ const App = () => {
 							setPeople={setPeople}
 							pairTime={pairTime}
 							setPairTime={setPairTime}
+							numOfRounds={numOfRounds}
 						/>
 					)}
 					{active === 'Pairs' && (

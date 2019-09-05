@@ -5,9 +5,15 @@ import './App.css';
 const { Text } = Typography;
 const radioStyle = { width: '33%', textAlign: 'center', height: 40 };
 
-const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
+const Settings = ({
+	people,
+	setPeople,
+	pairTime,
+	setPairTime,
+	numOfRounds,
+}) => {
 	const sessionLength = Math.floor(
-		people.length * pairTime + people.length / 2,
+		numOfRounds() * pairTime + numOfRounds() * 0.5,
 	);
 
 	return (
@@ -36,12 +42,12 @@ const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
 					onChange={e => setPairTime(e.target.value)}
 				>
 					{[3, 4, 5].map(num => (
-						<Radio.Button value={num} style={radioStyle}>
+						<Radio.Button key={num} value={num} style={radioStyle}>
 							{`${num}`}
 						</Radio.Button>
 					))}
 				</Radio.Group>
-				{pairTime && (
+				{pairTime !== 0 && (
 					<Text type="secondary">
 						This session will last approximately {sessionLength} minutes.
 					</Text>

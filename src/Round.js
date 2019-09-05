@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Statistic, Progress, Row, Typography } from 'antd';
+import { secondCounterPlaceholder } from './Constants';
 
 const { Countdown } = Statistic;
 const { Title } = Typography;
@@ -35,6 +36,33 @@ const Round = ({ pairTime }) => {
 		setCount(count + 1);
 	});
 
+	const titleStyle = {
+		fontWeight: 400,
+		textAlign: 'center',
+		marginTop: 80,
+	};
+
+	const colors = {
+		First: { color: '#80aaff' },
+		Second: { color: '#ff8533' },
+	};
+
+	const getMessage = () => {
+		if (timeRunning) {
+			const prefix = firstActive ? 'First' : 'Second';
+			return (
+				<Title level={4} style={titleStyle}>
+					<span style={colors[prefix]}>{prefix}</span> person talking
+				</Title>
+			);
+		} else
+			return (
+				<Title level={4} style={titleStyle}>
+					Round over!
+				</Title>
+			);
+	};
+
 	return (
 		<>
 			<Row type="flex" justify="space-around" style={{ margin: '50px 0px' }}>
@@ -59,27 +87,18 @@ const Round = ({ pairTime }) => {
 					percent={firstActive ? 0 : secondPercent}
 					format={percent =>
 						firstActive ? (
-							`0${pairTime / 2}:00`
+							secondCounterPlaceholder[pairTime]
 						) : (
 							<Countdown
 								value={firstActive ? Date.now() : deadline}
 								format="mm:ss"
+								onFinish={() => setTimeRunning(false)}
 							/>
 						)
 					}
 				/>
 			</Row>
-			<Title
-				level={4}
-				style={{ fontWeight: 400, textAlign: 'center', marginTop: 80 }}
-			>
-				{firstActive ? (
-					<span style={{ color: '#80aaff' }}>First</span>
-				) : (
-					<span style={{ color: '#ff8533' }}>Second</span>
-				)}{' '}
-				person talking
-			</Title>
+			{getMessage()}
 		</>
 	);
 };

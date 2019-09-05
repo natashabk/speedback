@@ -108,3 +108,13 @@ export const pageInstructions = {
 		nextScreen: 'Pairs',
 	},
 };
+
+export const secondCounterPlaceholder = [
+	'00:00',
+	'00:30',
+	'01:00',
+	'01:30',
+	'02:00',
+	'02:30',
+	'03:00',
+];

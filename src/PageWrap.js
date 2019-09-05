@@ -9,17 +9,10 @@ const PageWrap = ({
 	currentRound,
 	active,
 	setActive,
-	people,
-	isEven,
+	numOfRounds,
 	children,
 }) => {
 	const [visible, setVisible] = useState(false);
-
-	const numOfRounds = () => {
-		if (people.length && isEven) return people.length - 1;
-		else if (people.length) return people.length;
-		else return 0;
-	};
 
 	const instruction = pageInstructions[active].title;
 	const continueText = pageInstructions[active].continueText;
