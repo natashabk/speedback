@@ -23,7 +23,7 @@ export const goesFirst = [
 	'most likely to be asked for ID at a bar',
 	'who has met the coolest celebrity',
 	'who has met the lamest celebrity',
-	'who has been at HeadBox the longest',
+	'who has been at your company the longest',
 	'with the most social media followers',
 	'with the longest commute',
 	'who talks the most in meetings',
@@ -43,7 +43,7 @@ export const oddQuestionOut = [
 	'draw a cat on a skateboard',
 	'draw a design for the next HotWheels car',
 	'draw your perfect day',
-	'draw Gordon Ramsey having a FREAKOUT',
+	'draw Gordon Ramsey having a freakout',
 	'draw the most exciting thing that happened at work recently',
 	"draw a scene from a tv show you've watched recently",
 ];

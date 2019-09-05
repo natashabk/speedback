@@ -43,7 +43,6 @@ const App = () => {
 				const hop = newOrder.pop();
 				newOrder.unshift(hop);
 			}
-
 			setPeople(newOrder);
 		}
 	};
@@ -75,7 +74,13 @@ const App = () => {
 						/>
 					)}
 					{active === 'Question' && <Question oddOneOut={oddOneOut} />}
-					{active === 'Round' && <Round pairTime={pairTime} />}
+					{active === 'Round' && (
+						<Round
+							pairTime={pairTime}
+							currentRound={currentRound}
+							numOfRounds={numOfRounds}
+						/>
+					)}
 				</PageWrap>
 			</Content>
 		</Layout>

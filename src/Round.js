@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Statistic, Progress, Row, Typography } from 'antd';
+import { Statistic, Progress, Row, Typography, Rate, Card } from 'antd';
 import { secondCounterPlaceholder } from './Constants';
 
 const { Countdown } = Statistic;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
-const Round = ({ pairTime }) => {
+const Round = ({ pairTime, currentRound, numOfRounds }) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
+	const isLastRound = currentRound === numOfRounds();
 
 	const [count, setCount] = useState(0);
 	const [deadline, setDeadline] = useState(roundTime());
@@ -58,7 +59,7 @@ const Round = ({ pairTime }) => {
 		} else
 			return (
 				<Title level={4} style={titleStyle}>
-					Round over!
+					{isLastRound ? 'Game' : 'Round'} over!
 				</Title>
 			);
 	};
@@ -99,6 +100,12 @@ const Round = ({ pairTime }) => {
 				/>
 			</Row>
 			{getMessage()}
+			{isLastRound && !timeRunning && (
+				<Card bodyStyle={{ textAlign: 'center' }}>
+					<Text strong>Rate this session</Text>
+					<Rate style={{ width: '100%' }} />
+				</Card>
+			)}
 		</>
 	);
 };
