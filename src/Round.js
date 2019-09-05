@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Statistic, Progress, Card, Row } from 'antd';
-import { cardStyle } from './Constants';
-import PageTitle from './PageTitle';
+import { Statistic, Progress, Row, Typography } from 'antd';
 
 const { Countdown } = Statistic;
+const { Title } = Typography;
 
-const Round = ({ pairTime, people, currentRound, isEven }) => {
+const Round = ({ pairTime }) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
@@ -37,42 +36,51 @@ const Round = ({ pairTime, people, currentRound, isEven }) => {
 	});
 
 	return (
-		<Card style={cardStyle}>
-			<PageTitle
-				currentRound={currentRound}
-				people={people}
-				isEven={isEven}
-				instruction="🔥 Round in Progress"
-				continueText="Next Pairing"
-			>
-				<Row type="flex" justify="space-around" style={{ margin: '30px 0px' }}>
-					<Progress
-						type="circle"
-						percent={firstActive ? percent : 100}
-						format={percent => (
-							<Countdown
-								value={firstActive ? deadline : Date.now()}
-								format="mm:ss"
-								onFinish={() => {
-									setFirstActive(false);
-									setDeadline(roundTime());
-								}}
-							/>
-						)}
-					/>
-					<Progress
-						type="circle"
-						percent={firstActive ? 0 : secondPercent}
-						format={percent => (
+		<>
+			<Row type="flex" justify="space-around" style={{ margin: '50px 0px' }}>
+				<Progress
+					type="circle"
+					strokeColor="#80aaff"
+					percent={firstActive ? percent : 100}
+					format={percent => (
+						<Countdown
+							value={firstActive ? deadline : Date.now()}
+							format="mm:ss"
+							onFinish={() => {
+								setFirstActive(false);
+								setDeadline(roundTime());
+							}}
+						/>
+					)}
+				/>
+				<Progress
+					type="circle"
+					strokeColor="#ff8533"
+					percent={firstActive ? 0 : secondPercent}
+					format={percent =>
+						firstActive ? (
+							`0${pairTime / 2}:00`
+						) : (
 							<Countdown
 								value={firstActive ? Date.now() : deadline}
 								format="mm:ss"
 							/>
-						)}
-					/>
-				</Row>
-			</PageTitle>
-		</Card>
+						)
+					}
+				/>
+			</Row>
+			<Title
+				level={4}
+				style={{ fontWeight: 400, textAlign: 'center', marginTop: 80 }}
+			>
+				{firstActive ? (
+					<span style={{ color: '#80aaff' }}>First</span>
+				) : (
+					<span style={{ color: '#ff8533' }}>Second</span>
+				)}{' '}
+				person talking
+			</Title>
+		</>
 	);
 };
 export default Round;

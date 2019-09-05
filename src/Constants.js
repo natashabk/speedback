@@ -53,13 +53,16 @@ export const titleStyle = {
 };
 
 export const appStyle = {
-	minHeight: '100vh',
-	backgroundColor: '#fff',
+	maxHeight: 700,
+	backgroundColor: '#f4f7fb',
+	width: 480,
+	margin: 'auto',
+	padding: '3%',
+	boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
 };
 
 export const contentStyle = {
 	minHeight: 200,
-	// border: '2px solid #faad14',
 	padding: 10,
 	marginBottom: 10,
 	borderRadius: 4,
@@ -68,7 +71,7 @@ export const contentStyle = {
 export const cardStyle = {
 	maxWidth: 400,
 	minHeight: 350,
-	backgroundColor: '#f4f7fb',
+	backgroundColor: '#fff',
 };
 
 export const alerts = {
@@ -80,5 +83,28 @@ export const alerts = {
 	draw: {
 		headline: "What if it's a draw?",
 		text: 'Rock, paper, scissors. Winner speaks first.',
+	},
+};
+
+export const pageInstructions = {
+	Settings: {
+		title: '👇 Enter participants below',
+		continueText: 'Begin Session',
+		nextScreen: 'Pairs',
+	},
+	Pairs: {
+		title: '🍐 Get into your pairs',
+		continueText: 'Everyone is Paired',
+		nextScreen: 'Question',
+	},
+	Question: {
+		title: '🤔 Who is giving feedback first?',
+		continueText: 'Start Round',
+		nextScreen: 'Round',
+	},
+	Round: {
+		title: '🔥 Round in Progress',
+		continueText: 'Next Pairing',
+		nextScreen: 'Pairs',
 	},
 };

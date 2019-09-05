@@ -1,19 +1,9 @@
 import React from 'react';
-import { Typography, Card, Col, Select, Radio, Button } from 'antd';
+import { Typography, Select, Radio } from 'antd';
 import './App.css';
-import { cardStyle } from './Constants';
 
 const { Text } = Typography;
-
-const radioStyle = { width: '33%', textAlign: 'center' };
-const colStyle = {
-	flexDirection: 'column',
-	display: 'flex',
-	marginTop: 10,
-	minHeight: 'inherit',
-	justifyContent: 'space-between',
-	paddingTop: '5%',
-};
+const radioStyle = { width: '33%', textAlign: 'center', height: 40 };
 
 const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
 	const sessionLength = Math.floor(
@@ -21,40 +11,43 @@ const Settings = ({ people, setPeople, pairTime, setPairTime }) => {
 	);
 
 	return (
-		<Card style={cardStyle} title="Participants" bodyStyle={{ minHeight: 300 }}>
+		<>
 			<Select
 				mode="tags"
 				size="large"
 				rows={4}
-				placeholder="Start typing names..."
+				placeholder={
+					<Text style={{ textTransform: 'initial', color: '#b3b3b3' }}>
+						Press enter after each name
+					</Text>
+				}
 				onChange={present => setPeople(present)}
 				value={people}
-				style={{ textTransform: 'capitalize', width: '100%' }}
+				style={{
+					textTransform: 'capitalize',
+					width: '100%',
+				}}
 				dropdownRender={menu => <div style={{ display: 'none' }}>{menu}</div>}
 			/>
-			<Col style={colStyle}>
-				<label style={{ display: 'grid' }}>
-					<Text strong>Minutes per pair</Text>
-					<Radio.Group
-						defaultValue={4}
-						buttonStyle="solid"
-						onChange={e => setPairTime(e.target.value)}
-					>
-						{[3, 4, 5].map(num => (
-							<Radio.Button value={num} style={radioStyle}>
-								{`${num}`}
-							</Radio.Button>
-						))}
-					</Radio.Group>
+			<label style={{ display: 'grid', marginTop: 20 }}>
+				<Text strong>Minutes per pair</Text>
+				<Radio.Group
+					buttonStyle="solid"
+					onChange={e => setPairTime(e.target.value)}
+				>
+					{[3, 4, 5].map(num => (
+						<Radio.Button value={num} style={radioStyle}>
+							{`${num}`}
+						</Radio.Button>
+					))}
+				</Radio.Group>
+				{pairTime && (
 					<Text type="secondary">
 						This session will last approximately {sessionLength} minutes.
 					</Text>
-				</label>
-				<Button size="large" type="primary">
-					Begin Session
-				</Button>
-			</Col>
-		</Card>
+				)}
+			</label>
+		</>
 	);
 };
 

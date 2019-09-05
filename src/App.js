@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Tabs } from 'antd';
+import { Layout } from 'antd';
 import './App.css';
 import Settings from './Settings';
 import Pairs from './Pairs';
 import Question from './Question';
 import Round from './Round';
-import { appStyle, titleStyle } from './Constants';
+import { appStyle } from './Constants';
+import PageWrap from './PageWrap';
 
 const { Content } = Layout;
-const { Title } = Typography;
-const { TabPane } = Tabs;
 
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
-	const [people, setPeople] = useState([]);
+	const [people, setPeople] = useState([
+		'Natasha',
+		'Josh',
+		'Jolanta',
+		'Tom',
+		'Daisy',
+		'Nicola',
+		'Gavin',
+		'Agnes',
+		'Richard',
+	]);
 	const [pairTime, setPairTime] = useState(4);
-	const [oddOneOut, setOddOneOut] = useState('');
+	const [oddOneOut, setOddOneOut] = useState('Daisy');
+	const [active, setActive] = useState('Settings');
 
 	const isEven = num => num % 2 === 0;
 
@@ -41,53 +51,33 @@ const App = () => {
 	};
 
 	return (
-		<Layout style={appStyle}>
-			<Content style={{ padding: '3%' }}>
-				<Title style={titleStyle}>Speedback 3000</Title>
-				<br />
-				<Tabs defaultActiveKey="Round">
-					<TabPane
-						tab="Settings"
-						key="Settings"
-						style={{ backgroundColor: '#fff' }}
-					>
+		<Layout style={{ minHeight: '100vh', backgroundColor: '#e0e0e0' }}>
+			<Content style={appStyle}>
+				<PageWrap
+					currentRound={currentRound}
+					active={active}
+					setActive={setActive}
+					people={people}
+					isEven={isEven}
+				>
+					{active === 'Settings' && (
 						<Settings
 							people={people}
 							setPeople={setPeople}
 							pairTime={pairTime}
 							setPairTime={setPairTime}
 						/>
-					</TabPane>
-					<TabPane tab="Pairs" key="Pairs" style={{ backgroundColor: '#fff' }}>
+					)}
+					{active === 'Pairs' && (
 						<Pairs
-							pairTime={pairTime}
 							people={people}
-							currentRound={currentRound}
 							isEven={isEven}
 							setOddOneOut={setOddOneOut}
 						/>
-					</TabPane>
-					<TabPane
-						tab="Question"
-						key="Question"
-						style={{ backgroundColor: '#fff' }}
-					>
-						<Question
-							people={people}
-							currentRound={currentRound}
-							isEven={isEven}
-							oddOneOut={oddOneOut}
-						/>
-					</TabPane>
-					<TabPane tab="Round" key="Round" style={{ backgroundColor: '#fff' }}>
-						<Round
-							pairTime={pairTime}
-							people={people}
-							currentRound={currentRound}
-							isEven={isEven}
-						/>
-					</TabPane>
-				</Tabs>
+					)}
+					{active === 'Question' && <Question oddOneOut={oddOneOut} />}
+					{active === 'Round' && <Round pairTime={pairTime} />}
+				</PageWrap>
 			</Content>
 		</Layout>
 	);
