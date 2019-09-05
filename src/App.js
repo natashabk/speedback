@@ -20,30 +20,32 @@ const App = () => {
 	const isEven = num => num % 2 === 0;
 
 	const numOfRounds = () => {
-		if (people.length && isEven) return people.length - 1;
+		if (people.length && isEven(people.length)) return people.length - 1;
 		else if (people.length) return people.length;
 		else return 0;
 	};
 
 	const nextRound = () => {
-		let newOrder = people;
-		setCurrentRound(currentRound + 1);
+		if (active === 'Settings' || active === 'Round') {
+			let newOrder = people;
+			setCurrentRound(currentRound + 1);
 
-		if (isEven(people.length)) {
-			// if it is even, person initially in [0] always stays in place
-			// person in [1] moves to the end each round,
-			// so all other people move one spot to the left
-			const hop = newOrder.splice(1, 1);
-			newOrder.push(hop);
-		} else {
-			// if it is odd, middle person always sits out
-			// each round, each person moves one spot to the right,
-			// and the last person goes to spot [0]
-			const hop = newOrder.pop();
-			newOrder.unshift(hop);
+			if (isEven(people.length)) {
+				// if it is even, person initially in [0] always stays in place
+				// person in [1] moves to the end each round,
+				// so all other people move one spot to the left
+				const hop = newOrder.splice(1, 1);
+				newOrder.push(hop);
+			} else {
+				// if it is odd, middle person always sits out
+				// each round, each person moves one spot to the right,
+				// and the last person goes to spot [0]
+				const hop = newOrder.pop();
+				newOrder.unshift(hop);
+			}
+
+			setPeople(newOrder);
 		}
-
-		setPeople(newOrder);
 	};
 
 	return (
@@ -54,6 +56,7 @@ const App = () => {
 					active={active}
 					setActive={setActive}
 					numOfRounds={numOfRounds}
+					nextRound={nextRound}
 				>
 					{active === 'Settings' && (
 						<Settings

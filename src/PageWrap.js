@@ -10,6 +10,7 @@ const PageWrap = ({
 	active,
 	setActive,
 	numOfRounds,
+	nextRound,
 	children,
 }) => {
 	const [visible, setVisible] = useState(false);
@@ -61,7 +62,10 @@ const PageWrap = ({
 					size="large"
 					type="primary"
 					style={{ marginBottom: 10 }}
-					onClick={() => setActive(nextScreen)}
+					onClick={() => {
+						nextRound();
+						setActive(nextScreen);
+					}}
 					block
 				>
 					{continueText}
