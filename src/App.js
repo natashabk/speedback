@@ -17,7 +17,7 @@ const App = () => {
 	const [pairTime, setPairTime] = useState(null);
 	const [oddOneOut, setOddOneOut] = useState(null);
 	const [active, setActive] = useState('Settings');
-	const [sessionOver, setSessionOver] = useState(true);
+	const [sessionOver, setSessionOver] = useState(false);
 
 	const isEven = num => num % 2 === 0;
 
