@@ -53,9 +53,11 @@ export const titleStyle = {
 };
 
 export const appStyle = {
-	maxHeight: 700,
 	backgroundColor: '#f4f7fb',
-	width: 480,
+	height: 'fit-content',
+	maxHeight: 650,
+	width: '97%',
+	maxWidth: 380,
 	margin: 'auto',
 	padding: '3%',
 	boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
