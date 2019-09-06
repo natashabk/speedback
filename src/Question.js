@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Card, Typography, Row, Button, Modal } from 'antd';
-import './App.css';
 import { goesFirst, oddQuestionOut } from './Constants';
 
 const { Title, Text } = Typography;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Select, Radio } from 'antd';
-import './App.css';
 
 const { Text } = Typography;
 const radioStyle = { width: '33%', textAlign: 'center', height: 40 };

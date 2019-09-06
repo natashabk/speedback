@@ -107,6 +107,11 @@ export const pageInstructions = {
 		continueText: 'Next Pairing',
 		nextScreen: 'Pairs',
 	},
+	Feedback: {
+		title: '📬 Your feedback makes us better',
+		continueText: 'Submit Feedback',
+		nextScreen: 'Settings',
+	},
 };
 
 export const secondCounterPlaceholder = [

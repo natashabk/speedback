@@ -5,6 +5,7 @@ import Settings from './Settings';
 import Pairs from './Pairs';
 import Question from './Question';
 import Round from './Round';
+import Feedback from './Feedback';
 import { appStyle } from './Constants';
 import PageWrap from './PageWrap';
 
@@ -13,9 +14,10 @@ const { Content } = Layout;
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
 	const [people, setPeople] = useState([]);
-	const [pairTime, setPairTime] = useState(0);
-	const [oddOneOut, setOddOneOut] = useState('');
+	const [pairTime, setPairTime] = useState(null);
+	const [oddOneOut, setOddOneOut] = useState(null);
 	const [active, setActive] = useState('Settings');
+	const [sessionOver, setSessionOver] = useState(true);
 
 	const isEven = num => num % 2 === 0;
 
@@ -24,6 +26,8 @@ const App = () => {
 		else if (people.length) return people.length;
 		else return 0;
 	};
+
+	const isLastRound = currentRound === numOfRounds() && numOfRounds() !== 0;
 
 	const nextRound = () => {
 		if (active === 'Settings' || active === 'Round') {
@@ -58,6 +62,8 @@ const App = () => {
 					nextRound={nextRound}
 					setCurrentRound={setCurrentRound}
 					setPeople={setPeople}
+					isLastRound={isLastRound}
+					sessionOver={sessionOver}
 				>
 					{active === 'Settings' && (
 						<Settings
@@ -79,10 +85,11 @@ const App = () => {
 					{active === 'Round' && (
 						<Round
 							pairTime={pairTime}
-							currentRound={currentRound}
-							numOfRounds={numOfRounds}
+							isLastRound={isLastRound}
+							setSessionOver={setSessionOver}
 						/>
 					)}
+					{active === 'Feedback' && <Feedback />}
 				</PageWrap>
 			</Content>
 		</Layout>

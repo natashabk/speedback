@@ -24,6 +24,15 @@
 		<title>Speedback</title>
 	</head>
 	<body>
+		<form name="feedback" netlify netlify-honeypot="bot-field" hidden>
+			<textarea name="who-goes-first"></textarea>
+			<textarea name="odd-one-out"></textarea>
+			<textarea name="other-comments"></textarea>
+		</form>
+		<form name="rating" netlify netlify-honeypot="bot-field" hidden>
+			<input type="text" name="stars" />
+		</form>
+
 		<noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id="root"></div>
 		<!--

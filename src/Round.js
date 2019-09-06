@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Statistic, Progress, Row, Typography, Rate, Card } from 'antd';
 import { secondCounterPlaceholder } from './Constants';
+import Stars from './Stars';
 
 const { Countdown } = Statistic;
 const { Title, Text } = Typography;
 
-const Round = ({ pairTime, currentRound, numOfRounds }) => {
+const Round = ({ pairTime, isLastRound, setSessionOver }) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
-	const isLastRound = currentRound === numOfRounds();
 
 	const [count, setCount] = useState(0);
 	const [deadline, setDeadline] = useState(roundTime());
 	const [firstActive, setFirstActive] = useState(true);
-	const [timeRunning, setTimeRunning] = useState(true);
+	const [timeRunning, setTimeRunning] = useState(false);
 
 	const totalMilSeconds = (pairTime / 2) * 600;
 	const percent = (count / totalMilSeconds) * 100;
@@ -93,19 +93,17 @@ const Round = ({ pairTime, currentRound, numOfRounds }) => {
 							<Countdown
 								value={firstActive ? Date.now() : deadline}
 								format="mm:ss"
-								onFinish={() => setTimeRunning(false)}
+								onFinish={() => {
+									setTimeRunning(false);
+									setSessionOver(true);
+								}}
 							/>
 						)
 					}
 				/>
 			</Row>
 			{getMessage()}
-			{isLastRound && !timeRunning && (
-				<Card bodyStyle={{ textAlign: 'center' }}>
-					<Text strong>Rate this session</Text>
-					<Rate style={{ width: '100%' }} />
-				</Card>
-			)}
+			{isLastRound && !timeRunning && <Stars />}
 		</>
 	);
 };

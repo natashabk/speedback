@@ -5,6 +5,15 @@ import { pageInstructions } from './Constants';
 const { Title, Text } = Typography;
 const blue = { color: '#1890ff' };
 
+const cardStyle = {
+	minHeight: 500,
+	height: 500,
+	justifyContent: 'space-between',
+	display: 'flex',
+	flexDirection: 'column',
+	padding: '0px 20px',
+};
+
 const PageWrap = ({
 	currentRound,
 	active,
@@ -13,6 +22,8 @@ const PageWrap = ({
 	nextRound,
 	setCurrentRound,
 	setPeople,
+	isLastRound,
+	sessionOver,
 	children,
 }) => {
 	const [visible, setVisible] = useState(false);
@@ -48,30 +59,36 @@ const PageWrap = ({
 			>
 				{instruction}
 			</Title>
-			<Card
-				style={{ minHeight: 500 }}
-				bodyStyle={{
-					minHeight: 500,
-					height: 500,
-					justifyContent: 'space-between',
-					display: 'flex',
-					flexDirection: 'column',
-					padding: '0px 20px',
-				}}
-			>
+			<Card style={{ minHeight: 500 }} bodyStyle={cardStyle}>
 				<section style={{ height: 400 }}>{children}</section>
-				<Button
-					size="large"
-					type="primary"
-					style={{ marginBottom: 10 }}
-					onClick={() => {
-						nextRound();
-						setActive(nextScreen);
-					}}
-					block
-				>
-					{continueText}
-				</Button>
+				{sessionOver && isLastRound ? (
+					<Button
+						size="large"
+						type="primary"
+						style={{ marginBottom: 10 }}
+						onClick={() => {
+							setActive('Feedback');
+							setCurrentRound(0);
+							setPeople([]);
+						}}
+						block
+					>
+						Submit Feedback
+					</Button>
+				) : (
+					<Button
+						size="large"
+						type="primary"
+						style={{ marginBottom: 10 }}
+						onClick={() => {
+							nextRound();
+							setActive(nextScreen);
+						}}
+						block
+					>
+						{continueText}
+					</Button>
+				)}
 			</Card>
 			<Modal
 				visible={visible}
