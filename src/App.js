@@ -14,7 +14,7 @@ const { Content } = Layout;
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
 	const [people, setPeople] = useState([]);
-	const [pairTime, setPairTime] = useState(0);
+	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState(null);
 	const [active, setActive] = useState('Settings');
 	const [sessionOver, setSessionOver] = useState(false);

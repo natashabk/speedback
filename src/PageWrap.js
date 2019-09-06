@@ -31,14 +31,19 @@ const PageWrap = ({
 	const instruction = pageInstructions[active].title;
 	const continueText = pageInstructions[active].continueText;
 	const nextScreen = pageInstructions[active].nextScreen;
-	const title = active === 'Settings' ? 'Welcome to Speedback!' : null;
+
+	const getTitle = () => {
+		if (active === 'Settings') return 'Welcome to Speedback!';
+		if (active === 'Feedback') return 'Thank you!';
+		else return null;
+	};
 
 	return (
 		<>
 			<Row type="flex" justify="space-between">
 				<Title level={3} style={{ fontWeight: 400 }}>
-					{title ? (
-						title
+					{getTitle() ? (
+						getTitle()
 					) : (
 						<>
 							Round <span style={blue}>{currentRound}</span> of {numOfRounds()}
@@ -61,7 +66,7 @@ const PageWrap = ({
 			</Title>
 			<Card style={{ minHeight: 500 }} bodyStyle={cardStyle}>
 				<section style={{ height: 400 }}>{children}</section>
-				{sessionOver && isLastRound ? (
+				{isLastRound && active === 'Round' ? (
 					<Button
 						size="large"
 						type="primary"
@@ -73,7 +78,7 @@ const PageWrap = ({
 						}}
 						block
 					>
-						Submit Feedback
+						{sessionOver ? 'Submit Feedback' : 'End Session'}
 					</Button>
 				) : (
 					<Button

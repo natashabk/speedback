@@ -30,7 +30,11 @@ const Pairs = ({ people, isEven, setOddOneOut }) => {
 
 					if (!isEven(people.length) && i === middleIdx) {
 						setOddOneOut(teamMember);
-						return <Card style={stationStyle}>{member} sitting out</Card>;
+						return (
+							<Card key={i} style={stationStyle}>
+								{member} sitting out
+							</Card>
+						);
 					}
 					if (i < middleIdx)
 						return (
