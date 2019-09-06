@@ -56,6 +56,8 @@ const App = () => {
 					setActive={setActive}
 					numOfRounds={numOfRounds}
 					nextRound={nextRound}
+					setCurrentRound={setCurrentRound}
+					setPeople={setPeople}
 				>
 					{active === 'Settings' && (
 						<Settings

@@ -11,6 +11,8 @@ const PageWrap = ({
 	setActive,
 	numOfRounds,
 	nextRound,
+	setCurrentRound,
+	setPeople,
 	children,
 }) => {
 	const [visible, setVisible] = useState(false);
@@ -77,6 +79,8 @@ const PageWrap = ({
 				onOk={() => {
 					setVisible(false);
 					setActive('Settings');
+					setCurrentRound(0);
+					setPeople([]);
 				}}
 			>
 				<Text>
