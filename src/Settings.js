@@ -39,6 +39,7 @@ const Settings = ({
 				<Radio.Group
 					buttonStyle="solid"
 					onChange={e => setPairTime(e.target.value)}
+					defaultValue={pairTime}
 				>
 					{[3, 4, 5].map(num => (
 						<Radio.Button key={num} value={num} style={radioStyle}>
