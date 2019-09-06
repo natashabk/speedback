@@ -12,7 +12,7 @@ const Round = ({ pairTime, isLastRound, setSessionOver }) => {
 	const [count, setCount] = useState(0);
 	const [deadline, setDeadline] = useState(roundTime());
 	const [firstActive, setFirstActive] = useState(true);
-	const [timeRunning, setTimeRunning] = useState(false);
+	const [timeRunning, setTimeRunning] = useState(true);
 
 	const totalMilSeconds = (pairTime / 2) * 600;
 	const percent = (count / totalMilSeconds) * 100;
@@ -95,7 +95,7 @@ const Round = ({ pairTime, isLastRound, setSessionOver }) => {
 								format="mm:ss"
 								onFinish={() => {
 									setTimeRunning(false);
-									setSessionOver(true);
+									if (isLastRound) setSessionOver(true);
 								}}
 							/>
 						)
