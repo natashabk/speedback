@@ -1,12 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Statistic, Progress, Row, Typography, Rate, Card } from 'antd';
+import { Statistic, Progress, Row, Typography, Button } from 'antd';
 import { secondCounterPlaceholder } from './Constants';
 import Stars from './Stars';
+import NextButton from './NextButton';
 
 const { Countdown } = Statistic;
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
-const Round = ({ pairTime, isLastRound, setSessionOver }) => {
+const Round = ({
+	pairTime,
+	isLastRound,
+	setActive,
+	setCurrentRound,
+	setPeople,
+	nextRound,
+}) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
@@ -40,7 +48,7 @@ const Round = ({ pairTime, isLastRound, setSessionOver }) => {
 	const titleStyle = {
 		fontWeight: 400,
 		textAlign: 'center',
-		marginTop: 80,
+		// marginTop: 50,
 	};
 
 	const colors = {
@@ -95,7 +103,6 @@ const Round = ({ pairTime, isLastRound, setSessionOver }) => {
 								format="mm:ss"
 								onFinish={() => {
 									setTimeRunning(false);
-									if (isLastRound) setSessionOver(true);
 								}}
 							/>
 						)
@@ -103,7 +110,29 @@ const Round = ({ pairTime, isLastRound, setSessionOver }) => {
 				/>
 			</Row>
 			{getMessage()}
-			{isLastRound && !timeRunning && <Stars />}
+			{isLastRound && !timeRunning && <Stars setActive={setActive} />}
+			{isLastRound && timeRunning && (
+				<Button
+					size="large"
+					type="primary"
+					style={{ marginBottom: 10 }}
+					onClick={() => {
+						setActive('Feedback');
+						setCurrentRound(0);
+						setPeople([]);
+					}}
+					block
+				>
+					End Session
+				</Button>
+			)}
+			{!isLastRound && (
+				<NextButton
+					active="Round"
+					setActive={setActive}
+					nextRound={nextRound}
+				/>
+			)}
 		</>
 	);
 };

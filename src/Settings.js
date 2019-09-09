@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Select, Radio } from 'antd';
+import NextButton from './NextButton';
 
 const { Text } = Typography;
 const radioStyle = { width: '33%', textAlign: 'center', height: 40 };
@@ -10,6 +11,8 @@ const Settings = ({
 	pairTime,
 	setPairTime,
 	numOfRounds,
+	setActive,
+	nextRound,
 }) => {
 	const sessionLength = Math.floor(
 		numOfRounds() * pairTime + numOfRounds() * 0.5,
@@ -47,12 +50,17 @@ const Settings = ({
 						</Radio.Button>
 					))}
 				</Radio.Group>
-				{pairTime !== 0 && (
+				{people.length !== 0 && (
 					<Text type="secondary">
 						This session will last approximately {sessionLength} minutes.
 					</Text>
 				)}
 			</label>
+			<NextButton
+				active="Settings"
+				setActive={setActive}
+				nextRound={nextRound}
+			/>
 		</>
 	);
 };

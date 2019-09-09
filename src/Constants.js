@@ -48,10 +48,6 @@ export const oddQuestionOut = [
 	"draw a scene from a tv show you've watched recently",
 ];
 
-export const titleStyle = {
-	fontWeight: 400,
-};
-
 export const appStyle = {
 	backgroundColor: '#f4f7fb',
 	height: 'fit-content',
@@ -63,17 +59,35 @@ export const appStyle = {
 	boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
 };
 
-export const contentStyle = {
+export const pairContentStyle = {
 	minHeight: 200,
 	padding: 10,
 	marginBottom: 10,
 	borderRadius: 4,
+	flexWrap: 'wrap',
 };
 
 export const cardStyle = {
 	maxWidth: 400,
 	minHeight: 350,
 	backgroundColor: '#fff',
+};
+
+export const mainStyle = {
+	paddingTop: 20,
+	minHeight: 500,
+	height: 500,
+	justifyContent: 'space-between',
+	display: 'flex',
+	flexDirection: 'column',
+};
+
+export const insideMainStyle = {
+	minHeight: 480,
+	height: 480,
+	justifyContent: 'space-between',
+	display: 'flex',
+	flexDirection: 'column',
 };
 
 export const alerts = {

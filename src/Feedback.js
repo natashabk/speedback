@@ -1,45 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NetlifyForm from 'react-netlify-form';
+import { Button, Form, Input, message } from 'antd';
+import { mainStyle, insideMainStyle } from './Constants';
 
-const Feedback = () => {
+const { Item } = Form;
+const { TextArea } = Input;
+
+const Feedback = ({ nextRound, setActive }) => {
 	return (
-		<NetlifyForm name="feedback">
-			{({ loading, error, success }) => (
-				<div>
-					{loading && <div>Loading...</div>}
-					{error && (
-						<div>
-							<p> Your feedback was not sent. Please try again later.</p>
-						</div>
-					)}
-					{success && (
-						<div>
-							<p>Your feedback has been sent. Thanks for playing!</p>
-						</div>
-					)}
-					{!loading && !success && (
-						<div>
-							<textarea
+		<>
+			<NetlifyForm name="feedback">
+				{({ loading, error, success }) => (
+					<section style={insideMainStyle}>
+						{error &&
+							message.error('Your feedback was not sent. Maybe next time!')}
+						{success &&
+							message.success(
+								'Your feedback has been sent. Thanks for playing!',
+							)}
+						<Item label="Any suggestions for 'who goes first?'" colon={false}>
+							<TextArea
 								name="who-goes-first"
 								placeholder="Ex: The person with the fastest car."
-								rows={4}
+								rows={3}
 							/>
-							<textarea
+						</Item>
+						<Item label="Got any suggestions for 'odd one out'?" colon={false}>
+							<TextArea
 								name="odd-one-out"
 								placeholder="Ex: Draw a hybrid of the first two animals you can think of."
-								rows={4}
+								rows={3}
 							/>
-							<textarea
+						</Item>
+						<Item label="Any other feedback?" colon={false}>
+							<TextArea
 								name="other-comments"
 								placeholder="Any praise/complaints/ideas?"
-								rows={4}
+								rows={3}
 							/>
-							<button id="submit">Submit Feedback</button>
-						</div>
-					)}
-				</div>
-			)}
-		</NetlifyForm>
+						</Item>
+						<Button
+							htmlType="submit"
+							size="large"
+							type="primary"
+							loading={loading}
+							block
+						>
+							Submit Feedback
+						</Button>
+					</section>
+				)}
+			</NetlifyForm>
+		</>
 	);
 };
 

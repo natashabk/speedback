@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Row, Modal, Button, Typography } from 'antd';
 import './App.css';
-import { contentStyle, cardStyle } from './Constants';
+import NextButton from './NextButton';
 
 const { Text } = Typography;
 
@@ -13,17 +13,21 @@ const stationStyle = {
 	textTransform: 'capitalize',
 };
 
-const Pairs = ({ people, isEven, setOddOneOut }) => {
+const pairContentStyle = {
+	minHeight: 200,
+	padding: 10,
+	marginBottom: 10,
+	borderRadius: 4,
+	flexWrap: 'wrap',
+};
+
+const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 	const [visible, setVisible] = useState(false);
 	const middleIdx = Math.floor(people.length / 2);
 
 	return (
 		<>
-			<Row
-				type="flex"
-				justify="space-around"
-				style={{ ...contentStyle, flexWrap: 'wrap' }}
-			>
+			<Row type="flex" justify="space-around" style={pairContentStyle}>
 				{people.map((teamMember, i) => {
 					const member = <strong>{teamMember}</strong>;
 					const partner = <strong>{people[people.length - i - 1]}</strong>;
@@ -32,14 +36,19 @@ const Pairs = ({ people, isEven, setOddOneOut }) => {
 						setOddOneOut(teamMember);
 						return (
 							<Card key={i} style={stationStyle}>
-								{member} sitting out
+								{member}
+								<br />
+								<br />
+								sitting out
 							</Card>
 						);
 					}
 					if (i < middleIdx)
 						return (
 							<Card style={stationStyle} key={i}>
-								{member} & {partner}
+								{member}
+								<br />&<br />
+								{partner}
 							</Card>
 						);
 				})}
@@ -55,7 +64,7 @@ const Pairs = ({ people, isEven, setOddOneOut }) => {
 				visible={visible}
 				footer={null}
 				onCancel={() => setVisible(false)}
-				style={{ maxWidth: 450 }}
+				style={{ maxWidth: 360 }}
 			>
 				<Text>
 					<span style={{ fontWeight: 600, fontSize: 16 }}>How to be alone</span>
@@ -74,6 +83,7 @@ const Pairs = ({ people, isEven, setOddOneOut }) => {
 					OK
 				</Button>
 			</Modal>
+			<NextButton active="Pairs" setActive={setActive} nextRound={nextRound} />
 		</>
 	);
 };

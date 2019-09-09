@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Typography, Row, Button, Modal } from 'antd';
 import { goesFirst, oddQuestionOut } from './Constants';
+import NextButton from './NextButton';
 
 const { Title, Text } = Typography;
 
-const Question = ({ oddOneOut }) => {
+const Question = ({ oddOneOut, setActive, nextRound }) => {
 	const shuffle = list => list[Math.floor(Math.random() * list.length)];
 
 	const [visible, setVisible] = useState(false);
@@ -37,7 +38,7 @@ const Question = ({ oddOneOut }) => {
 				visible={visible}
 				footer={null}
 				onCancel={() => setVisible(false)}
-				style={{ maxWidth: 450 }}
+				style={{ maxWidth: 360 }}
 			>
 				<Text>
 					<span style={{ fontWeight: 600, fontSize: 16 }}>
@@ -82,6 +83,11 @@ const Question = ({ oddOneOut }) => {
 					</Title>
 				</Card>
 			)}
+			<NextButton
+				active="Question"
+				setActive={setActive}
+				nextRound={nextRound}
+			/>
 		</>
 	);
 };

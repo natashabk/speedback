@@ -1,36 +1,22 @@
 import React, { useState } from 'react';
-import { Typography, Row, Button, Modal, Card } from 'antd';
-import { pageInstructions } from './Constants';
+import { Typography, Row, Button, Modal } from 'antd';
+import { pageInstructions, mainStyle } from './Constants';
 
 const { Title, Text } = Typography;
 const blue = { color: '#1890ff' };
-
-const cardStyle = {
-	minHeight: 500,
-	height: 500,
-	justifyContent: 'space-between',
-	display: 'flex',
-	flexDirection: 'column',
-	padding: '0px 20px',
-};
 
 const PageWrap = ({
 	currentRound,
 	active,
 	setActive,
 	numOfRounds,
-	nextRound,
 	setCurrentRound,
 	setPeople,
-	isLastRound,
-	sessionOver,
 	children,
 }) => {
 	const [visible, setVisible] = useState(false);
 
 	const instruction = pageInstructions[active].title;
-	const continueText = pageInstructions[active].continueText;
-	const nextScreen = pageInstructions[active].nextScreen;
 
 	const getTitle = () => {
 		if (active === 'Settings') return 'Welcome to Speedback!';
@@ -58,43 +44,8 @@ const PageWrap = ({
 					/>
 				)}
 			</Row>
-			<Title
-				level={4}
-				style={{ fontWeight: 400, marginTop: 0, color: '#b3b3b3' }}
-			>
-				{instruction}
-			</Title>
-			<Card style={{ minHeight: 500 }} bodyStyle={cardStyle}>
-				<section style={{ height: 400 }}>{children}</section>
-				{isLastRound && active === 'Round' ? (
-					<Button
-						size="large"
-						type="primary"
-						style={{ marginBottom: 10 }}
-						onClick={() => {
-							setActive('Feedback');
-							setCurrentRound(0);
-							setPeople([]);
-						}}
-						block
-					>
-						{sessionOver ? 'Submit Feedback' : 'End Session'}
-					</Button>
-				) : (
-					<Button
-						size="large"
-						type="primary"
-						style={{ marginBottom: 10 }}
-						onClick={() => {
-							nextRound();
-							setActive(nextScreen);
-						}}
-						block
-					>
-						{continueText}
-					</Button>
-				)}
-			</Card>
+			<Text style={{ fontSize: 17, color: '#b3b3b3' }}>{instruction}</Text>
+			<section style={mainStyle}>{children}</section>
 			<Modal
 				visible={visible}
 				onCancel={() => setVisible(false)}
@@ -104,6 +55,7 @@ const PageWrap = ({
 					setCurrentRound(0);
 					setPeople([]);
 				}}
+				style={{ maxWidth: 360 }}
 			>
 				<Text>
 					<span style={{ fontWeight: 600, fontSize: 16 }}>Exit session?</span>

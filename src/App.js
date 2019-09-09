@@ -17,7 +17,6 @@ const App = () => {
 	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState(null);
 	const [active, setActive] = useState('Settings');
-	const [sessionOver, setSessionOver] = useState(false);
 
 	const isEven = num => num % 2 === 0;
 
@@ -59,11 +58,8 @@ const App = () => {
 					active={active}
 					setActive={setActive}
 					numOfRounds={numOfRounds}
-					nextRound={nextRound}
 					setCurrentRound={setCurrentRound}
 					setPeople={setPeople}
-					isLastRound={isLastRound}
-					sessionOver={sessionOver}
 				>
 					{active === 'Settings' && (
 						<Settings
@@ -72,6 +68,8 @@ const App = () => {
 							pairTime={pairTime}
 							setPairTime={setPairTime}
 							numOfRounds={numOfRounds}
+							setActive={setActive}
+							nextRound={nextRound}
 						/>
 					)}
 					{active === 'Pairs' && (
@@ -79,17 +77,31 @@ const App = () => {
 							people={people}
 							isEven={isEven}
 							setOddOneOut={setOddOneOut}
+							setActive={setActive}
+							nextRound={nextRound}
 						/>
 					)}
-					{active === 'Question' && <Question oddOneOut={oddOneOut} />}
+					{active === 'Question' && (
+						<Question
+							oddOneOut={oddOneOut}
+							setActive={setActive}
+							nextRound={nextRound}
+						/>
+					)}
 					{active === 'Round' && (
 						<Round
 							pairTime={pairTime}
 							isLastRound={isLastRound}
-							setSessionOver={setSessionOver}
+							setActive={setActive}
+							nextRound={nextRound}
+							setCurrentRound={setCurrentRound}
+							setPeople={setPeople}
+							nextRound={nextRound}
 						/>
 					)}
-					{active === 'Feedback' && <Feedback />}
+					{active === 'Feedback' && (
+						<Feedback nextRound={nextRound} setActive={setActive} />
+					)}
 				</PageWrap>
 			</Content>
 		</Layout>
