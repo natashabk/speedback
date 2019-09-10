@@ -3,7 +3,12 @@ import { Typography, Select, Radio } from 'antd';
 import NextButton from './NextButton';
 
 const { Text } = Typography;
-const radioStyle = { width: '33%', textAlign: 'center', height: 40 };
+const radioStyle = {
+	width: '33%',
+	textAlign: 'center',
+	height: 40,
+	display: 'inline-grid',
+};
 
 const Settings = ({
 	people,

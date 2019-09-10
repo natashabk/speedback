@@ -51,7 +51,7 @@ const App = () => {
 	};
 
 	return (
-		<Layout style={{ minHeight: '100vh', backgroundColor: '#e0e0e0' }}>
+		<Layout style={{ minHeight: '100vh', backgroundColor: '#f4f7fb' }}>
 			<Content style={appStyle}>
 				<PageWrap
 					currentRound={currentRound}

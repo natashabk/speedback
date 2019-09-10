@@ -51,12 +51,11 @@ export const oddQuestionOut = [
 export const appStyle = {
 	backgroundColor: '#f4f7fb',
 	height: '100vh',
-	maxHeight: 600,
+	maxHeight: 620,
 	width: '100%',
 	maxWidth: 480,
-	margin: 'auto',
+	margin: '0px auto',
 	padding: '3%',
-	boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
 };
 
 export const mainStyle = {
