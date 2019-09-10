@@ -21,23 +21,32 @@ const pairContentStyle = {
 	flexWrap: 'wrap',
 };
 
+const stationInnerStyle = {
+	whiteSpace: 'nowrap',
+	overflow: 'hidden',
+	textOverflow: 'ellipsis',
+};
+
 const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 	const [visible, setVisible] = useState(false);
 	const middleIdx = Math.floor(people.length / 2);
+
+	const getFont = teamMember => (teamMember.length > 12 ? 10 : 14);
 
 	return (
 		<>
 			<Row type="flex" justify="space-around" style={pairContentStyle}>
 				{people.map((teamMember, i) => {
-					const member = <strong>{teamMember}</strong>;
-					const partner = <strong>{people[people.length - i - 1]}</strong>;
+					const member = teamMember;
+					const partner = people[people.length - i - 1];
 
 					if (!isEven(people.length) && i === middleIdx) {
 						setOddOneOut(teamMember);
 						return (
-							<Card key={i} style={stationStyle}>
-								{member}
-								<br />
+							<Card key={i} style={stationStyle} bodyStyle={stationInnerStyle}>
+								<Text strong style={{ fontSize: getFont(member) }}>
+									{member}
+								</Text>
 								<br />
 								sitting out
 							</Card>
@@ -45,10 +54,14 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 					}
 					if (i < middleIdx)
 						return (
-							<Card style={stationStyle} key={i}>
-								{member}
+							<Card style={stationStyle} key={i} bodyStyle={stationInnerStyle}>
+								<Text strong style={{ fontSize: getFont(member) }}>
+									{member}
+								</Text>
 								<br />&<br />
-								{partner}
+								<Text strong style={{ fontSize: getFont(partner) }}>
+									{partner}
+								</Text>
 							</Card>
 						);
 				})}
