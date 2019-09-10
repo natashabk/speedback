@@ -18,6 +18,7 @@ const Settings = ({
 	setPairTime,
 	numOfRounds,
 	setActive,
+	nextRound,
 }) => {
 	const [error, setError] = useState(false);
 
@@ -75,9 +76,10 @@ const Settings = ({
 				size="large"
 				type="primary"
 				block
-				onClick={() =>
-					people.length > 1 ? setActive('Pairs') : setError(true)
-				}
+				onClick={() => {
+					people.length > 1 ? setActive('Pairs') : setError(true);
+					nextRound();
+				}}
 			>
 				Begin Session
 			</Button>
