@@ -5,14 +5,13 @@ import { pageInstructions, mainStyle } from './Constants';
 const { Title, Text } = Typography;
 const blue = { color: '#1890ff' };
 
-const PageWrap = ({
+const PageHeader = ({
 	currentRound,
 	active,
 	setActive,
 	numOfRounds,
 	setCurrentRound,
 	setPeople,
-	children,
 }) => {
 	const [visible, setVisible] = useState(false);
 
@@ -45,7 +44,6 @@ const PageWrap = ({
 				)}
 			</Row>
 			<Text style={{ fontSize: 17, color: '#b3b3b3' }}>{instruction}</Text>
-			<section style={mainStyle}>{children}</section>
 			<Modal
 				visible={visible}
 				onCancel={() => setVisible(false)}
@@ -68,4 +66,4 @@ const PageWrap = ({
 	);
 };
 
-export default PageWrap;
+export default PageHeader;

@@ -1,8 +1,9 @@
-import React from 'react';
-import { Typography, Select, Radio } from 'antd';
-import NextButton from './NextButton';
+import React, { useState } from 'react';
+import { Typography, Select, Radio, Form, Button } from 'antd';
 
+const { Item } = Form;
 const { Text } = Typography;
+
 const radioStyle = {
 	width: '33%',
 	textAlign: 'center',
@@ -17,31 +18,40 @@ const Settings = ({
 	setPairTime,
 	numOfRounds,
 	setActive,
-	nextRound,
 }) => {
+	const [error, setError] = useState(false);
+
 	const sessionLength = Math.floor(
 		numOfRounds() * pairTime + numOfRounds() * 0.5,
 	);
 
 	return (
 		<>
-			<Select
-				mode="tags"
-				size="large"
-				rows={4}
-				placeholder={
-					<Text style={{ textTransform: 'initial', color: '#b3b3b3' }}>
-						Press enter after each name
-					</Text>
-				}
-				onChange={present => setPeople(present)}
-				value={people}
-				style={{
-					textTransform: 'capitalize',
-					width: '100%',
-				}}
-				dropdownRender={menu => <div style={{ display: 'none' }}>{menu}</div>}
-			/>
+			<Item
+				validateStatus={error ? 'error' : 'success'}
+				help={error ? 'Please enter two or more people to play' : null}
+			>
+				<Select
+					mode="tags"
+					size="large"
+					rows={4}
+					placeholder={
+						<Text style={{ textTransform: 'initial', color: '#b3b3b3' }}>
+							Press enter after each name
+						</Text>
+					}
+					onChange={present => {
+						setPeople(present);
+						setError(present.length <= 1);
+					}}
+					value={people}
+					style={{
+						textTransform: 'capitalize',
+						width: '100%',
+					}}
+					dropdownRender={menu => <div style={{ display: 'none' }}>{menu}</div>}
+				/>
+			</Item>
 			<label style={{ display: 'grid', marginTop: 20 }}>
 				<Text strong>Minutes per pair</Text>
 				<Radio.Group
@@ -61,11 +71,16 @@ const Settings = ({
 					</Text>
 				)}
 			</label>
-			<NextButton
-				active="Settings"
-				setActive={setActive}
-				nextRound={nextRound}
-			/>
+			<Button
+				size="large"
+				type="primary"
+				block
+				onClick={() =>
+					people.length > 1 ? setActive('Pairs') : setError(true)
+				}
+			>
+				Begin Session
+			</Button>
 		</>
 	);
 };

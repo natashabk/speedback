@@ -6,8 +6,8 @@ import Pairs from './Pairs';
 import Question from './Question';
 import Round from './Round';
 import Feedback from './Feedback';
-import { appStyle } from './Constants';
-import PageWrap from './PageWrap';
+import { appStyle, mainStyle } from './Constants';
+import PageHeader from './PageHeader';
 
 const { Content } = Layout;
 
@@ -53,14 +53,15 @@ const App = () => {
 	return (
 		<Layout style={{ minHeight: '100vh', backgroundColor: '#f4f7fb' }}>
 			<Content style={appStyle}>
-				<PageWrap
+				<PageHeader
 					currentRound={currentRound}
 					active={active}
 					setActive={setActive}
 					numOfRounds={numOfRounds}
 					setCurrentRound={setCurrentRound}
 					setPeople={setPeople}
-				>
+				/>
+				<section style={mainStyle}>
 					{active === 'Settings' && (
 						<Settings
 							people={people}
@@ -102,7 +103,7 @@ const App = () => {
 					{active === 'Feedback' && (
 						<Feedback nextRound={nextRound} setActive={setActive} />
 					)}
-				</PageWrap>
+				</section>
 			</Content>
 		</Layout>
 	);
