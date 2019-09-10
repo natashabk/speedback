@@ -77,8 +77,10 @@ const Settings = ({
 				type="primary"
 				block
 				onClick={() => {
-					people.length > 1 ? setActive('Pairs') : setError(true);
-					nextRound();
+					if (people.length > 1) {
+						setActive('Pairs');
+						nextRound();
+					} else setError(true);
 				}}
 			>
 				Begin Session

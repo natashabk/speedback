@@ -48,6 +48,7 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 									{member}
 								</Text>
 								<br />
+								<br />
 								sitting out
 							</Card>
 						);
