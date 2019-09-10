@@ -43,7 +43,7 @@ const Settings = ({
 					}
 					onChange={present => {
 						setPeople(present);
-						setError(present.length <= 1);
+						setError(present.length <= 1 && error);
 					}}
 					value={people}
 					style={{
