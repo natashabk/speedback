@@ -48,12 +48,17 @@ const Round = ({
 	const titleStyle = {
 		fontWeight: 400,
 		textAlign: 'center',
-		// marginTop: 50,
 	};
 
 	const colors = {
 		First: { color: '#80aaff' },
 		Second: { color: '#ff8533' },
+	};
+
+	const getSecondPercent = () => {
+		if (firstActive) return 0;
+		else if (!firstActive && !timeRunning) return 100;
+		else return secondPercent;
 	};
 
 	const getMessage = () => {
@@ -93,13 +98,13 @@ const Round = ({
 				<Progress
 					type="circle"
 					strokeColor="#ff8533"
-					percent={firstActive ? 0 : secondPercent}
+					percent={getSecondPercent()}
 					format={percent =>
 						firstActive ? (
 							secondCounterPlaceholder[pairTime]
 						) : (
 							<Countdown
-								value={firstActive ? Date.now() : deadline}
+								value={firstActive || !timeRunning ? Date.now() : deadline}
 								format="mm:ss"
 								onFinish={() => {
 									setTimeRunning(false);
@@ -117,9 +122,11 @@ const Round = ({
 					type="primary"
 					style={{ marginBottom: 10 }}
 					onClick={() => {
-						setActive('Feedback');
-						setCurrentRound(0);
-						setPeople([]);
+						// setActive('Feedback');
+						// setCurrentRound(0);
+						// setPeople([]);
+						setTimeRunning(false);
+						setDeadline(Date.now());
 					}}
 					block
 				>
