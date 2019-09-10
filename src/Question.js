@@ -14,8 +14,8 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 
 	return (
 		<>
-			<Card>
-				<Row style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}>
+			<Card style={{ height: 160 }} bodyStyle={{ height: 160, paddingTop: 10 }}>
+				<Row style={{ textAlign: 'right', marginRight: -10 }}>
 					<Button
 						size="small"
 						shape="circle"
@@ -65,8 +65,19 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 				</Button>
 			</Modal>
 			{oddOneOut && (
-				<Card style={{ marginTop: 20 }}>
-					<Row style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}>
+				<Card
+					style={{ margin: '20px 0px', height: 150, maxHeight: 150 }}
+					bodyStyle={{ height: 150 }}
+				>
+					<Row
+						type="flex"
+						justify="space-between"
+						style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}
+					>
+						<Text style={{ fontSize: 17, color: '#b3b3b3' }}>
+							<span style={{ textTransform: 'capitalize' }}>{oddOneOut}</span>,
+							you should:
+						</Text>
 						<Button
 							size="small"
 							shape="circle"
@@ -74,10 +85,7 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 							onClick={() => setCurrentOddOne(shuffle(oddQuestionOut))}
 						></Button>
 					</Row>
-					<Title level={4} type="secondary">
-						<span style={{ textTransform: 'capitalize' }}>{oddOneOut}</span>,
-						you should:
-					</Title>
+
 					<Title level={3} style={{ fontWeight: 400, marginTop: 0 }}>
 						{currentOddOne}
 					</Title>

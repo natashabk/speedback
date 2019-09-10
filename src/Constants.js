@@ -36,7 +36,7 @@ export const goesFirst = [
 export const oddQuestionOut = [
 	'draw yourself as a teenager',
 	'draw what you ate for breakfast this morning',
-	'draw your best approximation of European countries without looking at a map',
+	'draw all the European countries without looking at a map',
 	'make a paper airplane',
 	'draw your perfect weekend',
 	'draw at least one person in this group',

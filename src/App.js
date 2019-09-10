@@ -13,10 +13,10 @@ const { Content } = Layout;
 
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
-	const [people, setPeople] = useState([]);
+	const [people, setPeople] = useState(['one', 'two', 'three']);
 	const [pairTime, setPairTime] = useState(4);
-	const [oddOneOut, setOddOneOut] = useState(null);
-	const [active, setActive] = useState('Settings');
+	const [oddOneOut, setOddOneOut] = useState('three');
+	const [active, setActive] = useState('Question');
 
 	const isEven = num => num % 2 === 0;
 
