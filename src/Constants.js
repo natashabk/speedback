@@ -50,41 +50,27 @@ export const oddQuestionOut = [
 
 export const appStyle = {
 	backgroundColor: '#f4f7fb',
-	height: 'fit-content',
-	maxHeight: 650,
-	width: '97%',
-	maxWidth: 380,
+	height: '100vh',
+	maxHeight: 600,
+	width: '100%',
+	maxWidth: 480,
 	margin: 'auto',
 	padding: '3%',
 	boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
 };
 
-export const pairContentStyle = {
-	minHeight: 200,
-	padding: 10,
-	marginBottom: 10,
-	borderRadius: 4,
-	flexWrap: 'wrap',
-};
-
-export const cardStyle = {
-	maxWidth: 400,
-	minHeight: 350,
-	backgroundColor: '#fff',
-};
-
 export const mainStyle = {
 	paddingTop: 20,
-	minHeight: 500,
-	height: 500,
+	minHeight: 430,
+	height: 430,
 	justifyContent: 'space-between',
 	display: 'flex',
 	flexDirection: 'column',
 };
 
 export const insideMainStyle = {
-	minHeight: 480,
-	height: 480,
+	minHeight: 410,
+	height: 410,
 	justifyContent: 'space-between',
 	display: 'flex',
 	flexDirection: 'column',

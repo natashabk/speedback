@@ -18,21 +18,33 @@ const Feedback = ({ nextRound, setActive }) => {
 							message.success(
 								'Your feedback has been sent. Thanks for playing!',
 							)}
-						<Item label="Any suggestions for 'who goes first?'" colon={false}>
+						<Item
+							label="Any suggestions for 'who goes first?'"
+							colon={false}
+							style={{ marginBottom: 10 }}
+						>
 							<TextArea
 								name="who-goes-first"
 								placeholder="Ex: The person with the fastest car."
 								rows={3}
 							/>
 						</Item>
-						<Item label="Got any suggestions for 'odd one out'?" colon={false}>
+						<Item
+							label="Got any suggestions for 'odd one out'?"
+							colon={false}
+							style={{ marginBottom: 10 }}
+						>
 							<TextArea
 								name="odd-one-out"
 								placeholder="Ex: Draw a hybrid of the first two animals you can think of."
 								rows={3}
 							/>
 						</Item>
-						<Item label="Any other feedback?" colon={false}>
+						<Item
+							label="Any other feedback?"
+							colon={false}
+							style={{ marginBottom: 10 }}
+						>
 							<TextArea
 								name="other-comments"
 								placeholder="Any praise/complaints/ideas?"

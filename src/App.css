@@ -3,8 +3,3 @@
 .ant-select-selection--multiple {
 	min-height: 200px !important;
 }
-
-.ant-mock {
-	color: 'red';
-	background-color: 'red';
-}
