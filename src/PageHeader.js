@@ -39,11 +39,12 @@ const PageHeader = ({
 					<Button
 						shape="circle"
 						icon="close"
+						style={{ color: '#9c9b9b', border: '1px solid #9c9b9b' }}
 						onClick={() => setVisible(true)}
 					/>
 				)}
 			</Row>
-			<Text style={{ fontSize: 17, color: '#b3b3b3' }}>{instruction}</Text>
+			<Text style={{ fontSize: 17, color: '#9c9b9b' }}>{instruction}</Text>
 			<Modal
 				visible={visible}
 				onCancel={() => setVisible(false)}
