@@ -31,15 +31,17 @@ const Stars = ({ setActive }) => {
 									value={rating}
 									style={{ display: 'none' }}
 								/>
-								<Button
-									htmlType="submit"
-									size="large"
-									type="primary"
-									loading={loading}
-									block
-								>
-									Submit Feedback
-								</Button>
+								{rating && (
+									<Button
+										htmlType="submit"
+										size="large"
+										type="primary"
+										loading={loading}
+										block
+									>
+										Submit Feedback
+									</Button>
+								)}
 							</div>
 						)}
 					</div>

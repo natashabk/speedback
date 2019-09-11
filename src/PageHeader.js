@@ -52,7 +52,6 @@ const PageHeader = ({
 					setVisible(false);
 					setActive('Settings');
 					setCurrentRound(0);
-					setPeople([]);
 				}}
 				style={{ maxWidth: 360 }}
 			>
