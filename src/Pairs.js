@@ -67,36 +67,42 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 						);
 				})}
 			</Row>
-			<Button
-				type="link"
-				style={{ margin: 'auto', width: '100%' }}
-				onClick={() => setVisible(true)}
-			>
-				What if there's an odd person out?
-			</Button>
-			<Modal
-				visible={visible}
-				footer={null}
-				onCancel={() => setVisible(false)}
-				style={{ maxWidth: 360 }}
-			>
-				<Text>
-					<span style={{ fontWeight: 600, fontSize: 16 }}>How to be alone</span>
-					<br />
-					<br />
-					Don't worry, the odd person out will receive their activity on the
-					next page.
-				</Text>
+			{!isEven(people.length) && (
+				<>
+					<Button
+						type="link"
+						style={{ margin: 'auto', width: '100%' }}
+						onClick={() => setVisible(true)}
+					>
+						What if there's an odd person out?
+					</Button>
+					<Modal
+						visible={visible}
+						footer={null}
+						onCancel={() => setVisible(false)}
+						style={{ maxWidth: 360 }}
+					>
+						<Text>
+							<span style={{ fontWeight: 600, fontSize: 16 }}>
+								How to be alone
+							</span>
+							<br />
+							<br />
+							Don't worry, the odd person out will receive their activity on the
+							next page.
+						</Text>
 
-				<Button
-					onClick={() => setVisible(false)}
-					type="primary"
-					style={{ marginTop: 45 }}
-					block
-				>
-					OK
-				</Button>
-			</Modal>
+						<Button
+							onClick={() => setVisible(false)}
+							type="primary"
+							style={{ marginTop: 45 }}
+							block
+						>
+							OK
+						</Button>
+					</Modal>
+				</>
+			)}
 			<NextButton active="Pairs" setActive={setActive} nextRound={nextRound} />
 		</>
 	);
