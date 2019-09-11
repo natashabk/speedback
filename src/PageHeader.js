@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Row, Button, Modal } from 'antd';
-import { pageInstructions, mainStyle } from './Constants';
+import { pageInstructions } from './Constants';
 
 const { Title, Text } = Typography;
 const blue = { color: '#1890ff' };
@@ -39,12 +39,12 @@ const PageHeader = ({
 					<Button
 						shape="circle"
 						icon="close"
-						style={{ color: '#9c9b9b', border: '1px solid #9c9b9b' }}
+						style={{ color: '#555353', border: '1px solid #555353' }}
 						onClick={() => setVisible(true)}
 					/>
 				)}
 			</Row>
-			<Text style={{ fontSize: 17, color: '#9c9b9b' }}>{instruction}</Text>
+			<Text style={{ fontSize: 17, color: '#555353' }}>{instruction}</Text>
 			<Modal
 				visible={visible}
 				onCancel={() => setVisible(false)}

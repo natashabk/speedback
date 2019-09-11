@@ -37,7 +37,7 @@ const Settings = ({
 					size="large"
 					rows={4}
 					placeholder={
-						<Text style={{ textTransform: 'initial', color: '#9c9b9b' }}>
+						<Text style={{ textTransform: 'initial', color: '#555353' }}>
 							Press enter after each name
 						</Text>
 					}
@@ -67,7 +67,7 @@ const Settings = ({
 					))}
 				</Radio.Group>
 				{people.length !== 0 && (
-					<Text style={{ color: '#9c9b9b' }}>
+					<Text style={{ color: '#555353' }}>
 						This session will last approximately {sessionLength} minutes.
 					</Text>
 				)}

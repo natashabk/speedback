@@ -74,7 +74,7 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 						justify="space-between"
 						style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}
 					>
-						<Text style={{ fontSize: 17, color: '#9c9b9b' }}>
+						<Text style={{ fontSize: 17, color: '#555353' }}>
 							<span style={{ textTransform: 'capitalize' }}>{oddOneOut}</span>,
 							you should:
 						</Text>

@@ -95,9 +95,6 @@ const App = () => {
 							isLastRound={isLastRound}
 							setActive={setActive}
 							nextRound={nextRound}
-							setCurrentRound={setCurrentRound}
-							setPeople={setPeople}
-							nextRound={nextRound}
 						/>
 					)}
 					{active === 'Feedback' && (

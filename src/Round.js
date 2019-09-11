@@ -7,14 +7,7 @@ import NextButton from './NextButton';
 const { Countdown } = Statistic;
 const { Title } = Typography;
 
-const Round = ({
-	pairTime,
-	isLastRound,
-	setActive,
-	setCurrentRound,
-	setPeople,
-	nextRound,
-}) => {
+const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
@@ -122,9 +115,6 @@ const Round = ({
 					type="primary"
 					style={{ marginBottom: 10 }}
 					onClick={() => {
-						// setActive('Feedback');
-						// setCurrentRound(0);
-						// setPeople([]);
 						setTimeRunning(false);
 						setDeadline(Date.now());
 					}}

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NetlifyForm from 'react-netlify-form';
 import { Button, Form, Input, message } from 'antd';
-import { mainStyle, insideMainStyle } from './Constants';
+import { insideMainStyle } from './Constants';
 
 const { Item } = Form;
 const { TextArea } = Input;
