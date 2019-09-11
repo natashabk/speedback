@@ -16,7 +16,7 @@ const App = () => {
 	const [people, setPeople] = useState([]);
 	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState(null);
-	const [active, setActive] = useState('Settings');
+	const [active, setActive] = useState('Feedback');
 
 	const isEven = num => num % 2 === 0;
 
@@ -97,9 +97,7 @@ const App = () => {
 							nextRound={nextRound}
 						/>
 					)}
-					{active === 'Feedback' && (
-						<Feedback nextRound={nextRound} setActive={setActive} />
-					)}
+					{active === 'Feedback' && <Feedback setActive={setActive} />}
 				</section>
 			</Content>
 		</Layout>

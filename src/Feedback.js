@@ -13,18 +13,23 @@ export const formStyle = {
 	flexDirection: 'column',
 };
 
-const Feedback = ({ nextRound, setActive }) => {
+const Feedback = ({ setActive }) => {
+	const showError = () => {
+		setActive('Settings');
+		return message.error('Your feedback was not sent. Maybe next time!');
+	};
+
+	const showSuccess = () => {
+		setActive('Settings');
+		return message.success('Your feedback has been sent. Thanks for playing!');
+	};
 	return (
 		<>
 			<NetlifyForm name="feedback">
 				{({ loading, error, success }) => (
 					<section style={formStyle}>
-						{error &&
-							message.error('Your feedback was not sent. Maybe next time!')}
-						{success &&
-							message.success(
-								'Your feedback has been sent. Thanks for playing!',
-							)}
+						{error ? showError() : null}
+						{success ? showSuccess() : null}
 						<Item
 							label="Any suggestions for 'who goes first?'"
 							colon={false}
