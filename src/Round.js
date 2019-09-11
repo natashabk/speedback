@@ -72,7 +72,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 
 	return (
 		<>
-			<Row type="flex" justify="space-around" style={{ margin: '50px 0px' }}>
+			<Row type="flex" justify="space-around" style={{ margin: '40px 0px' }}>
 				<Progress
 					type="circle"
 					strokeColor="#80aaff"
@@ -113,7 +113,6 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 				<Button
 					size="large"
 					type="primary"
-					style={{ marginBottom: 10 }}
 					onClick={() => {
 						setTimeRunning(false);
 						setDeadline(Date.now());

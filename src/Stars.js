@@ -16,7 +16,7 @@ const Stars = ({ setActive }) => {
 						{!loading && !success && (
 							<div>
 								<Card
-									style={{ marginBottom: 35 }}
+									style={{ marginBottom: 30 }}
 									bodyStyle={{ textAlign: 'center' }}
 								>
 									<Text strong>Rate this session</Text>
@@ -31,17 +31,17 @@ const Stars = ({ setActive }) => {
 									value={rating}
 									style={{ display: 'none' }}
 								/>
-								{rating && (
-									<Button
-										htmlType="submit"
-										size="large"
-										type="primary"
-										loading={loading}
-										block
-									>
-										Submit Feedback
-									</Button>
-								)}
+								{/* {rating && ( */}
+								<Button
+									htmlType="submit"
+									size="large"
+									type="primary"
+									loading={loading}
+									block
+								>
+									Submit Feedback
+								</Button>
+								{/* )} */}
 							</div>
 						)}
 					</div>

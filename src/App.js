@@ -16,7 +16,7 @@ const App = () => {
 	const [people, setPeople] = useState([]);
 	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState(null);
-	const [active, setActive] = useState('Settings');
+	const [active, setActive] = useState('Feedback');
 
 	const isEven = num => num % 2 === 0;
 

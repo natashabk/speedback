@@ -67,14 +67,6 @@ export const mainStyle = {
 	flexDirection: 'column',
 };
 
-export const insideMainStyle = {
-	minHeight: 410,
-	height: 410,
-	justifyContent: 'space-between',
-	display: 'flex',
-	flexDirection: 'column',
-};
-
 export const alerts = {
 	oddNumber: {
 		headline: "What if there's an odd person out?",

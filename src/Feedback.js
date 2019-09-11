@@ -1,17 +1,24 @@
 import React from 'react';
 import NetlifyForm from 'react-netlify-form';
 import { Button, Form, Input, message } from 'antd';
-import { insideMainStyle } from './Constants';
 
 const { Item } = Form;
 const { TextArea } = Input;
+
+export const formStyle = {
+	minHeight: 410,
+	height: 410,
+	justifyContent: 'space-between',
+	display: 'flex',
+	flexDirection: 'column',
+};
 
 const Feedback = ({ nextRound, setActive }) => {
 	return (
 		<>
 			<NetlifyForm name="feedback">
 				{({ loading, error, success }) => (
-					<section style={insideMainStyle}>
+					<section style={formStyle}>
 						{error &&
 							message.error('Your feedback was not sent. Maybe next time!')}
 						{success &&
@@ -21,7 +28,7 @@ const Feedback = ({ nextRound, setActive }) => {
 						<Item
 							label="Any suggestions for 'who goes first?'"
 							colon={false}
-							style={{ marginBottom: 10 }}
+							style={{ marginBottom: 0 }}
 						>
 							<TextArea
 								name="who-goes-first"
@@ -32,7 +39,7 @@ const Feedback = ({ nextRound, setActive }) => {
 						<Item
 							label="Got any suggestions for 'odd one out'?"
 							colon={false}
-							style={{ marginBottom: 10 }}
+							style={{ marginBottom: 0 }}
 						>
 							<TextArea
 								name="odd-one-out"
@@ -43,7 +50,7 @@ const Feedback = ({ nextRound, setActive }) => {
 						<Item
 							label="Any other feedback?"
 							colon={false}
-							style={{ marginBottom: 10 }}
+							style={{ marginBottom: 0 }}
 						>
 							<TextArea
 								name="other-comments"
