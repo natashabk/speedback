@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Row, Button, Modal } from 'antd';
-import { pageInstructions } from './Constants';
+import { pageInstructions, newColors } from './Constants';
 
 const { Title, Text } = Typography;
 const blue = { color: '#1890ff' };
@@ -18,7 +18,7 @@ const PageHeader = ({
 	const instruction = pageInstructions[active].title;
 
 	const getTitle = () => {
-		if (active === 'Settings') return 'Welcome to Speedback!';
+		if (active === 'Settings') return 'Welcome to Speedback';
 		if (active === 'Feedback') return 'Thank you!';
 		else return null;
 	};
@@ -26,12 +26,20 @@ const PageHeader = ({
 	return (
 		<>
 			<Row type="flex" justify="space-between">
-				<Title level={3} style={{ fontWeight: 400 }}>
+				<Title
+					level={3}
+					style={{
+						fontWeight: 600,
+						textTransform: 'uppercase',
+						letterSpacing: 4,
+						color: '#fff',
+					}}
+				>
 					{getTitle() ? (
 						getTitle()
 					) : (
 						<>
-							Round <span style={blue}>{currentRound}</span> of {numOfRounds()}
+							Round {currentRound} of {numOfRounds()}
 						</>
 					)}
 				</Title>
@@ -44,7 +52,19 @@ const PageHeader = ({
 					/>
 				)}
 			</Row>
-			<Text style={{ fontSize: 17, color: '#555353' }}>{instruction}</Text>
+			<Text style={{ fontSize: 17, color: newColors.indigo }}>
+				<span
+					style={{
+						backgroundColor: '#fff',
+						borderRadius: '50%',
+						padding: 7,
+						marginRight: 7,
+					}}
+				>
+					👇
+				</span>
+				{instruction}
+			</Text>
 			<Modal
 				visible={visible}
 				onCancel={() => setVisible(false)}

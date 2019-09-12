@@ -1,5 +1,22 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Cabin&display=swap');
 
 .ant-select-selection--multiple {
 	min-height: 200px !important;
+}
+
+.ant-radio-group-solid
+	.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+	background: #23867a;
+	border-color: #23867a;
+}
+
+.ant-radio-group-solid
+	.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+	background: #2a9d8f;
+	border-color: #2a9d8f;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+	box-shadow: -1px 0 0 0 #23867a;
 }

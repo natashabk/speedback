@@ -8,38 +8,15 @@ import Round from './Round';
 import Feedback from './Feedback';
 import { appStyle, mainStyle } from './Constants';
 import PageHeader from './PageHeader';
+import bg from './bg.png';
 
 const { Content } = Layout;
 
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
-	const [people, setPeople] = useState([
-		'one',
-		'two',
-		'three',
-		'four',
-		'five',
-		'six',
-		'seven',
-		'eight',
-		'nine',
-		'ten',
-		'eleven',
-		'twelve',
-		'thirteen',
-		'fourteen',
-		'fifteen',
-		'sixteen',
-		'seventeen',
-		'eighteen',
-		'nineteen',
-		'twenty',
-		'twenty-one',
-		'twenty-two',
-		'twenty-three',
-	]);
+	const [people, setPeople] = useState([]);
 	const [pairTime, setPairTime] = useState(4);
-	const [oddOneOut, setOddOneOut] = useState('thirteen');
+	const [oddOneOut, setOddOneOut] = useState(null);
 	const [active, setActive] = useState('Settings');
 
 	const isEven = num => num % 2 === 0;
@@ -75,8 +52,14 @@ const App = () => {
 	};
 
 	return (
-		<Layout style={{ minHeight: '100vh', backgroundColor: '#f4f7fb' }}>
-			<Content style={appStyle}>
+		<Layout style={{ minHeight: '100vh' }}>
+			<Content
+				style={{
+					...appStyle,
+					backgroundImage: `url(${bg})`,
+					backgroundPosition: 'center',
+				}}
+			>
 				<PageHeader
 					currentRound={currentRound}
 					active={active}

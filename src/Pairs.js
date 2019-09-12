@@ -6,8 +6,6 @@ import NextButton from './NextButton';
 const { Text } = Typography;
 
 const stationStyle = {
-	// width: '30%',
-	// width: '45%',
 	height: 'fit-content',
 	textAlign: 'center',
 	marginTop: 10,
@@ -27,7 +25,6 @@ const stationInnerStyle = {
 	whiteSpace: 'nowrap',
 	overflow: 'hidden',
 	textOverflow: 'ellipsis',
-	// padding: 5,
 };
 
 const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {

@@ -49,13 +49,14 @@ export const oddQuestionOut = [
 ];
 
 export const appStyle = {
-	backgroundColor: '#f4f7fb',
+	backgroundColor: '#fff',
 	height: '100vh',
 	maxHeight: 620,
 	width: '100%',
 	maxWidth: 480,
 	margin: '0px auto',
 	padding: '3%',
+	fontFamily: 'Cabin, sans-serif',
 };
 
 export const mainStyle = {
@@ -81,7 +82,7 @@ export const alerts = {
 
 export const pageInstructions = {
 	Settings: {
-		title: '👇 Enter participants below',
+		title: 'Enter participants below',
 		continueText: 'Begin Session',
 		nextScreen: 'Pairs',
 	},
@@ -116,3 +117,11 @@ export const secondCounterPlaceholder = [
 	'02:30',
 	'03:00',
 ];
+
+export const newColors = {
+	indigo: '#264653',
+	green: '#23867A',
+	yellow: '#E9C46A',
+	orange: '#F4A261',
+	red: '#E76551',
+};

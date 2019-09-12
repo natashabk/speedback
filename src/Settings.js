@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Select, Radio, Form, Button } from 'antd';
+import { newColors } from './Constants';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -58,7 +59,9 @@ const Settings = ({
 					dropdownRender={menu => <div style={{ display: 'none' }}>{menu}</div>}
 				/>
 			</Item>
-			<label style={{ display: 'grid', marginTop: 20 }}>
+			<label
+				style={{ display: 'grid', marginTop: 20, color: newColors.indigo }}
+			>
 				<Text strong>Minutes per pair</Text>
 				<Radio.Group
 					buttonStyle="solid"
@@ -78,6 +81,13 @@ const Settings = ({
 				)}
 			</label>
 			<Button
+				style={{
+					backgroundColor: newColors.green,
+					borderColor: newColors.green,
+					fontWeight: 600,
+					letterSpacing: 4,
+					textTransform: 'uppercase',
+				}}
 				size="large"
 				type="primary"
 				block
