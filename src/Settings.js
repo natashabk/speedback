@@ -11,6 +11,13 @@ const radioStyle = {
 	display: 'inline-grid',
 };
 
+const selectStyle = {
+	maxHeight: 220,
+	overflow: 'auto',
+	textTransform: 'capitalize',
+	width: '100%',
+};
+
 const Settings = ({
 	people,
 	setPeople,
@@ -31,6 +38,7 @@ const Settings = ({
 			<Item
 				validateStatus={error ? 'error' : 'success'}
 				help={error ? 'Please enter two or more people to play' : null}
+				style={{ marginBottom: 0 }}
 			>
 				<Select
 					mode="tags"
@@ -46,10 +54,7 @@ const Settings = ({
 						setError(present.length <= 1 && error);
 					}}
 					value={people}
-					style={{
-						textTransform: 'capitalize',
-						width: '100%',
-					}}
+					style={selectStyle}
 					dropdownRender={menu => <div style={{ display: 'none' }}>{menu}</div>}
 				/>
 			</Item>

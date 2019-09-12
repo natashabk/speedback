@@ -13,10 +13,34 @@ const { Content } = Layout;
 
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
-	const [people, setPeople] = useState([]);
+	const [people, setPeople] = useState([
+		'one',
+		'two',
+		'three',
+		'four',
+		'five',
+		'six',
+		'seven',
+		'eight',
+		'nine',
+		'ten',
+		'eleven',
+		'twelve',
+		'thirteen',
+		'fourteen',
+		'fifteen',
+		'sixteen',
+		'seventeen',
+		'eighteen',
+		'nineteen',
+		'twenty',
+		'twenty-one',
+		'twenty-two',
+		'twenty-three',
+	]);
 	const [pairTime, setPairTime] = useState(4);
-	const [oddOneOut, setOddOneOut] = useState(null);
-	const [active, setActive] = useState('Feedback');
+	const [oddOneOut, setOddOneOut] = useState('thirteen');
+	const [active, setActive] = useState('Settings');
 
 	const isEven = num => num % 2 === 0;
 

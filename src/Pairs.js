@@ -6,7 +6,8 @@ import NextButton from './NextButton';
 const { Text } = Typography;
 
 const stationStyle = {
-	width: '45%',
+	// width: '30%',
+	// width: '45%',
 	height: 'fit-content',
 	textAlign: 'center',
 	marginTop: 10,
@@ -19,12 +20,14 @@ const pairContentStyle = {
 	marginBottom: 10,
 	borderRadius: 4,
 	flexWrap: 'wrap',
+	overflow: 'auto',
 };
 
 const stationInnerStyle = {
 	whiteSpace: 'nowrap',
 	overflow: 'hidden',
 	textOverflow: 'ellipsis',
+	// padding: 5,
 };
 
 const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
@@ -32,6 +35,8 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 	const middleIdx = Math.floor(people.length / 2);
 
 	const getFont = teamMember => (teamMember.length > 12 ? 10 : 14);
+	const padding = people.length > 12 ? 5 : 20;
+	const width = people.length > 12 ? '30%' : '45%';
 
 	return (
 		<>
@@ -43,7 +48,11 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 					if (!isEven(people.length) && i === middleIdx) {
 						setOddOneOut(teamMember);
 						return (
-							<Card key={i} style={stationStyle} bodyStyle={stationInnerStyle}>
+							<Card
+								key={i}
+								style={{ ...stationStyle, width }}
+								bodyStyle={{ ...stationInnerStyle, padding }}
+							>
 								<Text strong style={{ fontSize: getFont(member) }}>
 									{member}
 								</Text>
@@ -55,7 +64,11 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 					}
 					if (i < middleIdx)
 						return (
-							<Card style={stationStyle} key={i} bodyStyle={stationInnerStyle}>
+							<Card
+								style={{ ...stationStyle, width }}
+								key={i}
+								bodyStyle={{ ...stationInnerStyle, padding }}
+							>
 								<Text strong style={{ fontSize: getFont(member) }}>
 									{member}
 								</Text>
