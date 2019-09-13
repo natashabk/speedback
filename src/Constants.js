@@ -51,21 +51,26 @@ export const oddQuestionOut = [
 export const appStyle = {
 	backgroundColor: '#fff',
 	height: '100vh',
-	maxHeight: 620,
+	maxHeight: 750,
 	width: '100%',
-	maxWidth: 480,
+	maxWidth: 420,
 	margin: '0px auto',
-	padding: '3%',
-	fontFamily: 'Cabin, sans-serif',
+	padding: '2% 3% 3%',
+	fontFamily: 'Gotham Rounded Medium',
 };
 
+export const allRadius = 35;
+
 export const mainStyle = {
-	paddingTop: 20,
-	minHeight: 430,
-	height: 430,
+	height: '80%',
+	borderRadius: allRadius,
+};
+
+export const innerStyle = {
 	justifyContent: 'space-between',
 	display: 'flex',
 	flexDirection: 'column',
+	height: '100%',
 };
 
 export const alerts = {
@@ -120,7 +125,7 @@ export const secondCounterPlaceholder = [
 
 export const newColors = {
 	indigo: '#264653',
-	green: '#23867A',
+	green: '#5ac8c2',
 	yellow: '#E9C46A',
 	orange: '#F4A261',
 	red: '#E76551',

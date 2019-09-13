@@ -18,19 +18,17 @@ const PageHeader = ({
 	const instruction = pageInstructions[active].title;
 
 	const getTitle = () => {
-		if (active === 'Settings') return 'Welcome to Speedback';
+		if (active === 'Settings') return 'speedback';
 		if (active === 'Feedback') return 'Thank you!';
 		else return null;
 	};
 
 	return (
 		<>
-			<Row type="flex" justify="space-between">
+			<Row style={{ textAlign: 'center' }}>
 				<Title
-					level={3}
+					level={2}
 					style={{
-						fontWeight: 600,
-						textTransform: 'uppercase',
 						letterSpacing: 4,
 						color: '#fff',
 					}}
@@ -52,19 +50,10 @@ const PageHeader = ({
 					/>
 				)}
 			</Row>
-			<Text style={{ fontSize: 17, color: newColors.indigo }}>
-				<span
-					style={{
-						backgroundColor: '#fff',
-						borderRadius: '50%',
-						padding: 7,
-						marginRight: 7,
-					}}
-				>
-					👇
-				</span>
+			{/* <Text style={{ fontSize: 17, color: newColors.indigo }}>
+				
 				{instruction}
-			</Text>
+			</Text> */}
 			<Modal
 				visible={visible}
 				onCancel={() => setVisible(false)}

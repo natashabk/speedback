@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Layout } from 'antd';
+import { Layout, Card } from 'antd';
 import './App.css';
 import Settings from './Settings';
 import Pairs from './Pairs';
 import Question from './Question';
 import Round from './Round';
 import Feedback from './Feedback';
-import { appStyle, mainStyle } from './Constants';
+import { appStyle, mainStyle, allRadius, innerStyle } from './Constants';
 import PageHeader from './PageHeader';
-import bg from './bg.png';
 
 const { Content } = Layout;
 
@@ -56,8 +55,7 @@ const App = () => {
 			<Content
 				style={{
 					...appStyle,
-					backgroundImage: `url(${bg})`,
-					backgroundPosition: 'center',
+					backgroundImage: 'linear-gradient(#eb3348, #f19239)',
 				}}
 			>
 				<PageHeader
@@ -68,7 +66,7 @@ const App = () => {
 					setCurrentRound={setCurrentRound}
 					setPeople={setPeople}
 				/>
-				<section style={mainStyle}>
+				<Card style={mainStyle} bodyStyle={innerStyle}>
 					{active === 'Settings' && (
 						<Settings
 							people={people}
@@ -105,7 +103,7 @@ const App = () => {
 						/>
 					)}
 					{active === 'Feedback' && <Feedback setActive={setActive} />}
-				</section>
+				</Card>
 			</Content>
 		</Layout>
 	);
