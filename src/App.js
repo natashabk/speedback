@@ -8,6 +8,7 @@ import Round from './Round';
 import Feedback from './Feedback';
 import { appStyle, mainStyle, allRadius, innerStyle } from './Constants';
 import PageHeader from './PageHeader';
+import bg from './Images/Speedback-bg.png';
 
 const { Content } = Layout;
 
@@ -55,7 +56,9 @@ const App = () => {
 			<Content
 				style={{
 					...appStyle,
-					backgroundImage: 'linear-gradient(#eb3348, #f19239)',
+					backgroundImage: `url('${bg}')`,
+					backgroundPosition: 'center',
+					backgroundSize: 'cover',
 				}}
 			>
 				<PageHeader

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Typography, Row, Button, Modal } from 'antd';
+import { Typography, Row, Button, Modal, Icon } from 'antd';
 import { pageInstructions, newColors } from './Constants';
+import { ReactComponent as Logo } from './Images/Logo-White.svg';
 
 const { Title, Text } = Typography;
 const blue = { color: '#1890ff' };
@@ -40,6 +41,10 @@ const PageHeader = ({
 							Round {currentRound} of {numOfRounds()}
 						</>
 					)}
+					<Icon
+						style={{ width: 30, marginLeft: 10 }}
+						component={() => <Logo />}
+					/>
 				</Title>
 				{active !== 'Settings' && (
 					<Button

@@ -48,6 +48,14 @@ export const oddQuestionOut = [
 	"draw a scene from a tv show you've watched recently",
 ];
 
+export const newColors = {
+	indigo: '#26324B',
+	green: '#42C8C2',
+	hovergreen: '#3bb1ac',
+	orange: '#FEA938',
+	pink: '#F42549',
+};
+
 export const appStyle = {
 	backgroundColor: '#fff',
 	height: '100vh',
@@ -122,11 +130,3 @@ export const secondCounterPlaceholder = [
 	'02:30',
 	'03:00',
 ];
-
-export const newColors = {
-	indigo: '#264653',
-	green: '#5ac8c2',
-	yellow: '#E9C46A',
-	orange: '#F4A261',
-	red: '#E76551',
-};

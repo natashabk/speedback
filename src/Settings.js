@@ -8,7 +8,7 @@ const { Text } = Typography;
 const radioStyle = {
 	width: '33%',
 	textAlign: 'center',
-	height: 40,
+	height: 50,
 	display: 'inline-grid',
 };
 
@@ -106,8 +106,6 @@ const Settings = ({
 			>
 				<Button
 					style={{
-						backgroundColor: newColors.green,
-						borderColor: newColors.green,
 						borderRadius: allRadius,
 						height: 50,
 					}}
