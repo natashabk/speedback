@@ -38,22 +38,24 @@ const PageHeader = ({
 						getTitle()
 					) : (
 						<>
-							Round {currentRound} of {numOfRounds()}
+							round {currentRound} of {numOfRounds()}
 						</>
 					)}
-					<Icon
-						style={{ width: 30, marginLeft: 10 }}
-						component={() => <Logo />}
-					/>
+					{active === 'Settings' && (
+						<Icon
+							style={{ width: 30, marginLeft: 10 }}
+							component={() => <Logo />}
+						/>
+					)}
 				</Title>
-				{active !== 'Settings' && (
+				{/* {active !== 'Settings' && (
 					<Button
 						shape="circle"
 						icon="close"
 						style={{ color: '#555353', border: '1px solid #555353' }}
 						onClick={() => setVisible(true)}
 					/>
-				)}
+				)} */}
 			</Row>
 			{/* <Text style={{ fontSize: 17, color: newColors.indigo }}>
 				
