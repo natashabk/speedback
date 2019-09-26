@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Card, Row, Modal, Button, Typography } from 'antd';
 import './App.css';
 import NextButton from './NextButton';
-import { allRadius } from './Constants';
 
 const { Text } = Typography;
 
@@ -16,10 +15,11 @@ const stationStyle = {
 const pairContentStyle = {
 	minHeight: 200,
 	padding: 10,
-	marginBottom: 10,
 	borderRadius: 4,
 	flexWrap: 'wrap',
 	overflow: 'auto',
+	margin: 'auto',
+	width: '100%',
 };
 
 const stationInnerStyle = {

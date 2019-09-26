@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Statistic, Progress, Row, Typography, Button } from 'antd';
-import { secondCounterPlaceholder } from './Constants';
+import { secondCounterPlaceholder, allRadius } from './Constants';
 import Stars from './Stars';
 import NextButton from './NextButton';
 
@@ -41,6 +41,8 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 	const titleStyle = {
 		fontWeight: 400,
 		textAlign: 'center',
+		margin: 'auto',
+		width: '100%',
 	};
 
 	const colors = {
@@ -72,7 +74,11 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 
 	return (
 		<>
-			<Row type="flex" justify="space-around" style={{ margin: '40px 0px' }}>
+			<Row
+				type="flex"
+				justify="space-around"
+				style={{ margin: 'auto', width: '100%' }}
+			>
 				<Progress
 					type="circle"
 					strokeColor="#80aaff"
@@ -116,6 +122,10 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 					onClick={() => {
 						setTimeRunning(false);
 						setDeadline(Date.now());
+					}}
+					style={{
+						borderRadius: allRadius,
+						height: 50,
 					}}
 					block
 				>

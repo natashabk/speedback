@@ -6,7 +6,7 @@ import Pairs from './Pairs';
 import Question from './Question';
 import Round from './Round';
 import Feedback from './Feedback';
-import { appStyle, mainStyle, allRadius, innerStyle } from './Constants';
+import { appStyle, mainStyle, innerStyle } from './Constants';
 import PageHeader from './PageHeader';
 import bg from './Images/Speedback-bg.png';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { pageInstructions } from './Constants';
+import { pageInstructions, allRadius } from './Constants';
 
 const NextButton = ({
 	active,
@@ -23,6 +23,10 @@ const NextButton = ({
 				nextRound();
 			}}
 			block
+			style={{
+				borderRadius: allRadius,
+				height: 50,
+			}}
 		>
 			{continueText}
 		</Button>

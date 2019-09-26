@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Rate, Card, Button } from 'antd';
 import NetlifyForm from 'react-netlify-form';
+import { allRadius } from './Constants';
 
 const { Text } = Typography;
 
@@ -39,6 +40,10 @@ const Stars = ({ setActive }) => {
 											type="primary"
 											loading={loading}
 											block
+											style={{
+												borderRadius: allRadius,
+												height: 50,
+											}}
 										>
 											Submit Feedback
 										</Button>

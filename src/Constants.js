@@ -41,7 +41,7 @@ export const oddQuestionOut = [
 	'draw your perfect weekend',
 	'draw at least one person in this group',
 	'draw a cat on a skateboard',
-	'draw a design for the next HotWheels car',
+	'draw a design for a new HotWheels car',
 	'draw your perfect day',
 	'draw Gordon Ramsey having a freakout',
 	'draw the most exciting thing that happened at work recently',
