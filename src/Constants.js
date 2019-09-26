@@ -70,7 +70,7 @@ export const appStyle = {
 export const allRadius = 35;
 
 export const mainStyle = {
-	height: '80%',
+	height: '85%',
 	borderRadius: allRadius,
 };
 

@@ -92,7 +92,7 @@ const Settings = ({
 								lineHeight: 3,
 							}}
 						>
-							This session will last approximately {sessionLength} minutes.
+							This session will last about {sessionLength} minutes.
 						</Text>
 					)}
 				</label>
