@@ -7,7 +7,7 @@ import NextButton from './NextButton';
 const { Countdown } = Statistic;
 const { Title, Text } = Typography;
 
-const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
+const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
@@ -121,7 +121,9 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 				/>
 			</Row>
 			{getMessage()}
-			{isLastRound && !timeRunning && <Stars setActive={setActive} />}
+			{isLastRound && !timeRunning && (
+				<Stars setActive={setActive} pairTime={pairTime} people={people} />
+			)}
 			{isLastRound && timeRunning && (
 				<Button
 					size="large"

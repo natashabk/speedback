@@ -14,7 +14,7 @@ const { Content } = Layout;
 
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
-	const [people, setPeople] = useState(['One', 'Two', 'THree']);
+	const [people, setPeople] = useState([]);
 	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState(null);
 	const [active, setActive] = useState('Settings');
@@ -103,6 +103,7 @@ const App = () => {
 							isLastRound={isLastRound}
 							setActive={setActive}
 							nextRound={nextRound}
+							people={setPeople}
 						/>
 					)}
 					{active === 'Feedback' && (

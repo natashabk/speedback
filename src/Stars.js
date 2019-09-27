@@ -5,7 +5,7 @@ import { allRadius } from './Constants';
 
 const { Text } = Typography;
 
-const Stars = ({ setActive }) => {
+const Stars = ({ setActive, pairTime, people }) => {
 	const [rating, setRating] = useState(null);
 
 	return (
@@ -32,6 +32,19 @@ const Stars = ({ setActive }) => {
 									value={rating}
 									style={{ display: 'none' }}
 								/>
+								<input
+									type="text"
+									name="participants"
+									value={people.length}
+									style={{ display: 'none' }}
+								/>
+								<input
+									type="text"
+									name="pair-time"
+									value={pairTime}
+									style={{ display: 'none' }}
+								/>
+
 								<section style={{ height: 40 }}>
 									{rating ? (
 										<Button

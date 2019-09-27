@@ -14,6 +14,9 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 
 	return (
 		<>
+			<Row style={{ height: '10%', textAlign: 'center' }}>
+				<Text>🚦 On your marks, get set...</Text>
+			</Row>
 			<Row style={{ margin: 'auto', width: '100%' }}>
 				<Card
 					style={{ height: 220 }}
