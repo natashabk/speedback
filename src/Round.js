@@ -5,7 +5,7 @@ import Stars from './Stars';
 import NextButton from './NextButton';
 
 const { Countdown } = Statistic;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
@@ -74,6 +74,13 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound }) => {
 
 	return (
 		<>
+			<Row style={{ height: '10%', textAlign: 'center' }}>
+				{isLastRound && !timeRunning ? (
+					<Text>✅ Session Complete</Text>
+				) : (
+					<Text>🔥 Round in Progress</Text>
+				)}
+			</Row>
 			<Row
 				type="flex"
 				justify="space-around"

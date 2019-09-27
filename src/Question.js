@@ -17,9 +17,22 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 			<Row style={{ margin: 'auto', width: '100%' }}>
 				<Card
 					style={{ height: 220 }}
-					bodyStyle={{ height: 220, paddingTop: 10 }}
+					bodyStyle={{
+						height: 220,
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'space-between',
+						paddingBottom: 10,
+					}}
 				>
-					<Row style={{ textAlign: 'right', marginRight: -10 }}>
+					<Row
+						type="flex"
+						justify="space-between"
+						style={{ textAlign: 'right', marginRight: -10 }}
+					>
+						<Text type="secondary" style={{ fontSize: 17 }}>
+							Who speaks first?
+						</Text>
 						<Button
 							size="small"
 							shape="circle"
@@ -27,12 +40,12 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 							onClick={() => setCurrentQuestion(shuffle(goesFirst))}
 						></Button>
 					</Row>
-					<Title level={3} style={{ fontWeight: 400 }}>
+					<Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>
 						The person {currentQuestion}
 					</Title>
 					<Button
 						type="link"
-						style={{ padding: 0 }}
+						style={{ padding: 0, textAlign: 'left' }}
 						onClick={() => setVisible(true)}
 					>
 						What if it's a tie?
@@ -71,14 +84,19 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 				{oddOneOut && (
 					<Card
 						style={{ margin: '20px 0px', height: 190, maxHeight: 190 }}
-						bodyStyle={{ height: 150 }}
+						bodyStyle={{
+							height: 190,
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'space-between',
+						}}
 					>
 						<Row
 							type="flex"
 							justify="space-between"
 							style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}
 						>
-							<Text style={{ fontSize: 17, color: '#555353' }}>
+							<Text type="secondary" style={{ fontSize: 17 }}>
 								<span style={{ textTransform: 'capitalize' }}>{oddOneOut}</span>
 								, you should:
 							</Text>
@@ -90,7 +108,7 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 							></Button>
 						</Row>
 
-						<Title level={3} style={{ fontWeight: 400, marginTop: 0 }}>
+						<Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>
 							{currentOddOne}
 						</Title>
 					</Card>

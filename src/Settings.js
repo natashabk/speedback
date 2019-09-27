@@ -36,10 +36,8 @@ const Settings = ({
 
 	return (
 		<>
-			<Row style={{ height: '10%' }}>
-				<Text style={{ textAlign: 'center' }}>
-					👇 Enter your participants below
-				</Text>
+			<Row style={{ height: '10%', textAlign: 'center' }}>
+				<Text>👇 Enter your participants below</Text>
 			</Row>
 			<Row style={{ height: '45%' }}>
 				<Item

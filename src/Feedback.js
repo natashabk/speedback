@@ -14,14 +14,16 @@ export const formStyle = {
 	flexDirection: 'column',
 };
 
-const Feedback = ({ setActive }) => {
+const Feedback = ({ setActive, setCurrentRound }) => {
 	const showError = () => {
 		setActive('Settings');
+		setCurrentRound(0);
 		return message.error('Your feedback was not sent. Maybe next time!');
 	};
 
 	const showSuccess = () => {
 		setActive('Settings');
+		setCurrentRound(0);
 		return message.success('Your feedback has been sent. Thanks for playing!');
 	};
 	return (

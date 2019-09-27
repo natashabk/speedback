@@ -14,7 +14,7 @@ const { Content } = Layout;
 
 const App = () => {
 	const [currentRound, setCurrentRound] = useState(0);
-	const [people, setPeople] = useState([]);
+	const [people, setPeople] = useState(['One', 'Two', 'THree']);
 	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState(null);
 	const [active, setActive] = useState('Settings');
@@ -105,7 +105,9 @@ const App = () => {
 							nextRound={nextRound}
 						/>
 					)}
-					{active === 'Feedback' && <Feedback setActive={setActive} />}
+					{active === 'Feedback' && (
+						<Feedback setActive={setActive} setCurrentRound={setCurrentRound} />
+					)}
 				</Card>
 			</Content>
 		</Layout>

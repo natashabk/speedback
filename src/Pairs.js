@@ -38,6 +38,9 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 
 	return (
 		<>
+			<Row style={{ height: '10%', textAlign: 'center' }}>
+				<Text>🍐 Get into your pairs</Text>
+			</Row>
 			<Row type="flex" justify="space-around" style={pairContentStyle}>
 				{people.map((teamMember, i) => {
 					const member = teamMember;
