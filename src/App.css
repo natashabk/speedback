@@ -20,3 +20,7 @@
 .ant-radio-button-wrapper:last-child {
 	border-radius: 0px 35px 35px 0px !important;
 }
+
+.ant-statistic-content {
+	font-family: 'Gotham Rounded Medium';
+}
