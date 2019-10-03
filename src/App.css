@@ -25,3 +25,6 @@
 	font-family: 'Gotham Rounded Medium';
 	color: rgba(38, 50, 75, 0.85);
 }
+.ant-select-search .ant-select-search--inline {
+	margin-left: 3px;
+}
