@@ -30,3 +30,6 @@
 }
 
 /* trying to fix padding bug */
+li.ant-select-search.ant-select-search--inline {
+	margin-left: 18px;
+}

@@ -60,9 +60,9 @@ const Settings = ({
 						}}
 						value={people}
 						style={selectStyle}
-						// dropdownRender={menu => (
-						// 	<div style={{ display: 'none' }}>{menu}</div>
-						// )}
+						dropdownRender={menu => (
+							<div style={{ display: 'none' }}>{menu}</div>
+						)}
 					/>
 				</Item>
 			</Row>
