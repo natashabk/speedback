@@ -36,5 +36,5 @@
 } */
 
 input.ant-select-search__field {
-	width: 1.5em !important;
+	width: 100% !important;
 }
