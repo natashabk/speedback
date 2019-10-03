@@ -4,6 +4,7 @@
 	src: url('./gotham-rounded/GothamRoundedMedium_21022.ttf');
 }
 
+/* choose participants */
 .ant-select-selection--multiple {
 	min-height: 200px !important;
 	border-radius: 15px !important;
@@ -14,6 +15,7 @@
 	padding-bottom: 5px;
 }
 
+/* choose pair time */
 .ant-radio-button-wrapper:first-child {
 	border-radius: 35px 0px 0px 35px !important;
 }
@@ -21,11 +23,10 @@
 	border-radius: 0px 35px 35px 0px !important;
 }
 
+/* timer */
 .ant-statistic-content span {
 	font-family: 'Gotham Rounded Medium';
 	color: rgba(38, 50, 75, 0.85);
 }
 
-.ant-select-search__field input {
-	margin-left: 18px;
-}
+/* trying to fix padding bug */
