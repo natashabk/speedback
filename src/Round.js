@@ -9,7 +9,6 @@ const { Title, Text } = Typography;
 
 const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
-
 	const [count, setCount] = useState(0);
 	const [deadline, setDeadline] = useState(roundTime());
 	const [firstActive, setFirstActive] = useState(true);
@@ -72,7 +71,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			);
 	};
 
-	console.log(firstActive);
+	console.log(deadline);
 
 	return (
 		<>
@@ -107,18 +106,18 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 					type="circle"
 					strokeColor="#ff8533"
 					percent={getSecondPercent()}
-					format={percent =>
-						firstActive ? (
-							secondCounterPlaceholder[pairTime]
-						) : (
+					format={
+						percent => (
+							// firstActive ? (
+							// 	secondCounterPlaceholder[pairTime]
+							// ) : (
 							<Countdown
 								value={firstActive ? Date.now() : deadline}
 								format="mm:ss"
-								onFinish={() => {
-									setTimeRunning(false);
-								}}
+								onFinish={() => setTimeRunning(false)}
 							/>
 						)
+						// )
 					}
 				/>
 			</Row>
