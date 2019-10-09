@@ -1,3 +1,8 @@
+// 1570635309272 1570635399272
+// 1570635309272 1570635399272
+// 1570635309272 1570635399272
+// 1570635309272 1570635399272
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Statistic, Progress, Row, Typography, Button } from 'antd';
 import { secondCounterPlaceholder, allRadius } from './Constants';
@@ -8,11 +13,17 @@ const { Countdown } = Statistic;
 const { Title, Text } = Typography;
 
 const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
-	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
+	// const roundTime = () => Date.now() + 1000 * 60 * pairTime;
+
 	const [count, setCount] = useState(0);
-	const [deadline, setDeadline] = useState(roundTime());
 	const [firstActive, setFirstActive] = useState(true);
 	const [timeRunning, setTimeRunning] = useState(true);
+	const [firstDeadline, setFirstDeadline] = useState(
+		Date.now() + (1000 * 60 * pairTime) / 2,
+	);
+	const [secondDeadline, setSecondDeadline] = useState(
+		Date.now() + 1000 * 60 * pairTime,
+	);
 
 	const totalMilSeconds = (pairTime / 2) * 600;
 	const percent = (count / totalMilSeconds) * 100;
@@ -30,7 +41,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			}
 			let id = setInterval(tick, 100);
 			return () => clearInterval(id);
-		}, [deadline]);
+		}, []);
 	}
 
 	useInterval(() => {
@@ -71,7 +82,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			);
 	};
 
-	console.log(deadline);
+	console.log(firstDeadline, secondDeadline);
 
 	return (
 		<>
@@ -93,12 +104,9 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 					percent={firstActive ? percent : 100}
 					format={percent => (
 						<Countdown
-							value={firstActive ? deadline : Date.now()}
+							value={firstDeadline}
 							format="mm:ss"
-							onFinish={() => {
-								setFirstActive(false);
-								setDeadline(roundTime());
-							}}
+							onFinish={() => setFirstActive(false)}
 						/>
 					)}
 				/>
@@ -111,7 +119,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 							secondCounterPlaceholder[pairTime]
 						) : (
 							<Countdown
-								value={deadline}
+								value={secondDeadline}
 								format="mm:ss"
 								onFinish={() => setTimeRunning(false)}
 							/>
@@ -127,10 +135,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 				<Button
 					size="large"
 					type="primary"
-					onClick={() => {
-						setTimeRunning(false);
-						setDeadline(Date.now());
-					}}
+					onClick={() => setTimeRunning(false)}
 					style={{
 						borderRadius: allRadius,
 						height: 50,
