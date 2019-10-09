@@ -29,11 +29,7 @@
 	color: rgba(38, 50, 75, 0.85);
 }
 
-/* trying to fix padding bug */
-
-/* li.ant-select-search.ant-select-search--inline {
-	
-} */
+/* partial fix for padding bug */
 
 input.ant-select-search__field {
 	width: 100% !important;

@@ -72,6 +72,8 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			);
 	};
 
+	console.log(firstActive);
+
 	return (
 		<>
 			<Row style={{ height: '10%', textAlign: 'center' }}>
@@ -110,7 +112,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 							secondCounterPlaceholder[pairTime]
 						) : (
 							<Countdown
-								value={firstActive || !timeRunning ? Date.now() : deadline}
+								value={firstActive ? Date.now() : deadline}
 								format="mm:ss"
 								onFinish={() => {
 									setTimeRunning(false);
