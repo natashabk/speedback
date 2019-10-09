@@ -106,18 +106,16 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 					type="circle"
 					strokeColor="#ff8533"
 					percent={getSecondPercent()}
-					format={
-						percent => (
-							// firstActive ? (
-							// 	secondCounterPlaceholder[pairTime]
-							// ) : (
+					format={percent =>
+						firstActive ? (
+							secondCounterPlaceholder[pairTime]
+						) : (
 							<Countdown
-								value={firstActive ? Date.now() : deadline}
+								value={deadline}
 								format="mm:ss"
 								onFinish={() => setTimeRunning(false)}
 							/>
 						)
-						// )
 					}
 				/>
 			</Row>
