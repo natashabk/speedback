@@ -1,7 +1,8 @@
 import React from 'react';
 import NetlifyForm from 'react-netlify-form';
 import { Button, Form, Input, message, Row } from 'antd';
-import { allRadius } from './Constants';
+import { allRadius } from '../Constants';
+import { useSessionValue } from '../SessionContext';
 
 const { Item } = Form;
 const { TextArea } = Input;
@@ -14,7 +15,8 @@ export const formStyle = {
 	flexDirection: 'column',
 };
 
-const Feedback = ({ setActive, setCurrentRound }) => {
+const Feedback = () => {
+	const { setActive, setCurrentRound } = useSessionValue();
 	const showError = () => {
 		setActive('Settings');
 		setCurrentRound(0);
@@ -35,7 +37,7 @@ const Feedback = ({ setActive, setCurrentRound }) => {
 				flexDirection: 'column',
 			}}
 		>
-			<NetlifyForm name="feedback">
+			<NetlifyForm name='feedback'>
 				{({ loading, error, success }) => (
 					<>
 						<Row style={{ margin: 'auto', width: '100%' }}>
@@ -43,8 +45,8 @@ const Feedback = ({ setActive, setCurrentRound }) => {
 							{success ? showSuccess() : null}
 							<Item label="Any suggestions for 'who goes first?'" colon={false}>
 								<TextArea
-									name="who-goes-first"
-									placeholder="Ex: The person with the fastest car."
+									name='who-goes-first'
+									placeholder='Ex: The person with the fastest car.'
 									rows={3}
 								/>
 							</Item>
@@ -53,23 +55,23 @@ const Feedback = ({ setActive, setCurrentRound }) => {
 								colon={false}
 							>
 								<TextArea
-									name="odd-one-out"
-									placeholder="Ex: Draw a hybrid of the first two animals you can think of."
+									name='odd-one-out'
+									placeholder='Ex: Draw a hybrid of the first two animals you can think of.'
 									rows={3}
 								/>
 							</Item>
-							<Item label="Any other feedback?" colon={false}>
+							<Item label='Any other feedback?' colon={false}>
 								<TextArea
-									name="other-comments"
-									placeholder="Any praise/complaints/ideas?"
+									name='other-comments'
+									placeholder='Any praise/complaints/ideas?'
 									rows={3}
 								/>
 							</Item>
 						</Row>
 						<Button
-							htmlType="submit"
-							size="large"
-							type="primary"
+							htmlType='submit'
+							size='large'
+							type='primary'
 							block
 							style={{
 								borderRadius: allRadius,

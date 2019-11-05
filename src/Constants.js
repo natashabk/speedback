@@ -1,3 +1,5 @@
+import bg from './Images/Speedback-bg.png';
+
 export const goesFirst = [
 	'with the most siblings',
 	'with the least pets',
@@ -65,6 +67,9 @@ export const appStyle = {
 	margin: '0px auto',
 	padding: '2% 3% 3%',
 	fontFamily: 'Gotham Rounded Medium',
+	backgroundImage: `url('${bg}')`,
+	backgroundPosition: 'center',
+	backgroundSize: 'cover',
 };
 
 export const allRadius = 35;
@@ -98,26 +103,31 @@ export const pageInstructions = {
 		title: 'Enter participants below',
 		continueText: 'Begin Session',
 		nextScreen: 'Pairs',
+		prevScreen: null,
 	},
 	Pairs: {
 		title: '🍐 Get into your pairs',
 		continueText: 'Everyone is Paired',
 		nextScreen: 'Question',
+		prevScreen: 'Settings',
 	},
 	Question: {
 		title: '🤔 Who is giving feedback first?',
 		continueText: 'Start Round',
 		nextScreen: 'Round',
+		prevScreen: 'Pairs',
 	},
 	Round: {
 		title: '🔥 Round in Progress',
 		continueText: 'Next Pairing',
 		nextScreen: 'Pairs',
+		prevScreen: 'Question',
 	},
 	Feedback: {
 		title: '📬 Your feedback makes us better',
 		continueText: 'Submit Feedback',
 		nextScreen: 'Settings',
+		prevScreen: 'Round',
 	},
 };
 

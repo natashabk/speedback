@@ -1,13 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Statistic, Progress, Row, Typography, Button } from 'antd';
-import { secondCounterPlaceholder, allRadius } from './Constants';
-import Stars from './Stars';
-import NextButton from './NextButton';
+import { secondCounterPlaceholder, allRadius } from '../Constants';
+import Stars from '../Components/Stars';
+import NextButton from '../Components/NextButton';
+import BackButton from '../Components/BackButton';
+import { useSessionValue } from '../SessionContext';
 
 const { Countdown } = Statistic;
 const { Title, Text } = Typography;
 
-const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
+const Round = () => {
+	const {
+		pairTime,
+		setActive,
+		nextRound,
+		people,
+		isLastRound,
+	} = useSessionValue();
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
@@ -75,6 +84,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 	return (
 		<>
 			<Row style={{ height: '10%', textAlign: 'center' }}>
+				<BackButton active='Round' setActive={setActive} />
 				{isLastRound && !timeRunning ? (
 					<Text>✅ Session Complete</Text>
 				) : (
@@ -82,18 +92,18 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 				)}
 			</Row>
 			<Row
-				type="flex"
-				justify="space-around"
+				type='flex'
+				justify='space-around'
 				style={{ margin: 'auto', width: '100%' }}
 			>
 				<Progress
-					type="circle"
-					strokeColor="#80aaff"
+					type='circle'
+					strokeColor='#80aaff'
 					percent={firstActive ? percent : 100}
 					format={percent => (
 						<Countdown
 							value={firstActive ? deadline : Date.now()}
-							format="mm:ss"
+							format='mm:ss'
 							onFinish={() => {
 								setFirstActive(false);
 								setDeadline(roundTime());
@@ -102,8 +112,8 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 					)}
 				/>
 				<Progress
-					type="circle"
-					strokeColor="#ff8533"
+					type='circle'
+					strokeColor='#ff8533'
 					percent={getSecondPercent()}
 					format={percent =>
 						firstActive ? (
@@ -111,7 +121,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 						) : (
 							<Countdown
 								value={firstActive || !timeRunning ? Date.now() : deadline}
-								format="mm:ss"
+								format='mm:ss'
 								onFinish={() => {
 									setTimeRunning(false);
 								}}
@@ -126,8 +136,8 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			)}
 			{isLastRound && timeRunning && (
 				<Button
-					size="large"
-					type="primary"
+					size='large'
+					type='primary'
 					onClick={() => {
 						setTimeRunning(false);
 						setDeadline(Date.now());
@@ -143,7 +153,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			)}
 			{!isLastRound && (
 				<NextButton
-					active="Round"
+					active='Round'
 					setActive={setActive}
 					nextRound={nextRound}
 				/>

@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { Typography, Row, Button, Modal, Icon } from 'antd';
-import { pageInstructions, newColors } from './Constants';
-import { ReactComponent as Logo } from './Images/Logo-White.svg';
+import { pageInstructions, newColors } from '../Constants';
+import { ReactComponent as Logo } from '../Images/Logo-White.svg';
+import { useSessionValue } from '../SessionContext';
 
 const { Title, Text } = Typography;
 const blue = { color: '#1890ff' };
 
-const PageHeader = ({
-	currentRound,
-	active,
-	setActive,
-	numOfRounds,
-	setCurrentRound,
-	setPeople,
-}) => {
+const PageHeader = () => {
 	const [visible, setVisible] = useState(false);
+
+	const {
+		currentRound,
+		active,
+		setActive,
+		numOfRounds,
+		setCurrentRound,
+		exitSession,
+	} = useSessionValue();
 
 	const instruction = pageInstructions[active].title;
 
@@ -38,7 +41,7 @@ const PageHeader = ({
 						getTitle()
 					) : (
 						<>
-							round {currentRound} of {numOfRounds()}
+							round {currentRound} of {numOfRounds}
 						</>
 					)}
 					{active === 'Settings' && (
@@ -66,8 +69,7 @@ const PageHeader = ({
 				onCancel={() => setVisible(false)}
 				onOk={() => {
 					setVisible(false);
-					setActive('Settings');
-					setCurrentRound(0);
+					exitSession();
 				}}
 				style={{ maxWidth: 360 }}
 			>

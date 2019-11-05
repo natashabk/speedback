@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Rate, Card, Button } from 'antd';
 import NetlifyForm from 'react-netlify-form';
-import { allRadius } from './Constants';
+import { allRadius } from '../Constants';
 
 const { Text } = Typography;
 
@@ -9,7 +9,7 @@ const Stars = ({ setActive, pairTime, people }) => {
 	const [rating, setRating] = useState(null);
 
 	return (
-		<NetlifyForm name="rating">
+		<NetlifyForm name='rating'>
 			{({ loading, error, success }) => {
 				if (error || success) setActive('Feedback');
 				return (
@@ -27,20 +27,20 @@ const Stars = ({ setActive, pairTime, people }) => {
 									/>
 								</Card>
 								<input
-									type="text"
-									name="stars"
+									type='text'
+									name='stars'
 									value={rating}
 									style={{ display: 'none' }}
 								/>
 								<input
-									type="text"
-									name="participants"
+									type='text'
+									name='participants'
 									value={people.length}
 									style={{ display: 'none' }}
 								/>
 								<input
-									type="text"
-									name="pair-time"
+									type='text'
+									name='pair-time'
 									value={pairTime}
 									style={{ display: 'none' }}
 								/>
@@ -48,9 +48,9 @@ const Stars = ({ setActive, pairTime, people }) => {
 								<section style={{ height: 40 }}>
 									{rating ? (
 										<Button
-											htmlType="submit"
-											size="large"
-											type="primary"
+											htmlType='submit'
+											size='large'
+											type='primary'
 											loading={loading}
 											block
 											style={{

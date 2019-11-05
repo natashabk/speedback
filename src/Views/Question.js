@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Card, Typography, Row, Button, Modal } from 'antd';
-import { goesFirst, oddQuestionOut } from './Constants';
-import NextButton from './NextButton';
+import { goesFirst, oddQuestionOut } from '../Constants';
+import NextButton from '../Components/NextButton';
+import BackButton from '../Components/BackButton';
+import { useSessionValue } from '../SessionContext';
 
 const { Title, Text } = Typography;
 
-const Question = ({ oddOneOut, setActive, nextRound }) => {
+const Question = () => {
+	const { oddOneOut, setActive, nextRound } = useSessionValue();
 	const shuffle = list => list[Math.floor(Math.random() * list.length)];
 
 	const [visible, setVisible] = useState(false);
@@ -15,6 +18,7 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 	return (
 		<>
 			<Row style={{ height: '10%', textAlign: 'center' }}>
+				<BackButton active='Question' setActive={setActive} />
 				<Text>🚦 On your marks, get set...</Text>
 			</Row>
 			<Row style={{ margin: 'auto', width: '100%' }}>
@@ -29,17 +33,17 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 					}}
 				>
 					<Row
-						type="flex"
-						justify="space-between"
+						type='flex'
+						justify='space-between'
 						style={{ textAlign: 'right', marginRight: -10 }}
 					>
-						<Text type="secondary" style={{ fontSize: 17 }}>
+						<Text type='secondary' style={{ fontSize: 17 }}>
 							Who speaks first?
 						</Text>
 						<Button
-							size="small"
-							shape="circle"
-							icon="retweet"
+							size='small'
+							shape='circle'
+							icon='retweet'
 							onClick={() => setCurrentQuestion(shuffle(goesFirst))}
 						></Button>
 					</Row>
@@ -47,7 +51,7 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 						The person {currentQuestion}
 					</Title>
 					<Button
-						type="link"
+						type='link'
 						style={{ padding: 0, textAlign: 'left' }}
 						onClick={() => setVisible(true)}
 					>
@@ -78,7 +82,7 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 					<br />
 					<Button
 						onClick={() => setVisible(false)}
-						type="primary"
+						type='primary'
 						style={{ marginTop: 15, width: '100%' }}
 					>
 						OK
@@ -95,18 +99,18 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 						}}
 					>
 						<Row
-							type="flex"
-							justify="space-between"
+							type='flex'
+							justify='space-between'
 							style={{ textAlign: 'right', marginRight: -10, marginTop: -5 }}
 						>
-							<Text type="secondary" style={{ fontSize: 17 }}>
+							<Text type='secondary' style={{ fontSize: 17 }}>
 								<span style={{ textTransform: 'capitalize' }}>{oddOneOut}</span>
 								, you should:
 							</Text>
 							<Button
-								size="small"
-								shape="circle"
-								icon="retweet"
+								size='small'
+								shape='circle'
+								icon='retweet'
 								onClick={() => setCurrentOddOne(shuffle(oddQuestionOut))}
 							></Button>
 						</Row>
@@ -118,7 +122,7 @@ const Question = ({ oddOneOut, setActive, nextRound }) => {
 				)}
 			</Row>
 			<NextButton
-				active="Question"
+				active='Question'
 				setActive={setActive}
 				nextRound={nextRound}
 			/>
