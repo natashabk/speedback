@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Row, Modal, Button, Typography } from 'antd';
 import '../Images/App.css';
 import NextButton from '../Components/NextButton';
-import BackButton from '../Components/BackButton';
+import CardTitle from '../Components/CardTitle';
 import { useSessionValue } from '../SessionContext';
 
 const { Text } = Typography;
@@ -31,7 +31,7 @@ const stationInnerStyle = {
 };
 
 const Pairs = () => {
-	const { people, setActive, setOddOneOut, nextRound } = useSessionValue();
+	const { people, setOddOneOut } = useSessionValue();
 	const isEven = num => num % 2 === 0;
 	const [visible, setVisible] = useState(false);
 	const middleIdx = Math.floor(people.length / 2);
@@ -42,10 +42,7 @@ const Pairs = () => {
 
 	return (
 		<>
-			<Row style={{ height: '10%', textAlign: 'center' }}>
-				<BackButton active='Pairs' setActive={setActive} />
-				<Text>🍐 Get into your pairs</Text>
-			</Row>
+			<CardTitle />
 			<Row type='flex' justify='space-around' style={pairContentStyle}>
 				{people.map((teamMember, i) => {
 					const member = teamMember;
@@ -122,7 +119,7 @@ const Pairs = () => {
 					</Modal>
 				</>
 			)}
-			<NextButton active='Pairs' setActive={setActive} nextRound={nextRound} />
+			<NextButton />
 		</>
 	);
 };

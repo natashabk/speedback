@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button } from 'antd';
 import { pageInstructions, allRadius } from '../Constants';
+import { useSessionValue } from '../SessionContext';
 
-const NextButton = ({ active, setActive, nextRound }) => {
+const NextButton = () => {
+	const { active, setActive, nextRound } = useSessionValue();
 	const continueText = pageInstructions[active].continueText;
 	const nextScreen = pageInstructions[active].nextScreen;
 
@@ -11,14 +13,11 @@ const NextButton = ({ active, setActive, nextRound }) => {
 			size='large'
 			type='primary'
 			onClick={() => {
-				setActive(nextScreen);
 				nextRound();
+				setActive(nextScreen);
 			}}
 			block
-			style={{
-				borderRadius: allRadius,
-				height: 50,
-			}}
+			style={{ borderRadius: allRadius, height: 50 }}
 		>
 			{continueText}
 		</Button>

@@ -1,22 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Statistic, Progress, Row, Typography, Button } from 'antd';
+import { Statistic, Progress, Row, Typography, Button, Card } from 'antd';
 import { secondCounterPlaceholder, allRadius } from '../Constants';
 import Stars from '../Components/Stars';
 import NextButton from '../Components/NextButton';
-import BackButton from '../Components/BackButton';
 import { useSessionValue } from '../SessionContext';
+import CardTitle from '../Components/CardTitle';
 
 const { Countdown } = Statistic;
 const { Title, Text } = Typography;
 
 const Round = () => {
-	const {
-		pairTime,
-		setActive,
-		nextRound,
-		people,
-		isLastRound,
-	} = useSessionValue();
+	const { pairTime, setActive, people, isLastRound } = useSessionValue();
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
@@ -83,14 +77,7 @@ const Round = () => {
 
 	return (
 		<>
-			<Row style={{ height: '10%', textAlign: 'center' }}>
-				<BackButton active='Round' setActive={setActive} />
-				{isLastRound && !timeRunning ? (
-					<Text>✅ Session Complete</Text>
-				) : (
-					<Text>🔥 Round in Progress</Text>
-				)}
-			</Row>
+			<CardTitle timeRunning={timeRunning} />
 			<Row
 				type='flex'
 				justify='space-around'
@@ -151,13 +138,7 @@ const Round = () => {
 					End Session
 				</Button>
 			)}
-			{!isLastRound && (
-				<NextButton
-					active='Round'
-					setActive={setActive}
-					nextRound={nextRound}
-				/>
-			)}
+			{!isLastRound && <NextButton />}
 		</>
 	);
 };

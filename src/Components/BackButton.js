@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button } from 'antd';
 import { pageInstructions } from '../Constants';
+import { useSessionValue } from '../SessionContext';
 
-const BackButton = ({ active, setActive }) => {
+const BackButton = () => {
+	const { active, setActive } = useSessionValue();
 	const prevScreen = pageInstructions[active].prevScreen;
 	return (
 		<Button

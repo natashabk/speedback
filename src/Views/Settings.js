@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Select, Radio, Form, Button, Row } from 'antd';
 import { newColors, allRadius } from '../Constants';
 import { useSessionValue } from '../SessionContext';
+import CardTitle from '../Components/CardTitle';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -36,9 +37,7 @@ const Settings = () => {
 
 	return (
 		<>
-			<Row style={{ height: '10%', textAlign: 'center' }}>
-				<Text>👇 Enter your participants below</Text>
-			</Row>
+			<CardTitle />
 			<Row style={{ height: '45%' }}>
 				<Item
 					validateStatus={error ? 'error' : 'success'}

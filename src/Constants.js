@@ -100,7 +100,7 @@ export const alerts = {
 
 export const pageInstructions = {
 	Settings: {
-		title: 'Enter participants below',
+		title: '👇 Enter your participants below',
 		continueText: 'Begin Session',
 		nextScreen: 'Pairs',
 		prevScreen: null,
@@ -112,7 +112,7 @@ export const pageInstructions = {
 		prevScreen: 'Settings',
 	},
 	Question: {
-		title: '🤔 Who is giving feedback first?',
+		title: '🚦 On your marks, get set...',
 		continueText: 'Start Round',
 		nextScreen: 'Round',
 		prevScreen: 'Pairs',

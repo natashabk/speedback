@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Card, Typography, Row, Button, Modal } from 'antd';
 import { goesFirst, oddQuestionOut } from '../Constants';
 import NextButton from '../Components/NextButton';
-import BackButton from '../Components/BackButton';
 import { useSessionValue } from '../SessionContext';
+import CardTitle from '../Components/CardTitle';
 
 const { Title, Text } = Typography;
 
 const Question = () => {
-	const { oddOneOut, setActive, nextRound } = useSessionValue();
+	const { oddOneOut, setActive } = useSessionValue();
 	const shuffle = list => list[Math.floor(Math.random() * list.length)];
 
 	const [visible, setVisible] = useState(false);
@@ -17,10 +17,7 @@ const Question = () => {
 
 	return (
 		<>
-			<Row style={{ height: '10%', textAlign: 'center' }}>
-				<BackButton active='Question' setActive={setActive} />
-				<Text>🚦 On your marks, get set...</Text>
-			</Row>
+			<CardTitle />
 			<Row style={{ margin: 'auto', width: '100%' }}>
 				<Card
 					style={{ height: 220 }}
@@ -121,11 +118,7 @@ const Question = () => {
 					</Card>
 				)}
 			</Row>
-			<NextButton
-				active='Question'
-				setActive={setActive}
-				nextRound={nextRound}
-			/>
+			<NextButton />
 		</>
 	);
 };
