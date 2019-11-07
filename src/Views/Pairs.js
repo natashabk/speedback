@@ -4,31 +4,9 @@ import '../Images/App.css';
 import NextButton from '../Components/NextButton';
 import CardTitle from '../Components/CardTitle';
 import { useSessionValue } from '../SessionContext';
+import { stationStyle, pairContentStyle, stationInnerStyle } from '../styles';
 
 const { Text } = Typography;
-
-const stationStyle = {
-	height: 'fit-content',
-	textAlign: 'center',
-	marginTop: 10,
-	textTransform: 'capitalize',
-};
-
-const pairContentStyle = {
-	minHeight: 200,
-	padding: 10,
-	borderRadius: 4,
-	flexWrap: 'wrap',
-	overflow: 'auto',
-	margin: 'auto',
-	width: '100%',
-};
-
-const stationInnerStyle = {
-	whiteSpace: 'nowrap',
-	overflow: 'hidden',
-	textOverflow: 'ellipsis',
-};
 
 const Pairs = () => {
 	const { people, setOddOneOut } = useSessionValue();

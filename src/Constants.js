@@ -1,5 +1,3 @@
-import bg from './Images/Speedback-bg.png';
-
 export const goesFirst = [
 	'with the most siblings',
 	'with the least pets',
@@ -55,42 +53,6 @@ export const oddQuestionOut = [
 	'draw a celebrity and see if people can guess who it is',
 	'draw a room (or the whole thing) of your dream house',
 ];
-
-export const newColors = {
-	indigo: '#26324B',
-	green: '#42C8C2',
-	hovergreen: '#3bb1ac',
-	orange: '#FEA938',
-	pink: '#F42549',
-};
-
-export const appStyle = {
-	backgroundColor: '#fff',
-	height: '100vh',
-	maxHeight: 750,
-	width: '100%',
-	maxWidth: 420,
-	margin: '0px auto',
-	padding: '2% 3% 3%',
-	fontFamily: 'Gotham Rounded Medium',
-	backgroundImage: `url('${bg}')`,
-	backgroundPosition: 'center',
-	backgroundSize: 'cover',
-};
-
-export const allRadius = 35;
-
-export const mainStyle = {
-	height: '85%',
-	borderRadius: allRadius,
-};
-
-export const innerStyle = {
-	justifyContent: 'space-between',
-	display: 'flex',
-	flexDirection: 'column',
-	height: '100%',
-};
 
 export const alerts = {
 	oddNumber: {

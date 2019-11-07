@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from 'antd';
-import { pageInstructions, allRadius } from '../Constants';
+import { pageInstructions } from '../Constants';
 import { useSessionValue } from '../SessionContext';
+import { allRadius } from '../styles';
 
 const NextButton = () => {
 	const { active, setActive, nextRound } = useSessionValue();

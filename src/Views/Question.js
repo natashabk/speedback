@@ -4,11 +4,12 @@ import { goesFirst, oddQuestionOut } from '../Constants';
 import NextButton from '../Components/NextButton';
 import { useSessionValue } from '../SessionContext';
 import CardTitle from '../Components/CardTitle';
+import { oddOneBodyStyle, questionBodyStyle } from '../styles';
 
 const { Title, Text } = Typography;
 
 const Question = () => {
-	const { oddOneOut, setActive } = useSessionValue();
+	const { oddOneOut } = useSessionValue();
 	const shuffle = list => list[Math.floor(Math.random() * list.length)];
 
 	const [visible, setVisible] = useState(false);
@@ -19,16 +20,7 @@ const Question = () => {
 		<>
 			<CardTitle />
 			<Row style={{ margin: 'auto', width: '100%' }}>
-				<Card
-					style={{ height: 220 }}
-					bodyStyle={{
-						height: 220,
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'space-between',
-						paddingBottom: 10,
-					}}
-				>
+				<Card style={{ height: 220 }} bodyStyle={questionBodyStyle}>
 					<Row
 						type='flex'
 						justify='space-between'
@@ -88,12 +80,7 @@ const Question = () => {
 				{oddOneOut && (
 					<Card
 						style={{ margin: '20px 0px', height: 190, maxHeight: 190 }}
-						bodyStyle={{
-							height: 190,
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'space-between',
-						}}
+						bodyStyle={oddOneBodyStyle}
 					>
 						<Row
 							type='flex'

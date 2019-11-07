@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Rate, Card, Button } from 'antd';
 import NetlifyForm from 'react-netlify-form';
-import { allRadius } from '../Constants';
+import { allRadius } from '../styles';
 
 const { Text } = Typography;
 

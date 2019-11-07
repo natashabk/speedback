@@ -1,19 +1,11 @@
 import React from 'react';
 import NetlifyForm from 'react-netlify-form';
 import { Button, Form, Input, message, Row } from 'antd';
-import { allRadius } from '../Constants';
 import { useSessionValue } from '../SessionContext';
+import { submitButtonStyle, formStyle } from '../styles';
 
 const { Item } = Form;
 const { TextArea } = Input;
-
-export const formStyle = {
-	minHeight: 410,
-	height: 410,
-	justifyContent: 'space-between',
-	display: 'flex',
-	flexDirection: 'column',
-};
 
 const Feedback = () => {
 	const { setActive, setCurrentRound } = useSessionValue();
@@ -29,14 +21,7 @@ const Feedback = () => {
 		return message.success('Your feedback has been sent. Thanks for playing!');
 	};
 	return (
-		<section
-			style={{
-				height: '100%',
-				justifyContent: 'space-between',
-				display: 'flex',
-				flexDirection: 'column',
-			}}
-		>
+		<section style={formStyle}>
 			<NetlifyForm name='feedback'>
 				{({ loading, error, success }) => (
 					<>
@@ -73,13 +58,7 @@ const Feedback = () => {
 							size='large'
 							type='primary'
 							block
-							style={{
-								borderRadius: allRadius,
-								height: 50,
-								position: 'absolute',
-								bottom: '4%',
-								width: '87%',
-							}}
+							style={submitButtonStyle}
 						>
 							Submit Feedback
 						</Button>

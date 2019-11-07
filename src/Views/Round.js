@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Statistic, Progress, Row, Typography, Button, Card } from 'antd';
-import { secondCounterPlaceholder, allRadius } from '../Constants';
+import { Statistic, Progress, Row, Typography, Button } from 'antd';
+import { secondCounterPlaceholder } from '../Constants';
 import Stars from '../Components/Stars';
 import NextButton from '../Components/NextButton';
 import { useSessionValue } from '../SessionContext';
 import CardTitle from '../Components/CardTitle';
+import { titleStyle, colors, allRadius } from '../styles';
 
 const { Countdown } = Statistic;
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const Round = () => {
 	const { pairTime, setActive, people, isLastRound } = useSessionValue();
@@ -40,18 +41,6 @@ const Round = () => {
 	useInterval(() => {
 		setCount(count + 1);
 	});
-
-	const titleStyle = {
-		fontWeight: 400,
-		textAlign: 'center',
-		margin: 'auto',
-		width: '100%',
-	};
-
-	const colors = {
-		First: { color: '#80aaff' },
-		Second: { color: '#ff8533' },
-	};
 
 	const getSecondPercent = () => {
 		if (firstActive) return 0;

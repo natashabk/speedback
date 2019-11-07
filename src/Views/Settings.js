@@ -1,25 +1,11 @@
 import React, { useState } from 'react';
 import { Typography, Select, Radio, Form, Button, Row } from 'antd';
-import { newColors, allRadius } from '../Constants';
 import { useSessionValue } from '../SessionContext';
 import CardTitle from '../Components/CardTitle';
+import { radioStyle, selectStyle, allRadius, newColors } from '../styles';
 
 const { Item } = Form;
 const { Text } = Typography;
-
-const radioStyle = {
-	width: '33%',
-	textAlign: 'center',
-	height: 50,
-	display: 'inline-grid',
-};
-
-const selectStyle = {
-	maxHeight: 220,
-	overflow: 'auto',
-	textTransform: 'capitalize',
-	width: '100%',
-};
 
 const Settings = () => {
 	const [error, setError] = useState(false);

@@ -6,7 +6,7 @@ import Pairs from './Views/Pairs';
 import Question from './Views/Question';
 import Round from './Views/Round';
 import Feedback from './Views/Feedback';
-import { appStyle, mainStyle, innerStyle } from './Constants';
+import { appStyle, mainStyle, innerStyle } from './styles';
 import PageHeader from './Components/PageHeader';
 import { useSessionValue } from './SessionContext';
 
