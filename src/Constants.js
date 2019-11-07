@@ -23,7 +23,6 @@ export const goesFirst = [
 	'who can jump the highest',
 	'who can click their fingers the most times in 5 seconds',
 	'most likely to be asked for ID at a bar',
-	'who has met the coolest celebrity',
 	'who has met the lamest celebrity',
 	'who has been at your company the longest',
 	'with the most social media followers',
@@ -33,6 +32,11 @@ export const goesFirst = [
 	'most likely to hand in their notice',
 	'first person to shout a spell from Harry Potter',
 	'who can count to three in the most languages',
+	'who last ate pancakes',
+	'who is tallest',
+	'who has the biggest hands',
+	'whoever has the longest socks on',
+	"whoever got a great night's sleep",
 ];
 
 export const oddQuestionOut = [
@@ -48,6 +52,8 @@ export const oddQuestionOut = [
 	'draw Gordon Ramsey having a freakout',
 	'draw the most exciting thing that happened at work recently',
 	"draw a scene from a tv show you've watched recently",
+	'draw a celebrity and see if people can guess who it is',
+	'draw a room (or the whole thing) of your dream house',
 ];
 
 export const newColors = {
