@@ -11,6 +11,7 @@ const BackButton = () => {
 			shape='circle'
 			icon='arrow-left'
 			onClick={() => setActive(prevScreen)}
+			size='small'
 		/>
 	);
 };

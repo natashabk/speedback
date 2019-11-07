@@ -38,7 +38,7 @@ export const SessionProvider = ({ children }) => {
 
 	const exitSession = () => {
 		setActive('Settings');
-		setCurrentRound(0);
+		setCurrentRound(1);
 	};
 
 	return (
