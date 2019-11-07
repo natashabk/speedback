@@ -125,3 +125,5 @@ export const newColors = {
 	orange: '#FEA938',
 	pink: '#F42549',
 };
+
+export const topRowStyle = { height: '10%', textAlign: 'center' };
