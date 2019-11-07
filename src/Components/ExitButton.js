@@ -2,10 +2,10 @@ import React from 'react';
 import { Button } from 'antd';
 import { useSessionValue } from '../SessionContext';
 
-const ExitButton = () => {
+const ExitButton = ({ setVisible }) => {
 	const { exitSession } = useSessionValue();
 	return (
-		<Button shape='circle' icon='close' onClick={exitSession} size='small' />
+		<Button shape='circle' icon='close' onClick={setVisible} size='small' />
 	);
 };
 
