@@ -11,19 +11,19 @@ const Feedback = () => {
 	const { setActive, setCurrentRound } = useSessionValue();
 	const showError = () => {
 		setActive('Settings');
-		setCurrentRound(0);
+		setCurrentRound(1);
 		return message.error('Your feedback was not sent. Maybe next time!');
 	};
 
 	const showSuccess = () => {
 		setActive('Settings');
-		setCurrentRound(0);
+		setCurrentRound(1);
 		return message.success('Your feedback has been sent. Thanks for playing!');
 	};
 	return (
 		<section style={formStyle}>
 			<NetlifyForm name='feedback'>
-				{({ loading, error, success }) => (
+				{({ error, success }) => (
 					<>
 						<Row style={{ margin: 'auto', width: '100%' }}>
 							{error ? showError() : null}

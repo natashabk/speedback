@@ -13,11 +13,11 @@ import { useSessionValue } from './SessionContext';
 const { Content } = Layout;
 
 const App = () => {
-	const { active } = useSessionValue();
+	const { active, asked } = useSessionValue();
 	const screens = {
 		Settings: <Settings />,
 		Pairs: <Pairs />,
-		Question: <Question />,
+		Question: <Question asked={asked} />,
 		Round: <Round />,
 		Feedback: <Feedback />,
 	};

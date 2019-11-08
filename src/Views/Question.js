@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
-import { Card, Typography, Row, Button, Modal } from 'antd';
+import { Card, Typography, Row, Button } from 'antd';
 import { goesFirst, oddQuestionOut } from '../Constants';
 import NextButton from '../Components/NextButton';
 import { useSessionValue } from '../SessionContext';
 import CardTitle from '../Components/CardTitle';
+import TieModal from '../Components/TieModal';
 import { oddOneBodyStyle, questionBodyStyle } from '../styles';
 
 const { Title, Text } = Typography;
 
 const Question = () => {
-	const { oddOneOut } = useSessionValue();
-	const shuffle = list => list[Math.floor(Math.random() * list.length)];
+	const {
+		oddOneOut,
+		currentQuestion,
+		setCurrentQuestion,
+		currentOddOne,
+		setCurrentOddOne,
+		shuffle,
+	} = useSessionValue();
 
 	const [visible, setVisible] = useState(false);
-	const [currentQuestion, setCurrentQuestion] = useState(shuffle(goesFirst));
-	const [currentOddOne, setCurrentOddOne] = useState(shuffle(oddQuestionOut));
+	const buttonProps = {
+		size: 'small',
+		shape: 'circle',
+		icon: 'retweet',
+	};
 
 	return (
 		<>
@@ -30,11 +40,9 @@ const Question = () => {
 							Who speaks first?
 						</Text>
 						<Button
-							size='small'
-							shape='circle'
-							icon='retweet'
+							{...buttonProps}
 							onClick={() => setCurrentQuestion(shuffle(goesFirst))}
-						></Button>
+						/>
 					</Row>
 					<Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>
 						The person {currentQuestion}
@@ -47,36 +55,7 @@ const Question = () => {
 						What if it's a tie?
 					</Button>
 				</Card>
-				<Modal
-					visible={visible}
-					footer={null}
-					onCancel={() => setVisible(false)}
-					style={{ maxWidth: 360 }}
-				>
-					<Text>
-						<span style={{ fontWeight: 600, fontSize: 16 }}>
-							How to solve a tie
-						</span>
-						<br />
-						<br />
-						If the question results in a tie, you can break the deadlock using
-						one of these methods:
-						<br />
-						<br />
-						✂️ Rock, paper, scissors <br />
-						💰 Flip a coin <br />
-						💪 Arm wrestle <br />
-						☠️ Fight to the death <br />
-					</Text>
-					<br />
-					<Button
-						onClick={() => setVisible(false)}
-						type='primary'
-						style={{ marginTop: 15, width: '100%' }}
-					>
-						OK
-					</Button>
-				</Modal>
+				<TieModal visible={visible} setVisible={setVisible} />
 				{oddOneOut && (
 					<Card
 						style={{ margin: '20px 0px', height: 190, maxHeight: 190 }}
@@ -92,13 +71,10 @@ const Question = () => {
 								, you should:
 							</Text>
 							<Button
-								size='small'
-								shape='circle'
-								icon='retweet'
+								{...buttonProps}
 								onClick={() => setCurrentOddOne(shuffle(oddQuestionOut))}
-							></Button>
+							/>
 						</Row>
-
 						<Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>
 							{currentOddOne}
 						</Title>

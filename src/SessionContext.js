@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { goesFirst, oddQuestionOut } from './Constants';
 
 export const SessionContext = createContext();
 export const useSessionValue = () => useContext(SessionContext);
@@ -7,9 +8,18 @@ export const SessionProvider = ({ children }) => {
 	const [currentRound, setCurrentRound] = useState(1);
 	const [people, setPeople] = useState([]);
 	const [pairTime, setPairTime] = useState(4);
-	const [oddOneOut, setOddOneOut] = useState(null);
+	const [oddOneOut, setOddOneOut] = useState();
 	const [active, setActive] = useState('Settings');
 	const [numOfRounds, setNumOfRounds] = useState(0);
+	const [asked, setAsked] = useState([]);
+
+	const shuffle = list => {
+		const noRepeats = list.filter(question => !asked.includes(question));
+		if (noRepeats.length === 0) setAsked([]);
+		return noRepeats[Math.floor(Math.random() * noRepeats.length)];
+	};
+	const [currentQuestion, setCurrentQuestion] = useState(shuffle(goesFirst));
+	const [currentOddOne, setCurrentOddOne] = useState(shuffle(oddQuestionOut));
 
 	const isLastRound = currentRound === numOfRounds && numOfRounds !== 0;
 
@@ -21,6 +31,7 @@ export const SessionProvider = ({ children }) => {
 	}, [people]);
 
 	const prevRound = () => setCurrentRound(currentRound - 1);
+
 	const nextRound = () => {
 		if (active === 'Round') {
 			let newOrder = people;
@@ -33,12 +44,16 @@ export const SessionProvider = ({ children }) => {
 				newOrder.unshift(hop);
 			}
 			setPeople(newOrder);
+			setAsked([...asked, currentQuestion, currentOddOne]);
+			setCurrentQuestion(shuffle(goesFirst));
+			setCurrentOddOne(shuffle(oddQuestionOut));
 		}
 	};
 
 	const exitSession = () => {
 		setActive('Settings');
 		setCurrentRound(1);
+		setAsked([]);
 	};
 
 	return (
@@ -58,6 +73,12 @@ export const SessionProvider = ({ children }) => {
 				numOfRounds,
 				isLastRound,
 				exitSession,
+				asked,
+				currentQuestion,
+				currentOddOne,
+				setCurrentQuestion,
+				setCurrentOddOne,
+				shuffle,
 			}}
 		>
 			{children}

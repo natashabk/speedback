@@ -8,7 +8,6 @@ const NextButton = () => {
 	const { active, setActive, nextRound } = useSessionValue();
 	const continueText = pageInstructions[active].continueText;
 	const nextScreen = pageInstructions[active].nextScreen;
-
 	return (
 		<Button
 			size='large'
