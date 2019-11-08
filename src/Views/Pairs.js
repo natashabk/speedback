@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Row, Modal, Button, Typography } from 'antd';
+import React from 'react';
+import { Card, Row, Tooltip, Typography, Icon } from 'antd';
 import '../Images/App.css';
 import NextButton from '../Components/NextButton';
 import CardTitle from '../Components/CardTitle';
@@ -11,7 +11,6 @@ const { Text } = Typography;
 const Pairs = () => {
 	const { people, setOddOneOut } = useSessionValue();
 	const isEven = num => num % 2 === 0;
-	const [visible, setVisible] = useState(false);
 	const middleIdx = Math.floor(people.length / 2);
 
 	const getFont = teamMember => (teamMember.length > 12 ? 10 : 14);
@@ -33,8 +32,28 @@ const Pairs = () => {
 							<Card
 								key={i}
 								style={{ ...stationStyle, width }}
-								bodyStyle={{ ...stationInnerStyle, oddPadding }}
+								bodyStyle={{ ...stationInnerStyle, padding: oddPadding }}
 							>
+								<Row style={{ textAlign: 'right', margin: '-18px -11px -3px' }}>
+									<Tooltip
+										title={
+											<Text style={{ color: 'white' }}>
+												Don't worry,
+												<span
+													style={{
+														textTransform: 'capitalize',
+														paddingLeft: 3,
+													}}
+												>
+													{member}
+												</span>
+												. You'll find out what to do on the next page.
+											</Text>
+										}
+									>
+										<Icon type='question-circle' theme='filled' />
+									</Tooltip>
+								</Row>
 								<Text strong style={{ fontSize: getFont(member) }}>
 									{member}
 								</Text>
@@ -49,7 +68,7 @@ const Pairs = () => {
 							<Card
 								style={{ ...stationStyle, width }}
 								key={i}
-								bodyStyle={{ ...stationInnerStyle, mainPadding }}
+								bodyStyle={{ ...stationInnerStyle, padding: mainPadding }}
 							>
 								<Text strong style={{ fontSize: getFont(member) }}>
 									{member}
@@ -62,42 +81,6 @@ const Pairs = () => {
 						);
 				})}
 			</Row>
-			{!isEven(people.length) && (
-				<>
-					<Button
-						type='link'
-						style={{ margin: 'auto', width: '100%' }}
-						onClick={() => setVisible(true)}
-					>
-						What if there's an odd person out?
-					</Button>
-					<Modal
-						visible={visible}
-						footer={null}
-						onCancel={() => setVisible(false)}
-						style={{ maxWidth: 360 }}
-					>
-						<Text>
-							<span style={{ fontWeight: 600, fontSize: 16 }}>
-								How to be alone
-							</span>
-							<br />
-							<br />
-							Don't worry, the odd person out will receive their activity on the
-							next page.
-						</Text>
-
-						<Button
-							onClick={() => setVisible(false)}
-							type='primary'
-							style={{ marginTop: 45 }}
-							block
-						>
-							OK
-						</Button>
-					</Modal>
-				</>
-			)}
 			<NextButton />
 		</>
 	);

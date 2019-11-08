@@ -71,11 +71,11 @@ const Settings = () => {
 						<Text
 							style={{
 								color: newColors.green,
-								fontSize: 13,
+								fontSize: 12,
 								lineHeight: 3,
 							}}
 						>
-							This session will last about {sessionLength} minutes.
+							This session will take around {sessionLength} minutes.
 						</Text>
 					)}
 				</label>
