@@ -51,7 +51,11 @@ const Pairs = () => {
 											</Text>
 										}
 									>
-										<Icon type='question-circle' theme='filled' />
+										<Icon
+											type='question-circle'
+											theme='filled'
+											style={{ color: '#42C8C2' }}
+										/>
 									</Tooltip>
 								</Row>
 								<Text strong style={{ fontSize: getFont(member) }}>
