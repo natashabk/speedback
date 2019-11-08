@@ -19,10 +19,9 @@ const Round = () => {
 	const [firstActive, setFirstActive] = useState(true);
 	const [timeRunning, setTimeRunning] = useState(true);
 
-	const totalMilSeconds = (pairTime / 2) * 600;
-	const percent = (count / totalMilSeconds) * 100;
-	const secondPercent =
-		((count - totalMilSeconds) / (totalMilSeconds / 10)) * 10;
+	const milSeconds = (pairTime / 2) * 600;
+	const percent = (count / milSeconds) * 100;
+	const secondPercent = ((count - milSeconds) / (milSeconds / 10)) * 10;
 
 	const useInterval = callback => {
 		const savedCallback = useRef();
@@ -30,17 +29,13 @@ const Round = () => {
 			savedCallback.current = callback;
 		}, [callback]);
 		useEffect(() => {
-			function tick() {
-				savedCallback.current();
-			}
+			const tick = () => savedCallback.current();
 			let id = setInterval(tick, 100);
 			return () => clearInterval(id);
 		}, [deadline]);
 	};
 
-	useInterval(() => {
-		setCount(count + 1);
-	});
+	useInterval(() => setCount(count + 1));
 
 	const getSecondPercent = () => {
 		if (firstActive) return 0;
@@ -48,12 +43,17 @@ const Round = () => {
 		else return secondPercent;
 	};
 
+	const checkMark = color => (
+		<Icon type='check' style={{ fontSize: 50, color }} />
+	);
+
 	const getMessage = () => {
 		if (timeRunning) {
 			const prefix = firstActive ? 'First' : 'Second';
+			const color = firstActive ? 'orange' : 'coral';
 			return (
 				<Title level={4} style={titleStyle}>
-					<span style={colors[prefix]}>{prefix}</span> person talking
+					<span style={{ color: colors[color] }}>{prefix}</span> person talking
 				</Title>
 			);
 		} else
@@ -74,7 +74,7 @@ const Round = () => {
 			>
 				<Progress
 					type='circle'
-					strokeColor='#80aaff'
+					strokeColor={colors.orange}
 					percent={firstActive ? percent : 100}
 					format={percent =>
 						firstActive ? (
@@ -87,18 +87,17 @@ const Round = () => {
 								}}
 							/>
 						) : (
-							<Icon type='check' style={{ fontSize: 50 }} />
+							checkMark(colors.orange)
 						)
 					}
 				/>
 				<Progress
 					type='circle'
-					strokeColor='#ff8533'
+					strokeColor={colors.coral}
 					percent={getSecondPercent()}
 					format={percent => {
 						if (firstActive) return secondCounterPlaceholder[pairTime];
-						else if (!timeRunning)
-							return <Icon type='check' style={{ fontSize: 50 }} />;
+						else if (!timeRunning) return checkMark(colors.coral);
 						else
 							return (
 								<Countdown

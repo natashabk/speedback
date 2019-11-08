@@ -13,7 +13,7 @@ const CardTitle = ({ timeRunning }) => {
 
 	const roundText = () =>
 		isLastRound && !timeRunning
-			? '✅ Session Complete'
+			? '🤝 Session Complete'
 			: '🔥 Round in Progress';
 	return (
 		<>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Select, Radio, Form, Button, Row } from 'antd';
 import { useSessionValue } from '../SessionContext';
 import CardTitle from '../Components/CardTitle';
-import { radioStyle, selectStyle, allRadius, newColors } from '../styles';
+import { radioStyle, selectStyle, allRadius, colors } from '../styles';
 
 const { Item } = Form;
 const { Text } = Typography;
@@ -52,9 +52,7 @@ const Settings = () => {
 				</Item>
 			</Row>
 			<Row style={{ height: '25%' }}>
-				<label
-					style={{ display: 'grid', marginTop: 20, color: newColors.indigo }}
-				>
+				<label style={{ display: 'grid', marginTop: 20, color: colors.indigo }}>
 					<Text strong>Minutes per pair</Text>
 					<Radio.Group
 						buttonStyle='solid'
@@ -70,7 +68,7 @@ const Settings = () => {
 					{people.length !== 0 && (
 						<Text
 							style={{
-								color: newColors.green,
+								color: colors.aqua,
 								fontSize: 12,
 								lineHeight: 3,
 							}}

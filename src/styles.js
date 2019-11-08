@@ -69,11 +69,6 @@ export const titleStyle = {
 	width: '100%',
 };
 
-export const colors = {
-	First: { color: '#80aaff' },
-	Second: { color: '#ff8533' },
-};
-
 // Settings
 
 export const radioStyle = {
@@ -118,12 +113,12 @@ export const innerStyle = {
 	height: '100%',
 };
 
-export const newColors = {
+export const colors = {
 	indigo: '#26324B',
-	green: '#42C8C2',
+	aqua: '#42C8C2',
 	hovergreen: '#3bb1ac',
-	orange: '#FEA938',
-	pink: '#F42549',
+	orange: '#f7843d',
+	coral: '#f53e46',
 };
 
 export const topRowStyle = { height: '10%', textAlign: 'center' };
