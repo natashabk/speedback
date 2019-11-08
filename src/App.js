@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Card } from 'antd';
-import './Images/App.css';
+import './Assets/App.css';
 import Settings from './Views/Settings';
 import Pairs from './Views/Pairs';
 import Question from './Views/Question';

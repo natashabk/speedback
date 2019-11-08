@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Row, Icon } from 'antd';
-import { ReactComponent as Logo } from '../Images/Logo-White.svg';
+import { ReactComponent as Logo } from '../Assets/Logo-White.svg';
 import { useSessionValue } from '../SessionContext';
 
 const { Title } = Typography;

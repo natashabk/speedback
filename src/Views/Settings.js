@@ -18,7 +18,6 @@ const Settings = () => {
 		setActive,
 		nextRound,
 	} = useSessionValue();
-
 	const sessionLength = Math.floor(numOfRounds * pairTime + numOfRounds * 0.5);
 
 	return (

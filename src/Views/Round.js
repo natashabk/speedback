@@ -6,6 +6,7 @@ import NextButton from '../Components/NextButton';
 import { useSessionValue } from '../SessionContext';
 import CardTitle from '../Components/CardTitle';
 import { titleStyle, colors, allRadius } from '../styles';
+import chime from '../Assets/chime.mp3';
 
 const { Countdown } = Statistic;
 const { Title } = Typography;
@@ -18,6 +19,7 @@ const Round = () => {
 	const [deadline, setDeadline] = useState(roundTime());
 	const [firstActive, setFirstActive] = useState(true);
 	const [timeRunning, setTimeRunning] = useState(true);
+	const [playSound, setPlaySound] = useState(null);
 
 	const milSeconds = (pairTime / 2) * 600;
 	const percent = (count / milSeconds) * 100;
@@ -63,10 +65,13 @@ const Round = () => {
 				</Title>
 			);
 	};
+	const audioRef = useRef(null);
 
 	return (
 		<>
 			<CardTitle timeRunning={timeRunning} />
+			{playSound && <audio ref={audioRef} src={chime} autoPlay />}
+
 			<Row
 				type='flex'
 				justify='space-around'
@@ -84,6 +89,7 @@ const Round = () => {
 								onFinish={() => {
 									setFirstActive(false);
 									setDeadline(roundTime());
+									setPlaySound(true);
 								}}
 							/>
 						) : (

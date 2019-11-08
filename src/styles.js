@@ -1,4 +1,4 @@
-import bg from './Images/Speedback-bg.png';
+import bg from './Assets/Speedback-bg.png';
 export const allRadius = 35;
 
 // Feedback

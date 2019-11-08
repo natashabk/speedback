@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Row, Tooltip, Typography, Icon } from 'antd';
-import '../Images/App.css';
+import '../Assets/App.css';
 import NextButton from '../Components/NextButton';
 import CardTitle from '../Components/CardTitle';
 import { useSessionValue } from '../SessionContext';
