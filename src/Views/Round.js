@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Statistic, Progress, Row, Typography, Button } from 'antd';
+import { Statistic, Progress, Row, Typography, Button, Icon } from 'antd';
 import { secondCounterPlaceholder } from '../Constants';
 import Stars from '../Components/Stars';
 import NextButton from '../Components/NextButton';
@@ -24,7 +24,7 @@ const Round = () => {
 	const secondPercent =
 		((count - totalMilSeconds) / (totalMilSeconds / 10)) * 10;
 
-	function useInterval(callback) {
+	const useInterval = callback => {
 		const savedCallback = useRef();
 		useEffect(() => {
 			savedCallback.current = callback;
@@ -36,7 +36,7 @@ const Round = () => {
 			let id = setInterval(tick, 100);
 			return () => clearInterval(id);
 		}, [deadline]);
-	}
+	};
 
 	useInterval(() => {
 		setCount(count + 1);
@@ -76,34 +76,40 @@ const Round = () => {
 					type='circle'
 					strokeColor='#80aaff'
 					percent={firstActive ? percent : 100}
-					format={percent => (
-						<Countdown
-							value={firstActive ? deadline : Date.now()}
-							format='mm:ss'
-							onFinish={() => {
-								setFirstActive(false);
-								setDeadline(roundTime());
-							}}
-						/>
-					)}
+					format={percent =>
+						firstActive ? (
+							<Countdown
+								value={firstActive ? deadline : Date.now()}
+								format='mm:ss'
+								onFinish={() => {
+									setFirstActive(false);
+									setDeadline(roundTime());
+								}}
+							/>
+						) : (
+							<Icon type='check' style={{ fontSize: 50 }} />
+						)
+					}
 				/>
 				<Progress
 					type='circle'
 					strokeColor='#ff8533'
 					percent={getSecondPercent()}
-					format={percent =>
-						firstActive ? (
-							secondCounterPlaceholder[pairTime]
-						) : (
-							<Countdown
-								value={firstActive || !timeRunning ? Date.now() : deadline}
-								format='mm:ss'
-								onFinish={() => {
-									setTimeRunning(false);
-								}}
-							/>
-						)
-					}
+					format={percent => {
+						if (firstActive) return secondCounterPlaceholder[pairTime];
+						else if (!timeRunning)
+							return <Icon type='check' style={{ fontSize: 50 }} />;
+						else
+							return (
+								<Countdown
+									value={firstActive || !timeRunning ? Date.now() : deadline}
+									format='mm:ss'
+									onFinish={() => {
+										setTimeRunning(false);
+									}}
+								/>
+							);
+					}}
 				/>
 			</Row>
 			{getMessage()}
@@ -118,10 +124,7 @@ const Round = () => {
 						setTimeRunning(false);
 						setDeadline(Date.now());
 					}}
-					style={{
-						borderRadius: allRadius,
-						height: 50,
-					}}
+					style={{ borderRadius: allRadius, height: 50 }}
 					block
 				>
 					End Session

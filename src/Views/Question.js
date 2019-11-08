@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { Card, Typography, Row, Button } from 'antd';
+import React from 'react';
+import { Card, Typography, Row, Button, Tooltip, Divider } from 'antd';
 import { goesFirst, oddQuestionOut } from '../Constants';
 import NextButton from '../Components/NextButton';
 import { useSessionValue } from '../SessionContext';
 import CardTitle from '../Components/CardTitle';
-import TieModal from '../Components/TieModal';
 import { oddOneBodyStyle, questionBodyStyle } from '../styles';
 
 const { Title, Text } = Typography;
@@ -19,7 +18,6 @@ const Question = () => {
 		shuffle,
 	} = useSessionValue();
 
-	const [visible, setVisible] = useState(false);
 	const buttonProps = {
 		size: 'small',
 		shape: 'circle',
@@ -47,15 +45,27 @@ const Question = () => {
 					<Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>
 						The person {currentQuestion}
 					</Title>
-					<Button
-						type='link'
-						style={{ padding: 0, textAlign: 'left' }}
-						onClick={() => setVisible(true)}
+					<Tooltip
+						title={
+							<>
+								<Text strong style={{ color: 'white' }}>
+									Try one of the following:
+								</Text>
+								<Divider style={{ margin: '5px 0px 10px' }} />
+								✂️ Rock, paper, scissors <br />
+								💰 Flip a coin <br />
+								☠️ Fight to the death <br />
+							</>
+						}
+						placement='bottomLeft'
+						trigger='click'
 					>
-						What if it's a tie?
-					</Button>
+						<Button type='link' style={{ padding: 0, textAlign: 'left' }}>
+							What if it's a tie?
+						</Button>
+					</Tooltip>
 				</Card>
-				<TieModal visible={visible} setVisible={setVisible} />
+
 				{oddOneOut && (
 					<Card
 						style={{ margin: '20px 0px', height: 190, maxHeight: 190 }}

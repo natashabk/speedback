@@ -50,6 +50,7 @@ const Pairs = () => {
 												. You'll find out what to do on the next page.
 											</Text>
 										}
+										trigger='click'
 									>
 										<Icon
 											type='question-circle'
