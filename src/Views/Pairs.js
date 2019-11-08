@@ -15,7 +15,8 @@ const Pairs = () => {
 	const middleIdx = Math.floor(people.length / 2);
 
 	const getFont = teamMember => (teamMember.length > 12 ? 10 : 14);
-	const padding = people.length > 12 ? 5 : 20;
+	const mainPadding = people.length > 12 ? 5 : 20;
+	const oddPadding = people.length > 12 ? 5 : '20px 15px';
 	const width = people.length > 12 ? '30%' : '45%';
 
 	return (
@@ -32,7 +33,7 @@ const Pairs = () => {
 							<Card
 								key={i}
 								style={{ ...stationStyle, width }}
-								bodyStyle={{ ...stationInnerStyle, padding }}
+								bodyStyle={{ ...stationInnerStyle, oddPadding }}
 							>
 								<Text strong style={{ fontSize: getFont(member) }}>
 									{member}
@@ -48,7 +49,7 @@ const Pairs = () => {
 							<Card
 								style={{ ...stationStyle, width }}
 								key={i}
-								bodyStyle={{ ...stationInnerStyle, padding }}
+								bodyStyle={{ ...stationInnerStyle, mainPadding }}
 							>
 								<Text strong style={{ fontSize: getFont(member) }}>
 									{member}
