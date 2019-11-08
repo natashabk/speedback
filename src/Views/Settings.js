@@ -1,44 +1,29 @@
 import React, { useState } from 'react';
 import { Typography, Select, Radio, Form, Button, Row } from 'antd';
-import { newColors, allRadius } from './Constants';
+import { useSessionValue } from '../SessionContext';
+import CardTitle from '../Components/CardTitle';
+import { radioStyle, selectStyle, allRadius, newColors } from '../styles';
 
 const { Item } = Form;
 const { Text } = Typography;
 
-const radioStyle = {
-	width: '33%',
-	textAlign: 'center',
-	height: 50,
-	display: 'inline-grid',
-};
-
-const selectStyle = {
-	maxHeight: 220,
-	overflow: 'auto',
-	textTransform: 'capitalize',
-	width: '100%',
-};
-
-const Settings = ({
-	people,
-	setPeople,
-	pairTime,
-	setPairTime,
-	numOfRounds,
-	setActive,
-	nextRound,
-}) => {
+const Settings = () => {
 	const [error, setError] = useState(false);
+	const {
+		pairTime,
+		setPairTime,
+		people,
+		setPeople,
+		numOfRounds,
+		setActive,
+		nextRound,
+	} = useSessionValue();
 
-	const sessionLength = Math.floor(
-		numOfRounds() * pairTime + numOfRounds() * 0.5,
-	);
+	const sessionLength = Math.floor(numOfRounds * pairTime + numOfRounds * 0.5);
 
 	return (
 		<>
-			<Row style={{ height: '10%', textAlign: 'center' }}>
-				<Text>👇 Enter your participants below</Text>
-			</Row>
+			<CardTitle />
 			<Row style={{ height: '45%' }}>
 				<Item
 					validateStatus={error ? 'error' : 'success'}
@@ -46,11 +31,11 @@ const Settings = ({
 					style={{ marginBottom: 0 }}
 				>
 					<Select
-						mode="tags"
-						size="large"
+						mode='tags'
+						size='large'
 						rows={4}
 						placeholder={
-							<Text type="secondary" style={{ textTransform: 'initial' }}>
+							<Text type='secondary' style={{ textTransform: 'initial' }}>
 								Press enter after each name
 							</Text>
 						}
@@ -72,7 +57,7 @@ const Settings = ({
 				>
 					<Text strong>Minutes per pair</Text>
 					<Radio.Group
-						buttonStyle="solid"
+						buttonStyle='solid'
 						onChange={e => setPairTime(e.target.value)}
 						defaultValue={pairTime}
 					>
@@ -107,8 +92,8 @@ const Settings = ({
 						borderRadius: allRadius,
 						height: 50,
 					}}
-					size="large"
-					type="primary"
+					size='large'
+					type='primary'
 					block
 					onClick={() => {
 						if (people.length > 1) {

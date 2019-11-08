@@ -21,7 +21,6 @@ export const goesFirst = [
 	'who can jump the highest',
 	'who can click their fingers the most times in 5 seconds',
 	'most likely to be asked for ID at a bar',
-	'who has met the coolest celebrity',
 	'who has met the lamest celebrity',
 	'who has been at your company the longest',
 	'with the most social media followers',
@@ -31,6 +30,11 @@ export const goesFirst = [
 	'most likely to hand in their notice',
 	'first person to shout a spell from Harry Potter',
 	'who can count to three in the most languages',
+	'who last ate pancakes',
+	'who is tallest',
+	'who has the biggest hands',
+	'whoever has the longest socks on',
+	"whoever got a great night's sleep",
 ];
 
 export const oddQuestionOut = [
@@ -46,40 +50,9 @@ export const oddQuestionOut = [
 	'draw Gordon Ramsey having a freakout',
 	'draw the most exciting thing that happened at work recently',
 	"draw a scene from a tv show you've watched recently",
+	'draw a celebrity and see if people can guess who it is',
+	'draw a room (or the whole thing) of your dream house',
 ];
-
-export const newColors = {
-	indigo: '#26324B',
-	green: '#42C8C2',
-	hovergreen: '#3bb1ac',
-	orange: '#FEA938',
-	pink: '#F42549',
-};
-
-export const appStyle = {
-	backgroundColor: '#fff',
-	height: '100vh',
-	maxHeight: 750,
-	width: '100%',
-	maxWidth: 420,
-	margin: '0px auto',
-	padding: '2% 3% 3%',
-	fontFamily: 'Gotham Rounded Medium',
-};
-
-export const allRadius = 35;
-
-export const mainStyle = {
-	height: '85%',
-	borderRadius: allRadius,
-};
-
-export const innerStyle = {
-	justifyContent: 'space-between',
-	display: 'flex',
-	flexDirection: 'column',
-	height: '100%',
-};
 
 export const alerts = {
 	oddNumber: {
@@ -95,29 +68,34 @@ export const alerts = {
 
 export const pageInstructions = {
 	Settings: {
-		title: 'Enter participants below',
+		title: '👇 Enter your participants below',
 		continueText: 'Begin Session',
 		nextScreen: 'Pairs',
+		prevScreen: null,
 	},
 	Pairs: {
 		title: '🍐 Get into your pairs',
 		continueText: 'Everyone is Paired',
 		nextScreen: 'Question',
+		prevScreen: 'Settings',
 	},
 	Question: {
-		title: '🤔 Who is giving feedback first?',
+		title: '🚦 On your marks, get set...',
 		continueText: 'Start Round',
 		nextScreen: 'Round',
+		prevScreen: 'Pairs',
 	},
 	Round: {
 		title: '🔥 Round in Progress',
 		continueText: 'Next Pairing',
 		nextScreen: 'Pairs',
+		prevScreen: 'Question',
 	},
 	Feedback: {
 		title: '📬 Your feedback makes us better',
 		continueText: 'Submit Feedback',
 		nextScreen: 'Settings',
+		prevScreen: 'Round',
 	},
 };
 

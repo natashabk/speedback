@@ -1,29 +1,23 @@
-// 1570635309272 1570635399272
-// 1570635309272 1570635399272
-// 1570635309272 1570635399272
-// 1570635309272 1570635399272
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Statistic, Progress, Row, Typography, Button } from 'antd';
-import { secondCounterPlaceholder, allRadius } from './Constants';
-import Stars from './Stars';
-import NextButton from './NextButton';
+import { secondCounterPlaceholder } from '../Constants';
+import Stars from '../Components/Stars';
+import NextButton from '../Components/NextButton';
+import { useSessionValue } from '../SessionContext';
+import CardTitle from '../Components/CardTitle';
+import { titleStyle, colors, allRadius } from '../styles';
 
 const { Countdown } = Statistic;
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
-const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
-	// const roundTime = () => Date.now() + 1000 * 60 * pairTime;
+const Round = () => {
+	const { pairTime, setActive, people, isLastRound } = useSessionValue();
+	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
+	const [deadline, setDeadline] = useState(roundTime());
 	const [firstActive, setFirstActive] = useState(true);
 	const [timeRunning, setTimeRunning] = useState(true);
-	const [firstDeadline, setFirstDeadline] = useState(
-		Date.now() + (1000 * 60 * pairTime) / 2,
-	);
-	const [secondDeadline, setSecondDeadline] = useState(
-		Date.now() + 1000 * 60 * pairTime,
-	);
 
 	const totalMilSeconds = (pairTime / 2) * 600;
 	const percent = (count / totalMilSeconds) * 100;
@@ -41,24 +35,12 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			}
 			let id = setInterval(tick, 100);
 			return () => clearInterval(id);
-		}, []);
+		}, [deadline]);
 	}
 
 	useInterval(() => {
 		setCount(count + 1);
 	});
-
-	const titleStyle = {
-		fontWeight: 400,
-		textAlign: 'center',
-		margin: 'auto',
-		width: '100%',
-	};
-
-	const colors = {
-		First: { color: '#80aaff' },
-		Second: { color: '#ff8533' },
-	};
 
 	const getSecondPercent = () => {
 		if (firstActive) return 0;
@@ -82,46 +64,43 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			);
 	};
 
-	console.log(firstDeadline, secondDeadline);
-
 	return (
 		<>
-			<Row style={{ height: '10%', textAlign: 'center' }}>
-				{isLastRound && !timeRunning ? (
-					<Text>✅ Session Complete</Text>
-				) : (
-					<Text>🔥 Round in Progress</Text>
-				)}
-			</Row>
+			<CardTitle timeRunning={timeRunning} />
 			<Row
-				type="flex"
-				justify="space-around"
+				type='flex'
+				justify='space-around'
 				style={{ margin: 'auto', width: '100%' }}
 			>
 				<Progress
-					type="circle"
-					strokeColor="#80aaff"
+					type='circle'
+					strokeColor='#80aaff'
 					percent={firstActive ? percent : 100}
 					format={percent => (
 						<Countdown
-							value={firstDeadline}
-							format="mm:ss"
-							onFinish={() => setFirstActive(false)}
+							value={firstActive ? deadline : Date.now()}
+							format='mm:ss'
+							onFinish={() => {
+								setFirstActive(false);
+								setDeadline(roundTime());
+							}}
 						/>
 					)}
 				/>
 				<Progress
-					type="circle"
-					strokeColor="#ff8533"
+					type='circle'
+					strokeColor='#ff8533'
 					percent={getSecondPercent()}
 					format={percent =>
 						firstActive ? (
 							secondCounterPlaceholder[pairTime]
 						) : (
 							<Countdown
-								value={secondDeadline}
-								format="mm:ss"
-								onFinish={() => setTimeRunning(false)}
+								value={firstActive || !timeRunning ? Date.now() : deadline}
+								format='mm:ss'
+								onFinish={() => {
+									setTimeRunning(false);
+								}}
 							/>
 						)
 					}
@@ -133,9 +112,12 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 			)}
 			{isLastRound && timeRunning && (
 				<Button
-					size="large"
-					type="primary"
-					onClick={() => setTimeRunning(false)}
+					size='large'
+					type='primary'
+					onClick={() => {
+						setTimeRunning(false);
+						setDeadline(Date.now());
+					}}
 					style={{
 						borderRadius: allRadius,
 						height: 50,
@@ -145,13 +127,7 @@ const Round = ({ pairTime, isLastRound, setActive, nextRound, people }) => {
 					End Session
 				</Button>
 			)}
-			{!isLastRound && (
-				<NextButton
-					active="Round"
-					setActive={setActive}
-					nextRound={nextRound}
-				/>
-			)}
+			{!isLastRound && <NextButton />}
 		</>
 	);
 };

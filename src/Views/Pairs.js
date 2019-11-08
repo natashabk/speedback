@@ -1,35 +1,16 @@
 import React, { useState } from 'react';
-import { Card, Row, Modal, Button, Typography, Icon } from 'antd';
-import './App.css';
-import NextButton from './NextButton';
-import { allRadius } from './Constants';
+import { Card, Row, Modal, Button, Typography } from 'antd';
+import '../Images/App.css';
+import NextButton from '../Components/NextButton';
+import CardTitle from '../Components/CardTitle';
+import { useSessionValue } from '../SessionContext';
+import { stationStyle, pairContentStyle, stationInnerStyle } from '../styles';
 
 const { Text } = Typography;
 
-const stationStyle = {
-	height: 'fit-content',
-	textAlign: 'center',
-	marginTop: 10,
-	textTransform: 'capitalize',
-};
-
-const pairContentStyle = {
-	minHeight: 200,
-	padding: 10,
-	borderRadius: 4,
-	flexWrap: 'wrap',
-	overflow: 'auto',
-	margin: 'auto',
-	width: '100%',
-};
-
-const stationInnerStyle = {
-	whiteSpace: 'nowrap',
-	overflow: 'hidden',
-	textOverflow: 'ellipsis',
-};
-
-const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
+const Pairs = () => {
+	const { people, setOddOneOut } = useSessionValue();
+	const isEven = num => num % 2 === 0;
 	const [visible, setVisible] = useState(false);
 	const middleIdx = Math.floor(people.length / 2);
 
@@ -39,10 +20,8 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 
 	return (
 		<>
-			<Row style={{ height: '10%', textAlign: 'center' }}>
-				<Text>🍐 Get into your pairs</Text>
-			</Row>
-			<Row type="flex" justify="space-around" style={pairContentStyle}>
+			<CardTitle />
+			<Row type='flex' justify='space-around' style={pairContentStyle}>
 				{people.map((teamMember, i) => {
 					const member = teamMember;
 					const partner = people[people.length - i - 1];
@@ -85,7 +64,7 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 			{!isEven(people.length) && (
 				<>
 					<Button
-						type="link"
+						type='link'
 						style={{ margin: 'auto', width: '100%' }}
 						onClick={() => setVisible(true)}
 					>
@@ -109,7 +88,7 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 
 						<Button
 							onClick={() => setVisible(false)}
-							type="primary"
+							type='primary'
 							style={{ marginTop: 45 }}
 							block
 						>
@@ -118,7 +97,7 @@ const Pairs = ({ people, isEven, setOddOneOut, setActive, nextRound }) => {
 					</Modal>
 				</>
 			)}
-			<NextButton active="Pairs" setActive={setActive} nextRound={nextRound} />
+			<NextButton />
 		</>
 	);
 };
