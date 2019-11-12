@@ -74,7 +74,7 @@ export const pageInstructions = {
 		prevScreen: null,
 	},
 	Sound: {
-		title: '🎵 Choose your experience',
+		title: '⚙️ Choose your experience',
 		continueText: 'Ready to Play',
 		nextScreen: 'Pairs',
 		prevScreen: 'Settings',

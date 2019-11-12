@@ -6,10 +6,10 @@ export const useSessionValue = () => useContext(SessionContext);
 
 export const SessionProvider = ({ children }) => {
 	const [currentRound, setCurrentRound] = useState(1);
-	const [people, setPeople] = useState(['One', 'Two']);
+	const [people, setPeople] = useState([]);
 	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState();
-	const [active, setActive] = useState('Sound');
+	const [active, setActive] = useState('Settings');
 	const [numOfRounds, setNumOfRounds] = useState(0);
 	const [asked, setAsked] = useState([]);
 	const [soundOn, setSoundOn] = useState(true);
