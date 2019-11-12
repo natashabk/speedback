@@ -13,7 +13,13 @@ const { Countdown } = Statistic;
 const { Title } = Typography;
 
 const Round = () => {
-	const { pairTime, setActive, people, isLastRound } = useSessionValue();
+	const {
+		pairTime,
+		setActive,
+		people,
+		isLastRound,
+		soundOn,
+	} = useSessionValue();
 	const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2;
 
 	const [count, setCount] = useState(0);
@@ -72,8 +78,8 @@ const Round = () => {
 	return (
 		<>
 			<CardTitle timeRunning={timeRunning} />
-			{sound1 && <audio ref={audioRef} src={bell} autoPlay />}
-			{sound2 && <audio ref={audioRef} src={harp} autoPlay />}
+			{soundOn && sound1 && <audio ref={audioRef} src={bell} autoPlay />}
+			{soundOn && sound2 && <audio ref={audioRef} src={harp} autoPlay />}
 
 			<Row
 				type='flex'
