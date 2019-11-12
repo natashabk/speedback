@@ -79,7 +79,6 @@ export const radioStyle = {
 };
 
 export const selectStyle = {
-	maxHeight: 220,
 	overflow: 'auto',
 	textTransform: 'capitalize',
 	width: '100%',

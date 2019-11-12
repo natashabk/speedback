@@ -4,8 +4,8 @@ import { pageInstructions } from '../Constants';
 import { useSessionValue } from '../SessionContext';
 import { allRadius } from '../styles';
 
-const NextButton = () => {
-	const { active, setActive, nextRound } = useSessionValue();
+const NextButton = ({ setError }) => {
+	const { active, setActive, nextRound, people } = useSessionValue();
 	const continueText = pageInstructions[active].continueText;
 	const nextScreen = pageInstructions[active].nextScreen;
 	return (
@@ -13,8 +13,10 @@ const NextButton = () => {
 			size='large'
 			type='primary'
 			onClick={() => {
-				nextRound();
-				setActive(nextScreen);
+				if (people.length > 1) {
+					nextRound();
+					setActive(nextScreen);
+				} else setError(true);
 			}}
 			block
 			style={{ borderRadius: allRadius, height: 50 }}

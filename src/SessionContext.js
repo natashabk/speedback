@@ -6,12 +6,13 @@ export const useSessionValue = () => useContext(SessionContext);
 
 export const SessionProvider = ({ children }) => {
 	const [currentRound, setCurrentRound] = useState(1);
-	const [people, setPeople] = useState([]);
+	const [people, setPeople] = useState(['One', 'Two']);
 	const [pairTime, setPairTime] = useState(4);
 	const [oddOneOut, setOddOneOut] = useState();
-	const [active, setActive] = useState('Settings');
+	const [active, setActive] = useState('Sound');
 	const [numOfRounds, setNumOfRounds] = useState(0);
 	const [asked, setAsked] = useState([]);
+	const [soundOn, setSoundOn] = useState(true);
 
 	const shuffle = list => {
 		const noRepeats = list.filter(question => !asked.includes(question));
@@ -79,6 +80,8 @@ export const SessionProvider = ({ children }) => {
 				setCurrentQuestion,
 				setCurrentOddOne,
 				shuffle,
+				soundOn,
+				setSoundOn,
 			}}
 		>
 			{children}

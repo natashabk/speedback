@@ -6,9 +6,9 @@
 
 /* choose participants */
 .ant-select-selection--multiple {
-	min-height: 200px !important;
+	min-height: 350px !important;
 	border-radius: 15px !important;
-	padding: 5px;
+	padding: 5px !important;
 }
 
 .ant-select-selection .ant-select-selection--multiple {

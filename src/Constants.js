@@ -70,14 +70,20 @@ export const pageInstructions = {
 	Settings: {
 		title: '👇 Enter your participants below',
 		continueText: 'Begin Session',
-		nextScreen: 'Pairs',
+		nextScreen: 'Sound',
 		prevScreen: null,
+	},
+	Sound: {
+		title: '🎵 Choose your experience',
+		continueText: 'Ready to Play',
+		nextScreen: 'Pairs',
+		prevScreen: 'Settings',
 	},
 	Pairs: {
 		title: '🍐 Get into your pairs',
 		continueText: 'Everyone is Paired',
 		nextScreen: 'Question',
-		prevScreen: 'Settings',
+		prevScreen: 'Sound',
 	},
 	Question: {
 		title: '🚦 On your marks, get set...',
