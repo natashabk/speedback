@@ -106,6 +106,13 @@ export const pageStyle = {
   backgroundImage: "linear-gradient(to top right, #f8a339, #f42948)"
 };
 
+export const linesStyle = {
+  width: "100%",
+  height: "100vh",
+  marginTop: "-80%",
+  position: "fixed"
+};
+
 export const appStyle = {
   height: "100vh",
   maxHeight: 750,
