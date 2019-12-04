@@ -12,7 +12,8 @@ import {
   mainStyle,
   innerStyle,
   pageStyle,
-  linesStyle
+  topLinesStyle,
+  btmLinesStyle
 } from "./styles";
 import PageHeader from "./Components/PageHeader";
 import { useSessionValue } from "./SessionContext";
@@ -33,7 +34,8 @@ const App = () => {
 
   return (
     <Layout style={pageStyle}>
-      <Icon style={linesStyle} component={() => <Lines />} />
+      <Icon style={topLinesStyle} component={() => <Lines />} />
+      <Icon style={btmLinesStyle} component={() => <Lines />} />
       <Content style={appStyle}>
         <PageHeader />
         <Card style={mainStyle} bodyStyle={innerStyle}>

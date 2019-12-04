@@ -106,11 +106,19 @@ export const pageStyle = {
   backgroundImage: "linear-gradient(to top right, #f8a339, #f42948)"
 };
 
-export const linesStyle = {
+export const topLinesStyle = {
   width: "100%",
   height: "100vh",
   marginTop: "-80%",
   position: "fixed"
+};
+
+export const btmLinesStyle = {
+  width: "100%",
+  height: "100vh",
+  position: "absolute",
+  marginTop: "100%",
+  transform: "scale(-1,1) rotate(180deg) scaleX(-1)"
 };
 
 export const appStyle = {
