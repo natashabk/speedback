@@ -2,7 +2,7 @@ import bg from "./Assets/Speedback-bg.png";
 export const allRadius = 35;
 export const colors = {
   indigo: "#26324B",
-  aqua: "#42C8C2",
+  aqua: "#008579",
   hovergreen: "#3bb1ac",
   orange: "#f8a339",
   coral: "#f42948",
