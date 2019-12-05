@@ -17,7 +17,7 @@ import {
 } from "./styles";
 import PageHeader from "./Components/PageHeader";
 import { useSessionValue } from "./SessionContext";
-import { ReactComponent as Lines } from "./Assets/lines.svg";
+import { Lines } from "./Assets";
 
 const { Content } = Layout;
 

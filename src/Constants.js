@@ -1,3 +1,5 @@
+import { Group, Pear, Talk, Stop, Shout, Fire } from "./Assets";
+
 export const goesFirst = [
   "with the most siblings",
   "with the least pets",
@@ -51,7 +53,13 @@ export const oddQuestionOut = [
   "draw the most exciting thing that happened at work recently",
   "draw a scene from a tv show you've watched recently",
   "draw a celebrity and see if people can guess who it is",
-  "draw a room (or the whole thing) of your dream house"
+  "draw a room (or the whole thing) of your dream house",
+  "draw the best pet you've ever had",
+  "draw yourself doing something you've never done",
+  "draw the meal you eat most often",
+  "draw an animal birthday party",
+  "draw or describe your ideal super power",
+  "draw the ugliest creature"
 ];
 
 export const alerts = {
@@ -68,40 +76,46 @@ export const alerts = {
 
 export const pageInstructions = {
   Settings: {
-    title: "👇 Enter your participants below",
+    title: "Enter your participants",
     continueText: "Begin Session",
     nextScreen: "Sound",
-    prevScreen: null
+    prevScreen: null,
+    icon: Group
   },
   Sound: {
-    title: "🔔 One last thing...",
+    title: "One quick check...",
     continueText: "Ready to Play",
     nextScreen: "Pairs",
-    prevScreen: "Settings"
+    prevScreen: "Settings",
+    icon: Shout
   },
   Pairs: {
-    title: "🍐 Get into your pairs",
+    title: "Get into your pairs",
     continueText: "Everyone is Paired",
     nextScreen: "Question",
-    prevScreen: "Sound"
+    prevScreen: "Sound",
+    icon: Pear
   },
   Question: {
-    title: "🚦 On your marks, get set...",
+    title: "On your marks, get set...",
     continueText: "Start Round",
     nextScreen: "Round",
-    prevScreen: "Pairs"
+    prevScreen: "Pairs",
+    icon: Stop
   },
   Round: {
-    title: "🔥 Round in Progress",
+    title: "Round in Progress",
     continueText: "Next Pairing",
     nextScreen: "Pairs",
-    prevScreen: "Question"
+    prevScreen: "Question",
+    icon: Fire
   },
   Feedback: {
-    title: "📬 Your feedback makes us better",
+    title: "Feedback makes us better",
     continueText: "Submit Feedback",
     nextScreen: "Settings",
-    prevScreen: "Round"
+    prevScreen: "Round",
+    icon: Talk
   }
 };
 

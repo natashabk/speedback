@@ -16,7 +16,8 @@ export const submitButtonStyle = {
   height: 50,
   position: "absolute",
   bottom: "4%",
-  width: "87%"
+  width: "87%",
+  marginLeft: "-43%"
 };
 
 export const formStyle = {
@@ -103,7 +104,8 @@ export const captionStyle = {
 
 export const pageStyle = {
   minHeight: "100vh",
-  backgroundImage: "linear-gradient(to top right, #f8a339, #f42948)"
+  backgroundImage: "linear-gradient(to top right, #f8a339, #f42948)",
+  overflow: "hidden"
 };
 
 export const topLinesStyle = {
@@ -143,4 +145,8 @@ export const innerStyle = {
   height: "100%"
 };
 
-export const topRowStyle = { height: "10%", textAlign: "center" };
+export const topRowStyle = {
+  height: "10%",
+  textAlign: "center",
+  minWidth: 300
+};

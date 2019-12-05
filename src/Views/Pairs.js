@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Tooltip, Typography, Icon } from "antd";
+import { Card, Row, Popover, Typography, Icon } from "antd";
 import "../Assets/App.css";
 import NextButton from "../Components/NextButton";
 import CardTitle from "../Components/CardTitle";
@@ -35,9 +35,9 @@ const Pairs = () => {
                 bodyStyle={{ ...stationInnerStyle, padding: oddPadding }}
               >
                 <Row style={{ textAlign: "right", margin: "-18px -11px -3px" }}>
-                  <Tooltip
-                    title={
-                      <Text style={{ color: "white" }}>
+                  <Popover
+                    content={
+                      <>
                         Don't worry,
                         <span
                           style={{
@@ -48,16 +48,17 @@ const Pairs = () => {
                           {member}
                         </span>
                         . You'll find out what to do on the next page.
-                      </Text>
+                      </>
                     }
                     trigger="click"
+                    overlayStyle={{ maxWidth: 230 }}
                   >
                     <Icon
                       type="question-circle"
                       theme="filled"
                       style={{ color: "#008579" }}
                     />
-                  </Tooltip>
+                  </Popover>
                 </Row>
                 <Text strong style={{ fontSize: getFont(member) }}>
                   {member}
