@@ -12,9 +12,7 @@ const { Title, Text } = Typography
 const Question = () => {
   const { updateStore, people, asked } = useSessionValue()
 
-  const [currentQuestion, setCurrentQuestion] = useState(
-    shuffle(goesFirst, asked)
-  )
+  const [currentQ, setCurrentQ] = useState(shuffle(goesFirst, asked))
   const [currentOddQ, setCurrentOddQ] = useState(shuffle(oddQuestionOut, asked))
 
   const oddOneOut = oddPlayerOut(people)
@@ -32,6 +30,16 @@ const Question = () => {
       ☠️ Fight to the death
     </>
   )
+
+  const getAnotherQuestion = (list, toUpdate) => {
+    const anotherQ = shuffle(list, asked)
+    if (anotherQ === []) updateStore('asked', [])
+    else {
+      toUpdate(anotherQ)
+      updateStore('asked', anotherQ)
+    }
+  }
+
   return (
     <>
       <CardTitle />
@@ -47,15 +55,11 @@ const Question = () => {
             </Text>
             <Button
               {...buttonProps}
-              onClick={() => {
-                const anotherQ = shuffle(goesFirst, asked)
-                if (anotherQ === []) updateStore('asked', [])
-                else setCurrentQuestion(anotherQ)
-              }}
+              onClick={() => getAnotherQuestion(goesFirst, setCurrentQ)}
             />
           </Row>
           <Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>
-            The person {currentQuestion}
+            The person {currentQ}
           </Title>
           <Popover
             content={tieMessage}
@@ -85,11 +89,9 @@ const Question = () => {
               </Text>
               <Button
                 {...buttonProps}
-                onClick={() => {
-                  const anotherQ = shuffle(oddQuestionOut, asked)
-                  if (anotherQ === []) updateStore('asked', [])
-                  else setCurrentOddQ(anotherQ)
-                }}
+                onClick={() =>
+                  getAnotherQuestion(oddQuestionOut, setCurrentOddQ)
+                }
               />
             </Row>
             <Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>

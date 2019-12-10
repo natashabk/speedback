@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { pageInstructions } from './Constants'
-import { shuffle } from './helper'
 
 export const SessionContext = createContext()
 export const useSessionValue = () => useContext(SessionContext)
@@ -36,7 +35,6 @@ export const SessionProvider = ({ children }) => {
         newOrder.unshift(hop)
       }
       setPeople(newOrder)
-      // setAsked([...asked, currentQuestion, currentOddQ]);
     }
   }
 
@@ -90,13 +88,13 @@ export const SessionProvider = ({ children }) => {
     <SessionContext.Provider
       value={{
         updateStore, // all *
+        asked, //helper
 
         currentRound, // pageHeader,
         exitSession, // exitModal *
         moveForward, // nextButton *
         moveBack, // backButton *
 
-        shuffle, // questions *
         isLastRound, // round, cardTitle *
 
         people, // settings, pairs, stars
@@ -105,8 +103,7 @@ export const SessionProvider = ({ children }) => {
         numOfRounds, // settings, pageHeader
         soundOn, // sound, round
 
-        active, // cardTitle, nextButton, pageHeader, app
-        asked //helper
+        active // cardTitle, nextButton, pageHeader, app
       }}
     >
       {children}
