@@ -1,12 +1,12 @@
-import React from "react";
-import { Layout, Card, Icon } from "antd";
-import "./Assets/App.css";
-import Settings from "./Views/Settings";
-import Pairs from "./Views/Pairs";
-import Question from "./Views/Question";
-import Round from "./Views/Round";
-import Feedback from "./Views/Feedback";
-import Sound from "./Views/Sound";
+import React from 'react'
+import { Layout, Card, Icon } from 'antd'
+import './Assets/App.css'
+import Settings from './Views/Settings'
+import Pairs from './Views/Pairs'
+import Question from './Views/Question'
+import Round from './Views/Round'
+import Feedback from './Views/Feedback'
+import Sound from './Views/Sound'
 import {
   appStyle,
   mainStyle,
@@ -14,23 +14,28 @@ import {
   pageStyle,
   topLinesStyle,
   btmLinesStyle
-} from "./styles";
-import PageHeader from "./Components/PageHeader";
-import { useSessionValue } from "./SessionContext";
-import { Lines } from "./Assets";
+} from './styles'
+import PageHeader from './Components/PageHeader'
+import { useSessionValue } from './SessionContext'
+import { Lines } from './Assets'
 
-const { Content } = Layout;
+const { Content } = Layout
 
 const App = () => {
-  const { active, asked } = useSessionValue();
+  const { active, moveForward, moveBack } = useSessionValue()
   const screens = {
     Settings: <Settings />,
     Sound: <Sound />,
     Pairs: <Pairs />,
-    Question: <Question asked={asked} />,
+    Question: <Question />,
     Round: <Round />,
     Feedback: <Feedback />
-  };
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 39) moveForward()
+    else if (event.keyCode === 37) moveBack()
+  })
 
   return (
     <Layout style={pageStyle}>
@@ -43,7 +48,7 @@ const App = () => {
         </Card>
       </Content>
     </Layout>
-  );
-};
+  )
+}
 
-export default App;
+export default App
