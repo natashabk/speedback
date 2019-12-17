@@ -5,27 +5,33 @@ import Stars from '../Components/Stars'
 import NextButton from '../Components/NextButton'
 import { useSessionValue } from '../SessionContext'
 import CardTitle from '../Components/CardTitle'
-import { titleStyle, colors, allRadius } from '../styles'
+import { titleStyle, colors } from '../styles'
 import bell from '../Assets/bell.mp3'
 import harp from '../Assets/harp.mp3'
+import { percent, secondPercent, isLastRound, roundTime } from '../helper'
 
 const { Countdown } = Statistic
 const { Title } = Typography
 
 const Round = () => {
-  const { pairTime, isLastRound, soundOn } = useSessionValue()
-  const roundTime = () => Date.now() + (1000 * 60 * pairTime) / 2
-
+  const {
+    pairTime,
+    currentRound,
+    numOfRounds,
+    soundOn,
+    timeRunning,
+    deadline,
+    updateStore,
+    active
+  } = useSessionValue()
+  const lastRound = isLastRound(currentRound, numOfRounds)
   const [count, setCount] = useState(0)
-  const [deadline, setDeadline] = useState(roundTime())
   const [firstActive, setFirstActive] = useState(true)
-  const [timeRunning, setTimeRunning] = useState(true)
+
+  // const [deadline, setDeadline] = useState(roundTime(pairTime))
+
   const [sound1, playSound1] = useState(null)
   const [sound2, playSound2] = useState(null)
-
-  const milSeconds = (pairTime / 2) * 600
-  const percent = (count / milSeconds) * 100
-  const secondPercent = ((count - milSeconds) / (milSeconds / 10)) * 10
 
   const useInterval = callback => {
     const savedCallback = useRef()
@@ -41,10 +47,15 @@ const Round = () => {
 
   useInterval(() => setCount(count + 1))
 
+  useEffect(() => {
+    if (!deadline && active === 'Round')
+      updateStore('deadline', roundTime(pairTime))
+  }, [active])
+
   const getSecondPercent = () => {
     if (firstActive) return 0
     else if (!firstActive && !timeRunning) return 100
-    else return secondPercent
+    else return secondPercent(count, pairTime)
   }
 
   const checkMark = color => (
@@ -63,12 +74,12 @@ const Round = () => {
     } else
       return (
         <Title level={4} style={titleStyle}>
-          {isLastRound ? 'Game' : 'Round'} over!
+          {lastRound ? 'Game' : 'Round'} over!
         </Title>
       )
   }
   const audioRef = useRef(null)
-
+  console.log(deadline)
   return (
     <>
       <CardTitle timeRunning={timeRunning} />
@@ -83,7 +94,7 @@ const Round = () => {
         <Progress
           type='circle'
           strokeColor={colors.orange}
-          percent={firstActive ? percent : 100}
+          percent={firstActive ? percent(count, pairTime) : 100}
           format={percent =>
             firstActive ? (
               <Countdown
@@ -91,7 +102,7 @@ const Round = () => {
                 format='mm:ss'
                 onFinish={() => {
                   setFirstActive(false)
-                  setDeadline(roundTime())
+                  updateStore('deadline', roundTime(pairTime))
                   playSound1(true)
                 }}
               />
@@ -113,7 +124,7 @@ const Round = () => {
                   value={firstActive || !timeRunning ? Date.now() : deadline}
                   format='mm:ss'
                   onFinish={() => {
-                    setTimeRunning(false)
+                    updateStore('time', false)
                     playSound2(true)
                   }}
                 />
@@ -122,22 +133,9 @@ const Round = () => {
         />
       </Row>
       {getMessage()}
-      {isLastRound && !timeRunning && <Stars />}
-      {isLastRound && timeRunning && (
-        <Button
-          size='large'
-          type='primary'
-          onClick={() => {
-            setTimeRunning(false)
-            setDeadline(Date.now())
-          }}
-          style={{ borderRadius: allRadius, height: 50 }}
-          block
-        >
-          End Session
-        </Button>
-      )}
-      {!isLastRound && <NextButton />}
+      {lastRound && !timeRunning && <Stars />}
+      {lastRound && timeRunning && <NextButton />}
+      {!lastRound && <NextButton />}
     </>
   )
 }

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import { roundTime, isLastRound } from './helper'
 import { pageInstructions } from './Constants'
 
 export const SessionContext = createContext()
@@ -13,8 +14,8 @@ export const SessionProvider = ({ children }) => {
   const [asked, setAsked] = useState([])
   const [soundOn, setSoundOn] = useState(true)
   const [error, setError] = useState(false)
-
-  const isLastRound = currentRound === numOfRounds && numOfRounds !== 0
+  const [timeRunning, setTimeRunning] = useState(false)
+  const [deadline, setDeadline] = useState(false)
 
   useEffect(() => {
     if (people.length && people.length % 2 === 0)
@@ -23,19 +24,18 @@ export const SessionProvider = ({ children }) => {
     else setNumOfRounds(0)
   }, [people])
 
-  const nextRound = () => {
-    if (active === 'Round') {
-      let newOrder = people
-      setCurrentRound(currentRound + 1)
-      if (people.length % 2 === 0) {
-        const hop = newOrder.splice(1, 1)
-        newOrder.push(hop)
-      } else {
-        const hop = newOrder.pop()
-        newOrder.unshift(hop)
-      }
-      setPeople(newOrder)
+  const finishRound = () => {
+    setDeadline(false)
+    let newOrder = people
+    setCurrentRound(currentRound + 1)
+    if (people.length % 2 === 0) {
+      const hop = newOrder.splice(1, 1)
+      newOrder.push(hop)
+    } else {
+      const hop = newOrder.pop()
+      newOrder.unshift(hop)
     }
+    setPeople(newOrder)
   }
 
   const exitSession = () => {
@@ -45,11 +45,14 @@ export const SessionProvider = ({ children }) => {
   }
 
   const moveForward = () => {
-    if (active === 'Settings' && people.length <= 1) setError(true)
-    else {
-      nextRound()
-      setActive(pageInstructions[active].nextScreen)
-    }
+    const nextPage = pageInstructions[active].nextScreen
+    const lastRound = isLastRound(currentRound, numOfRounds)
+
+    if (active === 'Settings' && people.length < 2) setError(true)
+    else if (active === 'Round') {
+      lastRound ? setDeadline(Date.now()) : finishRound()
+      setActive(nextPage)
+    } else setActive(nextPage)
   }
 
   const moveBack = () => {
@@ -79,6 +82,12 @@ export const SessionProvider = ({ children }) => {
       case 'asked':
         setAsked(newValue)
         return asked
+      case 'time':
+        setTimeRunning(newValue)
+        return timeRunning
+      case 'deadline':
+        setDeadline(newValue)
+        return deadline
       default:
         return null
     }
@@ -89,19 +98,19 @@ export const SessionProvider = ({ children }) => {
       value={{
         updateStore, // all *
         asked, //helper
+        exitSession, // * *
+        moveForward, // * *
+        moveBack, // * *
 
         currentRound, // pageHeader,
-        exitSession, // exitModal *
-        moveForward, // nextButton *
-        moveBack, // backButton *
-
-        isLastRound, // round, cardTitle *
 
         people, // settings, pairs, stars
         error, // settings
         pairTime, // settings, round, stars
         numOfRounds, // settings, pageHeader
         soundOn, // sound, round
+        timeRunning,
+        deadline,
 
         active // cardTitle, nextButton, pageHeader, app
       }}

@@ -6,13 +6,16 @@ import ExitModal from './ExitModal'
 import { pageInstructions } from '../Constants'
 import { useSessionValue } from '../SessionContext'
 import { topRowStyle } from '../styles'
+import { isLastRound } from '../helper'
 
 const CardTitle = ({ timeRunning }) => {
   const [visible, setVisible] = useState(false)
-  const { active, isLastRound } = useSessionValue()
+  const { active, currentRound, numOfRounds } = useSessionValue()
 
   const roundText = () =>
-    isLastRound && !timeRunning ? 'Session Complete' : 'Round in Progress'
+    isLastRound(currentRound, numOfRounds) && !timeRunning
+      ? 'Session Complete'
+      : 'Round in Progress'
 
   const IconMap = ({ component: Comp }) => (
     <Icon

@@ -31,19 +31,19 @@ const Stars = () => {
                 <input
                   type='text'
                   name='stars'
-                  value={rating}
+                  defaultValue={rating | ''}
                   style={{ display: 'none' }}
                 />
                 <input
                   type='text'
                   name='participants'
-                  value={people.length}
+                  defaultValue={people.length}
                   style={{ display: 'none' }}
                 />
                 <input
                   type='text'
                   name='pair-time'
-                  value={pairTime}
+                  defaultValue={pairTime}
                   style={{ display: 'none' }}
                 />
 
