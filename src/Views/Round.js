@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Statistic, Progress, Row, Typography, Button, Icon } from 'antd'
+import { Statistic, Progress, Row, Typography, Icon } from 'antd'
 import { secondCounterPlaceholder } from '../Constants'
 import Stars from '../Components/Stars'
 import NextButton from '../Components/NextButton'
@@ -42,6 +42,7 @@ const Round = () => {
       const tick = () => savedCallback.current()
       let id = setInterval(tick, 100)
       return () => clearInterval(id)
+      // eslint-disable-next-line
     }, [deadline])
   }
 
@@ -50,6 +51,7 @@ const Round = () => {
   useEffect(() => {
     if (!deadline && active === 'Round')
       updateStore('deadline', roundTime(pairTime))
+      // eslint-disable-next-line
   }, [active])
 
   const getSecondPercent = () => {

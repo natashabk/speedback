@@ -85,6 +85,7 @@ const Pairs = () => {
                 </Text>
               </Card>
             )
+          else return null;
         })}
       </Row>
       <NextButton />

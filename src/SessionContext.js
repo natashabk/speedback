@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { roundTime, isLastRound } from './helper'
+import { isLastRound } from './helper'
 import { pageInstructions } from './Constants'
 
 export const SessionContext = createContext()
