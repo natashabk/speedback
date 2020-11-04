@@ -24,40 +24,39 @@ const Round = () => {
     updateStore,
     active
   } = useSessionValue()
-  const lastRound = isLastRound(currentRound, numOfRounds)
-  const [count, setCount] = useState(0)
-  const [firstActive, setFirstActive] = useState(true)
 
-  // const [deadline, setDeadline] = useState(roundTime(pairTime))
+  const lastRound = isLastRound( currentRound, numOfRounds )
+  const [ count, setCount ] = useState( 0 )
+  const [ firstActive, setFirstActive ] = useState( true )
 
-  const [sound1, playSound1] = useState(null)
-  const [sound2, playSound2] = useState(null)
+  const [ sound1, playSound1 ] = useState( null )
+  const [ sound2, playSound2 ] = useState( null )
 
   const useInterval = callback => {
     const savedCallback = useRef()
-    useEffect(() => {
+    useEffect( () => {
       savedCallback.current = callback
-    }, [callback])
-    useEffect(() => {
+    }, [ callback ] )
+    useEffect( () => {
       const tick = () => savedCallback.current()
-      let id = setInterval(tick, 100)
-      return () => clearInterval(id)
+      let id = setInterval( tick, 100 )
+      return () => clearInterval( id )
       // eslint-disable-next-line
-    }, [deadline])
+    }, [ deadline ] )
   }
 
-  useInterval(() => setCount(count + 1))
+  useInterval( () => setCount( count + 1 ) )
 
-  useEffect(() => {
-    if (!deadline && active === 'Round')
-      updateStore('deadline', roundTime(pairTime))
-      // eslint-disable-next-line
-  }, [active])
+  useEffect( () => {
+    if ( !deadline && active === 'Round' )
+      updateStore( 'deadline', roundTime( pairTime ) )
+    // eslint-disable-next-line
+  }, [ active ] )
 
   const getSecondPercent = () => {
-    if (firstActive) return 0
-    else if (!firstActive && !timeRunning) return 100
-    else return secondPercent(count, pairTime)
+    if ( firstActive ) return 0
+    else if ( !firstActive && !timeRunning ) return 100
+    else return secondPercent( count, pairTime )
   }
 
   const checkMark = color => (
@@ -65,12 +64,12 @@ const Round = () => {
   )
 
   const getMessage = () => {
-    if (timeRunning) {
+    if ( timeRunning ) {
       const prefix = firstActive ? 'First' : 'Second'
       const color = firstActive ? 'orange' : 'coral'
       return (
         <Title level={4} style={titleStyle}>
-          <span style={{ color: colors[color] }}>{prefix}</span> person talking
+          <span style={{ color: colors[ color ] }}>{prefix}</span> person talking
         </Title>
       )
     } else
@@ -80,8 +79,9 @@ const Round = () => {
         </Title>
       )
   }
-  const audioRef = useRef(null)
-  console.log(deadline)
+
+  const audioRef = useRef( null )
+
   return (
     <>
       <CardTitle timeRunning={timeRunning} />
@@ -96,21 +96,21 @@ const Round = () => {
         <Progress
           type='circle'
           strokeColor={colors.orange}
-          percent={firstActive ? percent(count, pairTime) : 100}
+          percent={firstActive ? percent( count, pairTime ) : 100}
           format={percent =>
             firstActive ? (
               <Countdown
                 value={firstActive ? deadline : Date.now()}
                 format='mm:ss'
                 onFinish={() => {
-                  setFirstActive(false)
-                  updateStore('deadline', roundTime(pairTime))
-                  playSound1(true)
+                  setFirstActive( false )
+                  updateStore( 'deadline', roundTime( pairTime ) )
+                  playSound1( true )
                 }}
               />
             ) : (
-              checkMark(colors.orange)
-            )
+                checkMark( colors.orange )
+              )
           }
         />
         <Progress
@@ -118,16 +118,16 @@ const Round = () => {
           strokeColor={colors.coral}
           percent={getSecondPercent()}
           format={percent => {
-            if (firstActive) return secondCounterPlaceholder[pairTime]
-            else if (!timeRunning) return checkMark(colors.coral)
+            if ( firstActive ) return secondCounterPlaceholder[ pairTime ]
+            else if ( !timeRunning ) return checkMark( colors.coral )
             else
               return (
                 <Countdown
                   value={firstActive || !timeRunning ? Date.now() : deadline}
                   format='mm:ss'
                   onFinish={() => {
-                    updateStore('time', false)
-                    playSound2(true)
+                    updateStore( 'time', false )
+                    playSound2( true )
                   }}
                 />
               )
@@ -136,7 +136,7 @@ const Round = () => {
       </Row>
       {getMessage()}
       {lastRound && !timeRunning && <Stars />}
-      {lastRound && timeRunning && <NextButton />}
+      {lastRound && timeRunning && <NextButton last />}
       {!lastRound && <NextButton />}
     </>
   )

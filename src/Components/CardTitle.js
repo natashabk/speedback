@@ -8,18 +8,18 @@ import { useSessionValue } from '../SessionContext'
 import { topRowStyle } from '../styles'
 import { isLastRound } from '../helper'
 
-const CardTitle = ({ timeRunning }) => {
-  const [visible, setVisible] = useState(false)
+const CardTitle = ( { timeRunning } ) => {
+  const [ visible, setVisible ] = useState( false )
   const { active, currentRound, numOfRounds } = useSessionValue()
 
   const roundText = () =>
-    isLastRound(currentRound, numOfRounds) && !timeRunning
+    isLastRound( currentRound, numOfRounds ) && !timeRunning
       ? 'Session Complete'
       : 'Round in Progress'
 
-  const IconMap = ({ component: Comp }) => (
+  const IconMap = ( { component: Comp } ) => (
     <Icon
-      style={{ height: '60%', width: 'max-content' }}
+      style={{ height: 33 }}
       component={() => <Comp style={{ height: '100%' }} />}
     />
   )
@@ -41,12 +41,12 @@ const CardTitle = ({ timeRunning }) => {
         type='flex'
         justify='center'
       >
-        <IconMap component={pageInstructions[active].icon} />
+        <IconMap component={pageInstructions[ active ].icon} />
         <Col
           span={14}
           style={{ margin: '8px 0px 0px 5px', textAlign: 'left', fontSize: 13 }}
         >
-          {active === 'Round' ? roundText() : pageInstructions[active].title}
+          {active === 'Round' ? roundText() : pageInstructions[ active ].title}
         </Col>
       </Row>
       <ExitModal visible={visible} setVisible={setVisible} />

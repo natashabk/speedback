@@ -22,7 +22,7 @@ import { Lines } from './Assets'
 const { Content } = Layout
 
 const App = () => {
-  const { active, moveForward, moveBack } = useSessionValue()
+  const { active } = useSessionValue()
   const screens = {
     Settings: <Settings />,
     Sound: <Sound />,
@@ -32,11 +32,6 @@ const App = () => {
     Feedback: <Feedback />
   }
 
-  document.addEventListener('keydown', function(event) {
-    if (event.keyCode === 39) moveForward()
-    else if (event.keyCode === 37) moveBack()
-  })
-
   return (
     <Layout style={pageStyle}>
       <Icon style={topLinesStyle} component={() => <Lines />} />
@@ -44,7 +39,7 @@ const App = () => {
       <Content style={appStyle}>
         <PageHeader />
         <Card style={mainStyle} bodyStyle={innerStyle}>
-          {screens[active]}
+          {screens[ active ]}
         </Card>
       </Content>
     </Layout>

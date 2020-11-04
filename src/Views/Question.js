@@ -11,11 +11,10 @@ const { Title, Text } = Typography
 
 const Question = () => {
   const { updateStore, people, asked } = useSessionValue()
+  const [ currentQ, setCurrentQ ] = useState( shuffle( goesFirst, asked ) )
+  const [ currentOddQ, setCurrentOddQ ] = useState( shuffle( oddQuestionOut, asked ) )
 
-  const [currentQ, setCurrentQ] = useState(shuffle(goesFirst, asked))
-  const [currentOddQ, setCurrentOddQ] = useState(shuffle(oddQuestionOut, asked))
-
-  const oddOneOut = oddPlayerOut(people)
+  const oddOneOut = oddPlayerOut( people )
 
   const buttonProps = {
     size: 'small',
@@ -31,12 +30,12 @@ const Question = () => {
     </>
   )
 
-  const getAnotherQuestion = (list, toUpdate) => {
-    const anotherQ = shuffle(list, asked)
-    if (anotherQ === []) updateStore('asked', [])
+  const getAnotherQuestion = ( list, toUpdate ) => {
+    const anotherQ = shuffle( list, asked )
+    if ( anotherQ === [] ) updateStore( 'asked', [] )
     else {
-      toUpdate(anotherQ)
-      updateStore('asked', anotherQ)
+      toUpdate( anotherQ )
+      updateStore( 'asked', anotherQ )
     }
   }
 
@@ -55,7 +54,7 @@ const Question = () => {
             </Text>
             <Button
               {...buttonProps}
-              onClick={() => getAnotherQuestion(goesFirst, setCurrentQ)}
+              onClick={() => getAnotherQuestion( goesFirst, setCurrentQ )}
             />
           </Row>
           <Title level={3} style={{ fontWeight: 400, margin: 'auto' }}>
@@ -90,7 +89,7 @@ const Question = () => {
               <Button
                 {...buttonProps}
                 onClick={() =>
-                  getAnotherQuestion(oddQuestionOut, setCurrentOddQ)
+                  getAnotherQuestion( oddQuestionOut, setCurrentOddQ )
                 }
               />
             </Row>

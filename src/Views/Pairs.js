@@ -3,17 +3,15 @@ import { Card, Row, Popover, Typography, Icon } from 'antd'
 import '../Assets/App.css'
 import NextButton from '../Components/NextButton'
 import CardTitle from '../Components/CardTitle'
+import { middleIdx, oddPlayerOut } from '../helper'
 import { useSessionValue } from '../SessionContext'
 import { stationStyle, pairContentStyle, stationInnerStyle } from '../styles'
 
 const { Text } = Typography
 
 const Pairs = () => {
-  const { people, updateStore } = useSessionValue()
-  const isEven = num => num % 2 === 0
-  const middleIdx = Math.floor(people.length / 2)
-
-  const getFont = teamMember => (teamMember.length > 12 ? 10 : 14)
+  const { people } = useSessionValue()
+  const getFont = teamMember => ( teamMember.length > 12 ? 10 : 14 )
   const mainPadding = people.length > 12 ? 5 : 20
   const oddPadding = people.length > 12 ? 5 : '20px 15px'
   const width = people.length > 12 ? '30%' : '45%'
@@ -22,12 +20,11 @@ const Pairs = () => {
     <>
       <CardTitle />
       <Row type='flex' justify='space-around' style={pairContentStyle}>
-        {people.map((teamMember, i) => {
+        {people.map( ( teamMember, i ) => {
           const member = teamMember
-          const partner = people[people.length - i - 1]
+          const partner = people[ people.length - i - 1 ]
 
-          if (!isEven(people.length) && i === middleIdx) {
-            updateStore('oddOneOut', teamMember)
+          if ( member === oddPlayerOut( people ) ) {
             return (
               <Card
                 key={i}
@@ -60,7 +57,7 @@ const Pairs = () => {
                     />
                   </Popover>
                 </Row>
-                <Text strong style={{ fontSize: getFont(member) }}>
+                <Text strong style={{ fontSize: getFont( member ) }}>
                   {member}
                 </Text>
                 <br />
@@ -69,24 +66,24 @@ const Pairs = () => {
               </Card>
             )
           }
-          if (i < middleIdx)
+          if ( i < middleIdx( people ) )
             return (
               <Card
                 style={{ ...stationStyle, width }}
                 key={i}
                 bodyStyle={{ ...stationInnerStyle, padding: mainPadding }}
               >
-                <Text strong style={{ fontSize: getFont(member) }}>
+                <Text strong style={{ fontSize: getFont( member ) }}>
                   {member}
                 </Text>
                 <br />&<br />
-                <Text strong style={{ fontSize: getFont(partner) }}>
+                <Text strong style={{ fontSize: getFont( partner ) }}>
                   {partner}
                 </Text>
               </Card>
             )
           else return null;
-        })}
+        } )}
       </Row>
       <NextButton />
     </>
