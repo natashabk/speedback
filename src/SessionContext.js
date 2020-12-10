@@ -14,7 +14,6 @@ export const SessionProvider = ( { children } ) => {
   const [ asked, setAsked ] = useState( [] )
   const [ soundOn, setSoundOn ] = useState( true )
   const [ error, setError ] = useState( false )
-  const [ timeRunning, setTimeRunning ] = useState( false )
   const [ deadline, setDeadline ] = useState( false )
 
   useEffect( () => {
@@ -50,12 +49,10 @@ export const SessionProvider = ( { children } ) => {
 
     if ( active === 'Settings' && people.length < 2 ) setError( true )
     else if ( active === 'Question' ) {
-      setTimeRunning( true )
       setActive( nextPage )
     }
     else if ( active === 'Round' ) {
       if ( lastRound ) {
-        setTimeRunning( false )
         setDeadline( Date.now() )
       }
       else {
@@ -92,9 +89,6 @@ export const SessionProvider = ( { children } ) => {
       case 'asked':
         setAsked( newValue )
         return asked
-      case 'time':
-        setTimeRunning( newValue )
-        return timeRunning
       case 'deadline':
         setDeadline( newValue )
         return deadline
@@ -119,7 +113,6 @@ export const SessionProvider = ( { children } ) => {
         pairTime, // settings, round, stars
         numOfRounds, // settings, pageHeader
         soundOn, // sound, round
-        timeRunning,
         deadline,
 
         active // cardTitle, nextButton, pageHeader, app
