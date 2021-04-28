@@ -117,7 +117,7 @@ export const topLinesStyle = {
 export const btmLinesStyle = {
   width: '100%',
   height: '100vh',
-  position: 'absolute',
+  position: 'fixed',
   marginTop: '100%',
   transform: 'scale(-1,1) rotate(180deg) scaleX(-1)'
 }
