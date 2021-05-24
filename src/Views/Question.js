@@ -43,7 +43,7 @@ const Question = () => {
     <>
       <CardTitle />
       <Row style={{ margin: 'auto', width: '100%' }}>
-        <Card style={{ height: 220 }} bodyStyle={questionBodyStyle}>
+        <Card style={{ height: 200 }} bodyStyle={questionBodyStyle}>
           <Row
             type='flex'
             justify='space-between'
@@ -74,7 +74,7 @@ const Question = () => {
 
         {oddOneOut && (
           <Card
-            style={{ margin: '20px 0px', height: 190, maxHeight: 190 }}
+            style={{ margin: '20px 0px', height: 160, maxHeight: 160 }}
             bodyStyle={oddOneBodyStyle}
           >
             <Row

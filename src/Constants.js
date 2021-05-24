@@ -35,8 +35,8 @@ export const goesFirst = [
   'who last ate pancakes',
   'who is tallest',
   'who has the biggest hands',
-  'whoever has the longest socks on',
-  "whoever got a great night's sleep"
+  'that has the longest socks on',
+  'that got a great night\'s sleep'
 ]
 
 export const oddQuestionOut = [

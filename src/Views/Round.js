@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Row, Typography } from 'antd'
 import Timer from 'simple-circle-timer'
 import { useSessionValue } from '../SessionContext'
@@ -12,12 +12,13 @@ import harp from '../Assets/harp.mp3'
 const { Title } = Typography
 
 const Round = () => {
-  const { pairTime, currentRound, numOfRounds, soundOn } = useSessionValue()
+  const { pairTime, currentRound, numOfRounds, soundOn, updateStore, end } = useSessionValue()
   const [ firstActive, setFirstActive ] = useState( true )
   const [ timeRunning, setTimeRunning ] = useState( true )
   const [ sound1, playSound1 ] = useState( null )
   const [ sound2, playSound2 ] = useState( null )
-
+  const [ reset, setReset ] = useState( false )
+  
   const lastRound = isLastRound( currentRound, numOfRounds )
   const getMessage = () => {
     if ( timeRunning ) {
@@ -36,6 +37,8 @@ const Round = () => {
       )
   }
 
+  useEffect( () => { if ( end ) setReset(true) }, [ end ] )
+
   const audioRef = useRef( null )
 
   return (
@@ -50,32 +53,35 @@ const Round = () => {
         style={{ margin: 'auto', width: '100%' }}
       >
         <Timer
-          fillColor={colors.orange}
-          size={120}
-          fontSize={25}
-          onComplete={() => {
-            setFirstActive( false )
-            playSound1( true )
-          }}
-          minutes={pairTime / 2}
-          running={true}
+        fillColor={colors.orange}
+        size={120}
+        fontSize={25}
+        onComplete={() => {
+          setFirstActive( false )
+          playSound1( true )
+        }}
+        minutes={pairTime / 2}
+        running={timeRunning}
+        setRunning={setTimeRunning}
+        reset={reset} setReset={setReset}
         />
         <Timer
-          fillColor={colors.coral}
-          size={120}
-          fontSize={25}
-          onComplete={() => {
-            setTimeRunning( false )
-            playSound2( true )
-          }}
-          minutes={pairTime / 2}
-          running={!firstActive}
+        fillColor={colors.coral}
+        size={120}
+        fontSize={25}
+        onComplete={() => {
+          setTimeRunning( false )
+          playSound2( true )
+        }}
+        minutes={pairTime / 2}
+        running={timeRunning && !firstActive}
+        setRunning={setTimeRunning}
+        reset={reset} setReset={setReset}
         />
-
       </Row>
       {getMessage()}
       {lastRound && !timeRunning && <Stars />}
-      {lastRound && timeRunning && <NextButton last />}
+      {lastRound && timeRunning ? <NextButton last /> : <div style={{height: 60}}/>}
       {!lastRound && <NextButton />}
     </>
   )

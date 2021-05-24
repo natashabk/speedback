@@ -55,14 +55,14 @@ export const stationInnerStyle = {
 // Question
 
 export const oddOneBodyStyle = {
-  height: 190,
+  height: 160,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between'
 }
 
 export const questionBodyStyle = {
-  height: 220,
+  height: 200,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',

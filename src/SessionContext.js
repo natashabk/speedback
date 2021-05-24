@@ -14,7 +14,7 @@ export const SessionProvider = ( { children } ) => {
   const [ asked, setAsked ] = useState( [] )
   const [ soundOn, setSoundOn ] = useState( true )
   const [ error, setError ] = useState( false )
-  const [ deadline, setDeadline ] = useState( false )
+  const [ end, setEnd ] = useState ( false )
 
   useEffect( () => {
     if ( people.length && people.length % 2 === 0 )
@@ -24,7 +24,6 @@ export const SessionProvider = ( { children } ) => {
   }, [ people ] )
 
   const finishRound = () => {
-    setDeadline( false )
     let newOrder = people
     setCurrentRound( currentRound + 1 )
     if ( people.length % 2 === 0 ) {
@@ -53,7 +52,8 @@ export const SessionProvider = ( { children } ) => {
     }
     else if ( active === 'Round' ) {
       if ( lastRound ) {
-        setDeadline( Date.now() )
+        setEnd(true)
+        setPairTime(0)
       }
       else {
         finishRound()
@@ -89,9 +89,6 @@ export const SessionProvider = ( { children } ) => {
       case 'asked':
         setAsked( newValue )
         return asked
-      case 'deadline':
-        setDeadline( newValue )
-        return deadline
       default:
         return null
     }
@@ -107,13 +104,12 @@ export const SessionProvider = ( { children } ) => {
         moveBack, // * *
 
         currentRound, // pageHeader,
-
+        end,     //round
         people, // settings, pairs, stars
         error, // settings
         pairTime, // settings, round, stars
         numOfRounds, // settings, pageHeader
         soundOn, // sound, round
-        deadline,
 
         active // cardTitle, nextButton, pageHeader, app
       }}
