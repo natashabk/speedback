@@ -12,7 +12,7 @@ import harp from '../Assets/harp.mp3'
 const { Title } = Typography
 
 const Round = () => {
-  const { pairTime, currentRound, numOfRounds, soundOn, updateStore, end } = useSessionValue()
+  const { pairTime, currentRound, numOfRounds, soundOn, end } = useSessionValue()
   const [ firstActive, setFirstActive ] = useState( true )
   const [ timeRunning, setTimeRunning ] = useState( true )
   const [ sound1, playSound1 ] = useState( null )

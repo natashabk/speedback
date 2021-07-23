@@ -34,7 +34,6 @@ const Settings = () => {
           <Select
             mode='tags'
             size='large'
-            rows={4}
             placeholder={
               <Text
                 type='secondary'
@@ -49,9 +48,7 @@ const Settings = () => {
             }}
             value={people}
             style={selectStyle}
-            dropdownRender={menu => (
-              <div style={{ display: 'none' }}>{menu}</div>
-            )}
+            open={false}
           />
         </Item>
         <Card
@@ -67,7 +64,10 @@ const Settings = () => {
           >
             {[3, 4, 5].map(num => (
               <Radio.Button key={num} value={num} style={radioStyle}>
+                <span style={{display: 'flex', marginTop: 10,
+    justifyContent: 'center'}}>
                 {`${num}`}
+                </span>
               </Radio.Button>
             ))}
           </Radio.Group>

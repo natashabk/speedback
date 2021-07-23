@@ -1,5 +1,6 @@
 import React from 'react'
-import { Typography, Row, Icon } from 'antd'
+import { Typography, Row } from 'antd'
+import Icon from '@ant-design/icons'
 import { ReactComponent as Logo } from '../Assets/Logo-White.svg'
 import { useSessionValue } from '../SessionContext'
 
@@ -16,7 +17,7 @@ const PageHeader = () => {
 
   return (
     <>
-      <Row style={{ textAlign: 'center' }}>
+      <Row justify="center">
         <Title level={2} style={{ letterSpacing: 4, color: '#fff' }}>
           {getTitle() ? getTitle() : `round ${currentRound} of ${numOfRounds}`}
           {active === 'Settings' && (

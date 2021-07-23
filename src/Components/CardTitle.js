@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Row, Icon, Col } from 'antd'
+import { Row, Col } from 'antd'
+import Icon from '@ant-design/icons'
 import BackButton from './BackButton'
 import ExitButton from './ExitButton'
 import ExitModal from './ExitModal'

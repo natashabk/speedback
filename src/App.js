@@ -1,5 +1,6 @@
 import React from 'react'
-import { Layout, Card, Icon } from 'antd'
+import { Layout, Card } from 'antd'
+import Icon from '@ant-design/icons'
 import './Assets/App.css'
 import Settings from './Views/Settings'
 import Pairs from './Views/Pairs'

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Card, Typography, Row, Button, Popover } from 'antd'
+import { RetweetOutlined } from '@ant-design/icons'
 import { goesFirst, oddQuestionOut } from '../Constants'
 import NextButton from '../Components/NextButton'
 import { useSessionValue } from '../SessionContext'
@@ -19,7 +20,7 @@ const Question = () => {
   const buttonProps = {
     size: 'small',
     shape: 'circle',
-    icon: 'retweet'
+    icon: <RetweetOutlined />
   }
 
   const tieMessage = (

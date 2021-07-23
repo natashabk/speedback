@@ -1,18 +1,21 @@
 @font-face {
-  font-family: "Gotham Rounded Medium";
+  font-family: 'Gotham Rounded Medium';
   font-style: normal;
-  src: url("./gotham-rounded/GothamRoundedMedium_21022.ttf");
+  src: url('./gotham-rounded/GothamRoundedMedium_21022.ttf');
 }
 
 /* choose participants */
-.ant-select-selection--multiple {
+.ant-select-selector {
   min-height: 250px !important;
   border-radius: 15px !important;
   padding: 5px !important;
+  align-items: start !important;
 }
 
-.ant-select-selection .ant-select-selection--multiple {
-  padding-bottom: 5px;
+.ant-select-selection-placeholder {
+  top: 25px !important;
+  left: 15px !important;
+  right: unset !important;
 }
 
 /* choose pair time */
@@ -25,7 +28,7 @@
 
 /* timer */
 .ant-statistic-content span {
-  font-family: "Gotham Rounded Medium";
+  font-family: 'Gotham Rounded Medium';
   color: rgba(38, 50, 75, 0.85);
 }
 
