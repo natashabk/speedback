@@ -9,6 +9,7 @@
     "browserslist": "^4.16.5",
     "customize-cra": "^0.6.1",
     "glob-parent": "^5.1.2",
+    "immer": "^9.0.6",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "node-cron": "^3.0.0",
@@ -19,6 +20,7 @@
     "react-dom": "^16.9.0",
     "react-netlify-form": "^2.1.5",
     "react-scripts": "^4.0.3",
+    "set-value": "^4.0.1",
     "simple-circle-timer": "^0.1.16"
   },
   "scripts": {
