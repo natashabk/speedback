@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, Card } from 'antd'
 import Icon from '@ant-design/icons'
-import './Assets/App.css'
+import './Assets/App.less'
 import Settings from './Views/Settings'
 import Pairs from './Views/Pairs'
 import Question from './Views/Question'
