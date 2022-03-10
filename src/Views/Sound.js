@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Row, Button, Switch, Typography, Card } from 'antd'
-import '../Assets/App.css'
+import '../Assets/App.less'
 import NextButton from '../Components/NextButton'
 import CardTitle from '../Components/CardTitle'
 import { useSessionValue } from '../SessionContext'
@@ -11,8 +11,8 @@ const { Text, Title } = Typography
 
 const Sound = () => {
   const { soundOn, updateStore } = useSessionValue()
-  const [sound, testSound] = useState(null)
-  const audioRef = useRef(null)
+  const [ sound, testSound ] = useState( null )
+  const audioRef = useRef( null )
 
   return (
     <>
@@ -30,7 +30,7 @@ const Sound = () => {
           <Switch
             defaultChecked
             checked={soundOn}
-            onChange={checked => updateStore('sound', checked)}
+            onChange={checked => updateStore( 'sound', checked )}
           />
 
           <Button
@@ -38,10 +38,10 @@ const Sound = () => {
             size='small'
             style={{ marginLeft: 20 }}
             onClick={async () => {
-              if (!soundOn) updateStore('sound', true)
+              if ( !soundOn ) updateStore( 'sound', true )
               else {
-                if (sound) await testSound(false)
-                testSound(true)
+                if ( sound ) await testSound( false )
+                testSound( true )
               }
             }}
           >

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Row, Popover, Typography } from 'antd'
-import {QuestionCircleFilled} from '@ant-design/icons'
-import '../Assets/App.css'
+import { QuestionCircleFilled } from '@ant-design/icons'
+import '../Assets/App.less'
 import NextButton from '../Components/NextButton'
 import CardTitle from '../Components/CardTitle'
 import { middleIdx, oddPlayerOut } from '../helper'
@@ -32,7 +32,7 @@ const Pairs = () => {
                 style={{ ...stationStyle, width }}
                 bodyStyle={{ ...stationInnerStyle, padding: oddPadding }}
               >
-                <Row type='flex' style={{ justifyContent:'flex-end', margin: '-18px -11px 4px -3px' }}>
+                <Row type='flex' style={{ justifyContent: 'flex-end', margin: '-18px -11px 4px -3px' }}>
                   <Popover
                     content={
                       <>
@@ -51,7 +51,7 @@ const Pairs = () => {
                     trigger='click'
                     overlayStyle={{ maxWidth: 230 }}
                   >
-                    <QuestionCircleFilled style={{ color: '#008579' }}/>
+                    <QuestionCircleFilled style={{ color: '#008579' }} />
                   </Popover>
                 </Row>
                 <Text strong style={{ fontSize: getFont( member ) }}>
