@@ -12,7 +12,7 @@
     "react-dom": "^17.0.0",
     "react-netlify-form": "^2.1.5",
     "react-scripts": "^5.0.0",
-    "simple-circle-timer": "^0.1.16"
+    "simple-circle-timer": "^0.3.0"
   },
   "scripts": {
     "start": "craco start",
